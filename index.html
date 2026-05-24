@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEBU LIVE STORE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAUamZB1wED0AYrBPZ_nr8XYohUINBnpVk",
+            databaseURL: "https://ff-tournament-app-177b8-default-rtdb.firebaseio.com",
+            projectId: "ff-tournament-app-177b8",
+            storageBucket: "ff-tournament-app-177b8.firebasestorage.app",
+            messagingSenderId: "485025928795",
+            appId: "1:485025928795:web:febf75afa73b37e7b9d17e"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        onValue(ref(db, 'apps'), (snapshot) => {
+            const apps = snapshot.val();
+            const container = document.getElementById('appContainer');
+            container.innerHTML = '';
+            if (apps) {
+                Object.values(apps).forEach(a => {
+                    container.innerHTML += `
+                    <div class="dynamic-card flex items-center gap-4 p-5 rounded-3xl border-2 mb-5">
+                        <img src="${a.logo}" class="w-24 h-24 rounded-2xl border-2 border-white shadow-xl">
+                        <div class="flex-1">
+                            <h2 class="dynamic-text font-bold text-xl">${a.title}</h2>
+                            <div class="my-2">
+                                <span class="dynamic-border dynamic-text text-[11px] px-3 py-1 rounded-full border">${a.tag}</span>
+                            </div>
+                            <p class="text-gray-300 text-sm">Size: <span class="dynamic-text font-bold">${a.mb}</span></p>
+                        </div>
+                        <button onclick="openDetails('${a.logo}', '${a.title}', '${a.mb}', '${a.link}')" class="bg-white text-black px-6 py-2 rounded-xl text-sm font-bold shadow-xl">Details</button>
+                    </div>`;
+                });
+            }
+        });
+    </script>
+    <style>
+        body { background-color: #050505; color: white; font-family: 'Poppins', sans-serif; }
+        
+        /* অটোমেটিক কালার সাইকেল */
+        .dynamic-text { animation: colorCycle 6s infinite; }
+        .dynamic-card { animation: borderCycle 6s infinite; background: #101010; }
+        .dynamic-border { animation: borderCycle 6s infinite; }
+
+        @keyframes colorCycle {
+            0% { color: #ff0055; } 33% { color: #00d4ff; } 66% { color: #ccff00; } 100% { color: #ff0055; }
+        }
+        @keyframes borderCycle {
+            0% { border-color: #ff0055; } 33% { border-color: #00d4ff; } 66% { border-color: #ccff00; } 100% { border-color: #ff0055; }
+        }
+    </style>
+</head>
+<body class="p-5">
+
+    <h1 class="text-4xl font-black text-center mb-10 dynamic-text">DEBU LIVE STORE</h1>
+
+    <div id="appContainer"></div>
+
+    <div id="modal" class="hidden fixed inset-0 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 z-50">
+        <div class="bg-[#151515] border-2 dynamic-border p-8 rounded-3xl w-full max-w-sm text-center">
+            <img id="m-logo" class="w-32 h-32 rounded-3xl mx-auto mb-6 border-2 border-white">
+            <h2 id="m-title" class="dynamic-text text-3xl font-bold mb-2"></h2>
+            <p id="m-size" class="text-gray-300 mb-8 text-lg"></p>
+            <button onclick="document.getElementById('modal').classList.add('hidden')" class="w-full bg-gray-800 py-4 rounded-2xl mb-4 font-bold text-white">Close</button>
+            <a id="d-link" href="#" target="_blank" class="block w-full bg-white py-4 rounded-2xl font-black text-lg text-black">DOWNLOAD APK</a>
+        </div>
+    </div>
+
+    <script>
+        window.openDetails = (logo, title, mb, link) => {
+            document.getElementById('m-logo').src = logo;
+            document.getElementById('m-title').innerText = title;
+            document.getElementById('m-size').innerText = "Size: " + mb;
+            document.getElementById('d-link').href = link;
+            document.getElementById('modal').classList.remove('hidden');
+        };
+    </script>
+</body>
+</html>
+
+<script src="https://pl29535997.effectivecpmnetwork.com/a0/8b/8c/a08b8c20e357795750d81707b43b91bf.js"></script>
