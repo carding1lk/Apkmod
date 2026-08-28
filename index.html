@@ -1,10 +1,353 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEBU LIVE STORE</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MODWALA - Premium APK Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Poppins', sans-serif; background:#0b0f19; color:#fff; min-height:100vh; padding-bottom:80px; }
+        .glass { backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+        .gradient-text { background:linear-gradient(135deg,#34d399,#06b6d4,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .btn-primary { background:linear-gradient(135deg,#2563eb,#7c3aed); transition:all .3s; }
+        .btn-primary:hover { transform:scale(1.02); box-shadow:0 8px 30px rgba(37,99,235,.4); }
+        .card-hover { transition:all .25s ease; }
+        .card-hover:hover { transform:translateY(-4px); border-color:rgba(6,182,212,.5); box-shadow:0 12px 40px rgba(0,0,0,.5); }
+        .detail-card { background:#121624; border:1px solid rgba(255,255,255,.06); border-radius:28px; padding:24px; }
+        .detail-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+        .detail-row:last-child { border-bottom:none; }
+        .detail-card .label { color:#9ca3af; font-size:11px; text-transform:uppercase; letter-spacing:.5px; font-weight:600; }
+        .detail-card .value { color:#f3f4f6; font-weight:500; font-size:14px; }
+        .screenshot-placeholder { width:72px; height:72px; background:#1e2434; border-radius:16px; border:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; color:#4a5568; flex-shrink:0; }
+        .faq-item { padding:12px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+        .faq-item:last-child { border-bottom:none; }
+        .faq-item .q { color:#f3f4f6; font-weight:600; font-size:14px; }
+        .faq-item .a { color:#9ca3af; font-size:13px; margin-top:4px; }
+
+        /* Task */
+        .task-box { background:#121624; border:1px solid rgba(255,255,255,.06); border-radius:28px; padding:24px; }
+        .task-item { background:#1a1e2b; border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; transition:all .2s; }
+        .task-item:hover { border-color:rgba(255,255,255,.12); }
+        .task-check { width:24px; height:24px; border-radius:8px; border:2px solid #3b4055; display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer; transition:all .2s; background:transparent; }
+        .task-check.done { border-color:#10b981; background:#10b981; }
+        .task-check.done::after { content:"✓"; color:#fff; font-size:14px; font-weight:700; }
+        .task-label { display:flex; align-items:center; gap:12px; flex:1; }
+        .task-label span { color:#e5e7eb; font-size:14px; font-weight:500; }
+        .task-label span.done-text { color:#10b981; }
+        .task-start-btn { background:#2d3348; color:#c8cbd9; border:none; padding:5px 18px; border-radius:20px; font-size:12px; font-weight:600; cursor:pointer; transition:all .2s; min-width:64px; text-align:center; }
+        .task-start-btn:hover { background:#3b4057; }
+        .task-start-btn.done { background:#10b981; color:#fff; cursor:default; }
+        .task-start-btn.done:hover { background:#10b981; }
+        .btn-download-task { width:100%; padding:16px; border-radius:16px; font-size:16px; font-weight:700; border:none; cursor:pointer; transition:all .3s; background:#2d3348; color:#6b7280; }
+        .btn-download-task.active { background:linear-gradient(135deg,#2563eb,#7c3aed); color:#fff; box-shadow:0 8px 30px rgba(37,99,235,.35); }
+        .btn-download-task.active:hover { transform:scale(1.02); box-shadow:0 12px 40px rgba(37,99,235,.5); }
+        .progress-ring-bg { background:#1a1e2b; border-radius:16px; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; border:1px solid rgba(255,255,255,.05); }
+        .app-icon-large { width:72px; height:72px; border-radius:20px; object-fit:cover; border:2px solid rgba(255,255,255,.08); }
+        .app-icon-detail { width:84px; height:84px; border-radius:24px; object-fit:cover; border:2px solid rgba(255,255,255,.08); }
+        .input-dark { background:#1a1e2b; border:1px solid rgba(255,255,255,.08); color:#fff; border-radius:14px; padding:10px 14px; width:100%; font-size:14px; outline:none; transition:.2s; }
+        .input-dark:focus { border-color:#22d3ee; box-shadow:0 0 0 3px rgba(34,211,238,.1); }
+        .input-dark::placeholder { color:#6b7280; }
+        .icon-sm { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; flex-shrink:0; }
+        .icon-md { width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:2; flex-shrink:0; }
+        .icon-lg { width:28px; height:28px; stroke:currentColor; fill:none; stroke-width:2; flex-shrink:0; }
+        .badge { font-size:10px; font-weight:700; padding:2px 10px; border-radius:20px; }
+        .badge-mod { background:#ef4444; color:#fff; }
+        .badge-premium { background:#f59e0b; color:#000; }
+        .badge-pro { background:#8b5cf6; color:#fff; }
+        .badge-vip { background:#ec4899; color:#fff; }
+        .sidebar { background:#0b0f19; backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); }
+        .sidebar a { transition:all .2s; }
+        .sidebar a:hover { color:#fff; }
+        .overlay { background:rgba(0,0,0,.6); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
+        .sidebar-icon { stroke:#9ca3af; fill:none; width:20px; height:20px; flex-shrink:0; }
+        .sidebar-icon.active { stroke:#22d3ee; }
+        .sidebar a:hover .sidebar-icon { stroke:#fff; }
+        .icon-white { stroke:#fff; fill:none; }
+        .icon-gray { stroke:#9ca3af; fill:none; }
+        .icon-cyan { stroke:#22d3ee; fill:none; }
+        .icon-emerald { stroke:#34d399; fill:none; }
+        .icon-amber { stroke:#fbbf24; fill:none; }
+        .icon-red { stroke:#f87171; fill:none; }
+        .no-scrollbar::-webkit-scrollbar { display:none; }
+        .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+        ::-webkit-scrollbar { width:4px; }
+        ::-webkit-scrollbar-track { background:#0b0f19; }
+        ::-webkit-scrollbar-thumb { background:#2d3348; border-radius:10px; }
+        ::-webkit-scrollbar-thumb:hover { background:#3b4057; }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#0b0f19]/80 border-b border-white/5 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <button onclick="playClick(); toggleSidebar();" class="text-gray-300 hover:text-white transition p-1">
+                <svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+            </button>
+            <div class="flex items-center gap-2">
+                <span class="bg-emerald-500 text-black font-black text-xs px-2.5 py-1 rounded-lg">M</span>
+                <span class="font-black text-lg tracking-wider gradient-text">MODWALA</span>
+            </div>
+        </div>
+        <button onclick="playClick(); toggleTheme();" id="themeToggle" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 transition">
+            <svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
+        </button>
+    </header>
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-72 sidebar z-50 transform -translate-x-full transition-transform duration-300 border-r border-white/10 flex flex-col justify-between p-6 shadow-2xl">
+        <div>
+            <div class="flex items-center justify-between mb-10">
+                <span class="font-black text-xl gradient-text">modwala</span>
+                <button onclick="playClick(); toggleSidebar();" class="text-gray-400 hover:text-white transition p-1">
+                    <svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <nav class="space-y-1.5 text-sm font-medium text-gray-400">
+                <a href="#" onclick="playClick(); navigateTo('home')" class="flex items-center gap-3 text-cyan-400 font-bold p-2.5 rounded-xl bg-cyan-500/10 transition">
+                    <svg class="sidebar-icon active" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+                    Home
+                </a>
+                <a href="#" onclick="playClick(); navigateTo('trending')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
+                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+                    Trending
+                </a>
+                <a href="#" onclick="playClick(); navigateToCategory('Games')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
+                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35M8.25 4.5c0 1.5-.75 2.25-2.25 2.25M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0116.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228M18.75 4.236V2.721A48.339 48.339 0 0012 2.25c-2.291 0-4.545.16-6.75.47v1.516M16.27 9.728a6.726 6.726 0 01-2.748 1.35M15.75 4.5c0 1.5.75 2.25 2.25 2.25"/></svg>
+                    Games
+                </a>
+                <a href="#" onclick="playClick(); navigateToCategory('18+ Content')" class="flex items-center gap-3 hover:text-red-400 p-2.5 rounded-xl transition font-bold text-red-400">
+                    <svg class="sidebar-icon" style="stroke:#f87171;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5a6 6 0 11-12 0 6 6 0 0112 0zm-6 0v6m3-3H9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    18+ Content
+                </a>
+                <a href="#" onclick="playClick(); navigateTo('about')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
+                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+                    About
+                </a>
+                <a href="#" onclick="playClick(); navigateTo('help')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
+                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>
+                    Help
+                </a>
+                <a href="#" onclick="playClick(); navigateTo('contact')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
+                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                    Contact
+                </a>
+            </nav>
+        </div>
+        <div class="text-[11px] text-gray-500 text-center border-t border-white/5 pt-4">Modwala — Fast & Secure APK Downloads</div>
+    </div>
+
+    <!-- ═══ OVERLAY ═══ -->
+    <div id="overlay" onclick="playClick(); toggleSidebar();" class="fixed inset-0 overlay z-40 hidden"></div>
+
+    <!-- ═══ HOME VIEW ═══ -->
+    <div id="homeView" class="px-4 max-w-xl mx-auto pt-6">
+        <div class="text-center">
+            <h1 class="text-3xl font-black tracking-tight">Find Your Next <span class="gradient-text">MOD APK</span></h1>
+            <p class="text-gray-400 text-sm max-w-xs mx-auto mt-1">Search thousands of premium apps & games — unlocked, ad-free, forever.</p>
+            <div class="relative max-w-md mx-auto mt-5">
+                <input type="text" id="searchInput" oninput="playClick(); handleSearch();" placeholder="Search apps, games, MODs..." class="w-full bg-[#121624] border border-white/10 rounded-2xl py-3.5 pl-4 pr-24 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition">
+                <button onclick="playClick(); handleSearch();" class="absolute right-1.5 top-1.5 btn-primary text-white px-5 py-2 rounded-xl text-xs font-bold shadow-lg flex items-center gap-1">
+                    <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+                    Search
+                </button>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 mt-4 text-xs">
+                <span onclick="playClick(); navigateToCategory('Games')" class="bg-[#121624] border border-white/10 px-4 py-1.5 rounded-xl cursor-pointer hover:border-cyan-500/50 transition flex items-center gap-1.5">
+                    <svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35M8.25 4.5c0 1.5-.75 2.25-2.25 2.25M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0116.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228M18.75 4.236V2.721A48.339 48.339 0 0012 2.25c-2.291 0-4.545.16-6.75.47v1.516M16.27 9.728a6.726 6.726 0 01-2.748 1.35M15.75 4.5c0 1.5.75 2.25 2.25 2.25"/></svg>
+                    Games
+                </span>
+                <span onclick="playClick(); navigateToCategory('Music')" class="bg-[#121624] border border-white/10 px-4 py-1.5 rounded-xl cursor-pointer hover:border-cyan-500/50 transition flex items-center gap-1.5">
+                    <svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3v12.75M9 9v10.5M9 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm0 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm10.5-3a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+                    Music
+                </span>
+                <span onclick="playClick(); navigateToCategory('Editing')" class="bg-[#121624] border border-white/10 px-4 py-1.5 rounded-xl cursor-pointer hover:border-cyan-500/50 transition flex items-center gap-1.5">
+                    <svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M15 3.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 0V6m0 0V9m0 0a3 3 0 11-6 0m6 0V6m0 0h-6m0 0V3.75m0 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 0V6m0 0v3m0 0a3 3 0 11-6 0m6 0V6m0 0h-6"/></svg>
+                    Editing
+                </span>
+                <span onclick="playClick(); navigateToCategory('18+ Content')" class="bg-[#121624] border border-red-500/30 px-4 py-1.5 rounded-xl cursor-pointer text-red-400 font-bold hover:border-red-500/60 transition flex items-center gap-1.5">
+                    <svg class="icon-sm icon-red" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5a6 6 0 11-12 0 6 6 0 0112 0zm-6 0v6m3-3H9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    18+
+                </span>
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <h2 class="text-lg font-bold mb-4 tracking-wide flex items-center gap-2">
+                <svg class="icon-md icon-amber" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
+                Latest MOD APKs
+            </h2>
+            <div id="appContainer" class="grid grid-cols-2 gap-4"></div>
+        </div>
+
+        <div class="mt-8">
+            <h2 class="text-lg font-bold mb-4 tracking-wide flex items-center gap-2">
+                <svg class="icon-md icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/></svg>
+                Popular Categories
+            </h2>
+            <div class="grid grid-cols-2 gap-3">
+                <div onclick="playClick(); navigateToCategory('Games')" class="bg-[#121624] border border-white/5 p-4 rounded-2xl text-center cursor-pointer card-hover">
+                    <h4 class="font-bold text-sm flex items-center justify-center gap-1.5"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35M8.25 4.5c0 1.5-.75 2.25-2.25 2.25M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0116.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228M18.75 4.236V2.721A48.339 48.339 0 0012 2.25c-2.291 0-4.545.16-6.75.47v1.516M16.27 9.728a6.726 6.726 0 01-2.748 1.35M15.75 4.5c0 1.5.75 2.25 2.25 2.25"/></svg> Games</h4>
+                    <p class="text-[11px] text-gray-400 mt-0.5">MOD APKs</p>
+                </div>
+                <div onclick="playClick(); navigateToCategory('Productivity')" class="bg-[#121624] border border-white/5 p-4 rounded-2xl text-center cursor-pointer card-hover">
+                    <h4 class="font-bold text-sm flex items-center justify-center gap-1.5"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zM6.75 15h.008v.008H6.75V15zm0 2.25h.008v.008H6.75v-.008z"/></svg> Productivity</h4>
+                    <p class="text-[11px] text-gray-400 mt-0.5">MOD APKs</p>
+                </div>
+                <div onclick="playClick(); navigateToCategory('Music')" class="bg-[#121624] border border-white/5 p-4 rounded-2xl text-center cursor-pointer card-hover">
+                    <h4 class="font-bold text-sm flex items-center justify-center gap-1.5"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3v12.75M9 9v10.5M9 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm0 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm10.5-3a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg> Music</h4>
+                    <p class="text-[11px] text-gray-400 mt-0.5">MOD APKs</p>
+                </div>
+                <div onclick="playClick(); navigateToCategory('18+ Content')" class="bg-[#121624] border border-red-500/20 p-4 rounded-2xl text-center cursor-pointer card-hover">
+                    <h4 class="font-bold text-sm text-red-400 flex items-center justify-center gap-1.5"><svg class="icon-sm icon-red" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5a6 6 0 11-12 0 6 6 0 0112 0zm-6 0v6m3-3H9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 18+ Content</h4>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Adult Apps</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ CATEGORY VIEW ═══ -->
+    <div id="categoryView" class="hidden px-4 max-w-xl mx-auto py-6">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg><span id="categoryTitleText">Category</span></h1>
+            <button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button>
+        </div>
+        <div id="categoryContainer" class="grid grid-cols-2 gap-4"></div>
+    </div>
+
+    <!-- ═══ DETAIL VIEW ═══ -->
+    <div id="detailView" class="hidden px-4 max-w-xl mx-auto py-4">
+        <div class="flex items-center justify-between mb-4">
+            <button onclick="playClick(); closeDetail()" class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button>
+            <span class="text-xs text-gray-500">modwala</span>
+        </div>
+        <div class="detail-card flex items-start gap-4">
+            <img id="dIcon" class="app-icon-detail" src="" alt="icon">
+            <div>
+                <h1 id="dTitle" class="text-2xl font-black text-white">App Name</h1>
+                <p class="text-gray-400 text-xs mt-0.5">Fast download, clean details, direct access.</p>
+                <div class="flex items-center gap-3 mt-1 text-xs">
+                    <span class="bg-white/10 px-2.5 py-0.5 rounded-full text-gray-300 flex items-center gap-1"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z"/></svg>V <span id="dVersion">1.34</span></span>
+                    <span class="text-gray-400 flex items-center gap-1"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg><span id="dUpdated">03 Jul 2026</span></span>
+                </div>
+                <div class="flex items-center gap-1 mt-1.5">
+                    <svg class="icon-sm icon-amber" style="width:16px;height:16px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+                    <span id="dRating" class="text-white font-bold text-sm">4.9</span>
+                    <span class="text-gray-400 text-xs">(8656 votes)</span>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="playClick(); openTaskFromDetail()" class="w-full mt-5 btn-primary text-white font-bold py-4 rounded-2xl text-sm shadow-lg flex items-center justify-center gap-2">
+            <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+            Download Now
+        </button>
+
+        <div class="detail-card mt-5">
+            <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>App Info</div>
+            <div class="detail-row"><span class="label">LAST UPDATED</span><span class="value" id="dUpdated2">03 Jul 2026</span></div>
+            <div class="detail-row"><span class="label">PUBLISHER</span><span class="value" id="dPublisher">Zexapk</span></div>
+            <div class="detail-row"><span class="label">REQUIREMENTS</span><span class="value">Android 5.0+</span></div>
+            <div class="detail-row"><span class="label">CATEGORY</span><span class="value" id="dCategory">Apk</span></div>
+            <div class="detail-row"><span class="label">SIZE</span><span class="value" id="dSize">23 MB</span></div>
+        </div>
+
+        <div class="detail-card mt-5">
+            <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055 4.655 4.655 0 00-6.634-.828 2.31 2.31 0 01-1.64 1.055zM12 9.75v.008M12 9.75a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5z"/></svg>Screenshots</div>
+            <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+                <div class="screenshot-placeholder"><svg class="icon-md icon-gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
+                <div class="screenshot-placeholder"><svg class="icon-md icon-gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
+                <div class="screenshot-placeholder"><svg class="icon-md icon-gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
+                <div class="screenshot-placeholder"><svg class="icon-md icon-gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
+            </div>
+        </div>
+
+        <div class="detail-card mt-5">
+            <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>FAQ</div>
+            <div class="faq-item"><div class="q">Is this MOD APK safe?</div><div class="a">Yes, every APK is scanned and verified before listing.</div></div>
+            <div class="faq-item"><div class="q">How to install?</div><div class="a">Download APK, enable "Unknown Sources" in settings, and install.</div></div>
+            <div class="faq-item"><div class="q">Does it require root?</div><div class="a">No, most MODs work without root access.</div></div>
+        </div>
+        <div class="text-center text-[11px] text-gray-500 mt-6 border-t border-white/5 pt-4">Modwala - Fast & Secure APK Downloads</div>
+        <div class="flex justify-center gap-6 text-[11px] text-gray-500 mt-2 pb-4"><span>Privacy</span><span>Contact</span><span>Help</span></div>
+    </div>
+
+    <!-- ═══ TASK VIEW ═══ -->
+    <div id="taskView" class="hidden px-4 max-w-xl mx-auto py-4 min-h-[80vh] flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+            <button onclick="playClick(); closeTask()" class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button>
+            <span class="text-xs text-gray-500">modwala</span>
+        </div>
+
+        <div class="flex items-center gap-4 bg-[#121624] border border-white/5 rounded-2xl p-4 mb-5">
+            <img id="tIcon" class="app-icon-large" src="" alt="icon">
+            <div><h2 id="tTitle" class="text-white font-bold text-xl">App Name</h2><p id="tSize" class="text-gray-400 text-xs">23 MB • MOD</p></div>
+        </div>
+
+        <div class="task-box flex-1">
+            <div class="text-center"><h1 class="text-2xl font-black text-white tracking-tight">Almost Done!</h1><p class="text-gray-400 text-sm mt-0.5">Complete these quick tasks to unlock your download</p></div>
+
+            <div class="progress-ring-bg mt-5">
+                <div class="flex items-center gap-3">
+                    <svg class="icon-md icon-emerald" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+                    <span class="text-sm text-gray-300"><strong id="tDone">0</strong> of 6 tasks completed</span>
+                </div>
+                <span id="tPercent" class="text-emerald-400 font-bold text-sm">0%</span>
+            </div>
+
+            <div id="taskList" class="space-y-3 mt-5"></div>
+
+            <button id="downloadTaskBtn" class="btn-download-task mt-6" disabled onclick="playClick(); finalDownload()">
+                <span class="flex items-center justify-center gap-2"><svg class="icon-sm icon-white" style="stroke:currentColor;" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Now</span>
+            </button>
+            <p class="text-center text-[11px] text-gray-500 mt-2">Complete all tasks to enable download</p>
+        </div>
+    </div>
+
+    <!-- ═══ OTHER PAGES ═══ -->
+    <div id="aboutView" class="hidden px-4 max-w-xl mx-auto py-6">
+        <div class="flex items-center justify-between mb-6"><h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>About</h1><button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button></div>
+        <div class="detail-card space-y-4"><p class="text-gray-400 text-sm">Your trusted platform for fast, safe, and free MOD APK downloads.</p><div class="grid grid-cols-3 gap-2 text-center bg-white/5 p-3 rounded-2xl"><div><div id="totalAppsCount" class="font-black text-cyan-400 text-sm">0+</div><div class="text-[10px] text-gray-400">Apps</div></div><div><div class="font-black text-emerald-400 text-sm">137K+</div><div class="text-[10px] text-gray-400">Downloads</div></div><div><div class="font-black text-purple-400 text-sm">4+</div><div class="text-[10px] text-gray-400">Categories</div></div></div><div><h3 class="font-bold text-white text-base">Our Mission</h3><p class="text-gray-400 text-sm">Modwala was built to give everyone access to premium Android apps without the price tag.</p></div></div>
+    </div>
+
+    <div id="helpView" class="hidden px-4 max-w-xl mx-auto py-6">
+        <div class="flex items-center justify-between mb-6"><h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>Help</h1><button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button></div>
+        <div class="detail-card space-y-5 text-sm"><p class="text-gray-400">Find answers to common questions.</p><div><h3 class="font-bold text-cyan-400 flex items-center gap-1.5"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Help</h3><p class="text-gray-400">Troubleshoot download issues.</p></div><div><h3 class="font-bold text-emerald-400 flex items-center gap-1.5"><svg class="icon-sm icon-emerald" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.048.58.024 1.193-.14 1.743"/></svg>Installation Guide</h3><p class="text-gray-400">Step-by-step instructions.</p></div><div class="text-center"><a href="https://t.me" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2.5 rounded-2xl font-bold shadow">Get help on Telegram</a></div></div>
+    </div>
+
+    <div id="contactView" class="hidden px-4 max-w-xl mx-auto py-6">
+        <div class="flex items-center justify-between mb-6"><h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>Contact</h1><button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button></div>
+        <div class="detail-card space-y-5 text-sm"><p class="text-gray-400">Get in touch with our team.</p><div class="bg-white/5 p-4 rounded-2xl"><h3 class="font-bold text-white flex items-center gap-1.5"><svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Telegram</h3><a href="https://t.me" target="_blank" class="text-cyan-400 font-bold">@Modwalabot</a></div><form onsubmit="event.preventDefault(); alert('Message sent!');" class="space-y-3"><div><label class="block text-gray-400 text-xs mb-1">Name *</label><input type="text" required class="input-dark"/></div><div><label class="block text-gray-400 text-xs mb-1">Email *</label><input type="email" required class="input-dark"/></div><div><label class="block text-gray-400 text-xs mb-1">Message *</label><textarea rows="3" required class="input-dark"></textarea></div><button type="submit" class="w-full btn-primary text-white font-bold py-3 rounded-2xl shadow">Send</button></form></div>
+    </div>
+
+    <div id="trendingView" class="hidden px-4 max-w-xl mx-auto py-6">
+        <div class="flex items-center justify-between mb-6"><h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-amber" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>Trending</h1><button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button></div>
+        <div class="text-center text-gray-400 py-10">Trending apps coming soon.</div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="text-center text-xs text-gray-500 border-t border-white/5 pt-5 mt-6 px-4">
+        <p class="text-gray-400 font-semibold mb-2">Modwala - Fast & Secure APK Downloads</p>
+        <div class="flex flex-wrap justify-center gap-4 text-gray-500">
+            <a href="#" onclick="playClick(); navigateTo('home')" class="hover:text-white transition">Home</a>
+            <a href="#" onclick="playClick(); navigateTo('about')" class="hover:text-white transition">About</a>
+            <a href="#" onclick="playClick(); navigateTo('contact')" class="hover:text-white transition">Contact</a>
+            <a href="#" onclick="playClick(); navigateTo('help')" class="hover:text-white transition">Help</a>
+        </div>
+    </footer>
+
+    <!-- ═══ FLOATING TELEGRAM ═══ -->
+    <a href="https://t.me" target="_blank" onclick="playClick()" class="fixed bottom-5 right-5 bg-blue-600 p-3.5 rounded-full shadow-2xl hover:scale-110 transition-transform z-30 flex items-center justify-center">
+        <svg class="icon-md icon-white" style="fill:white;stroke:none;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.26-2.06-.48-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.98-1.73 6.64-2.87 7.98-3.43 3.8-1.58 4.59-1.85 5.1-1.86.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.22z"/></svg>
+    </a>
+
+    <!-- ═══ FIREBASE ═══ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
@@ -21,70 +364,320 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        onValue(ref(db, 'apps'), (snapshot) => {
-            const apps = snapshot.val();
-            const container = document.getElementById('appContainer');
-            container.innerHTML = '';
-            if (apps) {
-                Object.values(apps).forEach(a => {
-                    container.innerHTML += `
-                    <div class="dynamic-card flex items-center gap-4 p-5 rounded-3xl border-2 mb-5">
-                        <img src="${a.logo}" class="w-24 h-24 rounded-2xl border-2 border-white shadow-xl">
-                        <div class="flex-1">
-                            <h2 class="dynamic-text font-bold text-xl">${a.title}</h2>
-                            <div class="my-2">
-                                <span class="dynamic-border dynamic-text text-[11px] px-3 py-1 rounded-full border">${a.tag}</span>
-                            </div>
-                            <p class="text-gray-300 text-sm">Size: <span class="dynamic-text font-bold">${a.mb}</span></p>
-                        </div>
-                        <button onclick="openDetails('${a.logo}', '${a.title}', '${a.mb}', '${a.link}')" class="bg-white text-black px-6 py-2 rounded-xl text-sm font-bold shadow-xl">Details</button>
-                    </div>`;
-                });
+        let allApps = [];
+
+        // ─── LOAD TASK LINKS ──────────────────────────────
+        onValue(ref(db, 'taskLinks'), (snap) => {
+            const data = snap.val();
+            if (data) {
+                window.taskLinks = data;  // সেট করা হলো গ্লোবালি
+            } else {
+                window.taskLinks = {};
+            }
+            // Task list আপডেট করতে হবে, যদি ইতিমধ্যে টাস্ক ভিউ খোলা থাকে
+            const taskView = document.getElementById('taskView');
+            if (!taskView.classList.contains('hidden')) {
+                renderTaskList();
             }
         });
-    </script>
-    <style>
-        body { background-color: #050505; color: white; font-family: 'Poppins', sans-serif; }
-        
-        /* অটোমেটিক কালার সাইকেল */
-        .dynamic-text { animation: colorCycle 6s infinite; }
-        .dynamic-card { animation: borderCycle 6s infinite; background: #101010; }
-        .dynamic-border { animation: borderCycle 6s infinite; }
 
-        @keyframes colorCycle {
-            0% { color: #ff0055; } 33% { color: #00d4ff; } 66% { color: #ccff00; } 100% { color: #ff0055; }
-        }
-        @keyframes borderCycle {
-            0% { border-color: #ff0055; } 33% { border-color: #00d4ff; } 66% { border-color: #ccff00; } 100% { border-color: #ff0055; }
-        }
-    </style>
-</head>
-<body class="p-5">
+        // ─── LOAD APPS ──────────────────────────────────────
+        onValue(ref(db, 'apps'), (snap) => {
+            const data = snap.val();
+            const container = document.getElementById('appContainer');
+            const total = document.getElementById('totalAppsCount');
+            if (data) {
+                allApps = Object.values(data);
+                if (total) total.innerText = allApps.length + '+';
+                renderApps(allApps, container);
+            } else {
+                allApps = [];
+                if (total) total.innerText = '0+';
+                if (container) container.innerHTML =
+                    `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">No apps found</div>`;
+            }
+        });
 
-    <h1 class="text-4xl font-black text-center mb-10 dynamic-text">DEBU LIVE STORE</h1>
-
-    <div id="appContainer"></div>
-
-    <div id="modal" class="hidden fixed inset-0 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 z-50">
-        <div class="bg-[#151515] border-2 dynamic-border p-8 rounded-3xl w-full max-w-sm text-center">
-            <img id="m-logo" class="w-32 h-32 rounded-3xl mx-auto mb-6 border-2 border-white">
-            <h2 id="m-title" class="dynamic-text text-3xl font-bold mb-2"></h2>
-            <p id="m-size" class="text-gray-300 mb-8 text-lg"></p>
-            <button onclick="document.getElementById('modal').classList.add('hidden')" class="w-full bg-gray-800 py-4 rounded-2xl mb-4 font-bold text-white">Close</button>
-            <a id="d-link" href="#" target="_blank" class="block w-full bg-white py-4 rounded-2xl font-black text-lg text-black">DOWNLOAD APK</a>
-        </div>
-    </div>
-
-    <script>
-        window.openDetails = (logo, title, mb, link) => {
-            document.getElementById('m-logo').src = logo;
-            document.getElementById('m-title').innerText = title;
-            document.getElementById('m-size').innerText = "Size: " + mb;
-            document.getElementById('d-link').href = link;
-            document.getElementById('modal').classList.remove('hidden');
+        window.renderApps = function(apps, container) {
+            if (!container) return;
+            container.innerHTML = '';
+            if (!apps || apps.length === 0) {
+                container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">No apps found</div>`;
+                return;
+            }
+            apps.forEach(a => {
+                const badge = a.badge || 'MOD';
+                const rating = a.rating || '4.9';
+                container.innerHTML += `
+                    <div onclick="playClick(); openDetail('${a.logo}', '${a.title}', '${a.mb}', '${a.link}', '${badge}', '${rating}', '${a.version || '1.34'}', '${a.updated || '03 Jul 2026'}', '${a.publisher || 'Zexapk'}', '${a.category || 'Apk'}')" class="bg-[#121624] border border-white/5 rounded-2xl p-4 cursor-pointer card-hover flex flex-col">
+                        <div class="flex items-start justify-between">
+                            <img src="${a.logo}" class="w-14 h-14 rounded-2xl object-cover border border-white/10 shadow-md" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22 viewBox=%220 0 56 56%22%3E%3Crect width=%2256%22 height=%2256%22 fill=%22%231a1e2b%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22%236b7280%22 font-size=%2224%22 font-family=%22sans-serif%22%3E📱%3C/text%3E%3C/svg%3E'">
+                            <span class="badge ${badge === 'MOD' ? 'badge-mod' : badge === 'Premium' ? 'badge-premium' : badge === 'Pro' ? 'badge-pro' : 'badge-vip'}">${badge}</span>
+                        </div>
+                        <h3 class="text-white font-bold text-sm mt-3 line-clamp-1">${a.title}</h3>
+                        <p class="text-emerald-400 text-xs font-medium">${a.category || 'MOD'}</p>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/5 text-xs text-gray-400">
+                            <span class="text-amber-400 font-bold flex items-center gap-0.5"><svg class="icon-sm icon-amber" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>${rating}</span>
+                            <span class="font-semibold">${a.mb}</span>
+                        </div>
+                    </div>
+                `;
+            });
         };
+
+        window.handleSearch = function() {
+            const q = document.getElementById('searchInput').value.toLowerCase().trim();
+            const container = document.getElementById('appContainer');
+            navigateTo('home');
+            if (!q) { renderApps(allApps, container); return; }
+            const filtered = allApps.filter(a =>
+                (a.title && a.title.toLowerCase().includes(q)) ||
+                (a.category && a.category.toLowerCase().includes(q)) ||
+                (a.tag && a.tag.toLowerCase().includes(q))
+            );
+            renderApps(filtered, container);
+        };
+    </script>
+
+    <!-- ═══ MAIN SCRIPT ═══ -->
+    <script>
+        // ─── SOUND ──────────────────────────────────────────
+        let audioCtx = null;
+
+        function playClick() {
+            try {
+                if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.frequency.value = 880;
+                osc.type = 'sine';
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 0.08);
+            } catch (e) {}
+        }
+
+        // ─── STATE ──────────────────────────────────────────
+        const TASKS = ['Join Channel 1', 'Join Channel 2', 'Join Channel 3', 'Join Channel 4', 'Join Channel 5',
+            'Follow On Instagram'
+        ];
+        let taskDone = [false, false, false, false, false, false];
+        let pendingApp = { logo: '', title: '', size: '', badge: '', link: '', rating: '', version: '', updated: '',
+            publisher: '', category: '' };
+        let activeTaskIndex = -1;
+
+        // ─── NAVIGATION ─────────────────────────────────────
+        function navigateTo(view) {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
+            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView',
+                'taskView'
+            ];
+            views.forEach(id => document.getElementById(id).classList.add('hidden'));
+            if (view === 'home') document.getElementById('homeView').classList.remove('hidden');
+            else if (view === 'trending') document.getElementById('trendingView').classList.remove('hidden');
+            else if (view === 'about') document.getElementById('aboutView').classList.remove('hidden');
+            else if (view === 'help') document.getElementById('helpView').classList.remove('hidden');
+            else if (view === 'contact') document.getElementById('contactView').classList.remove('hidden');
+            else if (view === 'category') document.getElementById('categoryView').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function navigateToCategory(cat) {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
+            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView',
+                'taskView'
+            ];
+            views.forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById('categoryView').classList.remove('hidden');
+            document.getElementById('categoryTitleText').innerText = cat + ' Apps';
+            const container = document.getElementById('categoryContainer');
+            container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">Loading...</div>`;
+            if (window.allApps && window.allApps.length) {
+                const filtered = window.allApps.filter(a => a.category && a.category.toLowerCase() === cat.toLowerCase());
+                window.renderApps(filtered, container);
+            } else {
+                container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">No apps found</div>`;
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('overlay').classList.toggle('hidden');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.getElementById('themeToggle');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                btn.innerHTML =
+                    `<svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.773l-1.591 1.591M5.25 12H3m4.773-4.773L6.182 5.636M12 6.75A5.25 5.25 0 016.75 12 5.25 5.25 0 0012 17.25 5.25 5.25 0 0017.25 12 5.25 5.25 0 0012 6.75z"/></svg>`;
+            } else {
+                html.classList.add('dark');
+                btn.innerHTML =
+                    `<svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>`;
+            }
+        }
+
+        // ─── DETAIL VIEW ────────────────────────────────────
+        function openDetail(logo, title, mb, link, badge, rating, version, updated, publisher, category) {
+            pendingApp = { logo, title, size: mb, badge, link, rating, version, updated, publisher, category };
+            document.getElementById('dIcon').src = logo;
+            document.getElementById('dTitle').innerText = title;
+            document.getElementById('dVersion').innerText = version;
+            document.getElementById('dUpdated').innerText = updated;
+            document.getElementById('dRating').innerText = rating;
+            document.getElementById('dUpdated2').innerText = updated;
+            document.getElementById('dPublisher').innerText = publisher;
+            document.getElementById('dCategory').innerText = category;
+            document.getElementById('dSize').innerText = mb;
+            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView',
+                'taskView'
+            ];
+            views.forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById('detailView').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function closeDetail() { navigateTo('home'); }
+
+        // ─── TASK VIEW ──────────────────────────────────────
+        function openTaskFromDetail() {
+            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView',
+                'taskView'
+            ];
+            views.forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById('taskView').classList.remove('hidden');
+            document.getElementById('tIcon').src = pendingApp.logo;
+            document.getElementById('tTitle').innerText = pendingApp.title;
+            document.getElementById('tSize').innerText = pendingApp.size + ' MB • ' + pendingApp.badge;
+            taskDone = [false, false, false, false, false, false];
+            activeTaskIndex = -1;
+            renderTaskList();
+            updateTaskProgress();
+            document.getElementById('downloadTaskBtn').disabled = true;
+            document.getElementById('downloadTaskBtn').classList.remove('active');
+            window.scrollTo(0, 0);
+            document.addEventListener('visibilitychange', onVisibilityChange);
+        }
+
+        function closeTask() {
+            document.removeEventListener('visibilitychange', onVisibilityChange);
+            navigateTo('home');
+        }
+
+        function onVisibilityChange() {
+            if (document.visibilityState === 'visible' && activeTaskIndex >= 0 && !taskDone[activeTaskIndex]) {
+                taskDone[activeTaskIndex] = true;
+                renderTaskList();
+                updateTaskProgress();
+                const allDone = taskDone.every(v => v);
+                const btn = document.getElementById('downloadTaskBtn');
+                if (allDone) {
+                    btn.disabled = false;
+                    btn.classList.add('active');
+                    btn.innerHTML =
+                        `<span class="flex items-center justify-center gap-2"><svg class="icon-sm icon-white" style="stroke:currentColor;" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Now</span>`;
+                }
+                activeTaskIndex = -1;
+                document.removeEventListener('visibilitychange', onVisibilityChange);
+            }
+        }
+
+        function renderTaskList() {
+            const container = document.getElementById('taskList');
+            container.innerHTML = '';
+            const links = window.taskLinks || {};
+            TASKS.forEach((label, i) => {
+                const done = taskDone[i];
+                const link = links[i] || '#';
+                const div = document.createElement('div');
+                div.className = 'task-item';
+                div.innerHTML = `
+                    <div class="task-label">
+                        <div class="task-check ${done ? 'done' : ''}" onclick="playClick(); toggleTask(${i})"></div>
+                        <span class="${done ? 'done-text' : ''}">${label}</span>
+                    </div>
+                    <button class="task-start-btn ${done ? 'done' : ''}" onclick="playClick(); startTask(${i}, '${link}')">${done ? '✓ Done' : 'Start'}</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        window.startTask = function(index, link) {
+            if (taskDone[index]) return;
+            if (!link || link === '#') {
+                // লিংক না থাকলে ম্যানুয়ালি কমপ্লিট
+                taskDone[index] = true;
+                renderTaskList();
+                updateTaskProgress();
+                const allDone = taskDone.every(v => v);
+                const btn = document.getElementById('downloadTaskBtn');
+                if (allDone) {
+                    btn.disabled = false;
+                    btn.classList.add('active');
+                    btn.innerHTML =
+                        `<span class="flex items-center justify-center gap-2"><svg class="icon-sm icon-white" style="stroke:currentColor;" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Now</span>`;
+                }
+                return;
+            }
+            activeTaskIndex = index;
+            window.open(link, '_blank');
+        };
+
+        function toggleTask(index) {
+            if (taskDone[index]) return;
+            taskDone[index] = true;
+            renderTaskList();
+            updateTaskProgress();
+            const allDone = taskDone.every(v => v);
+            const btn = document.getElementById('downloadTaskBtn');
+            if (allDone) {
+                btn.disabled = false;
+                btn.classList.add('active');
+                btn.innerHTML =
+                    `<span class="flex items-center justify-center gap-2"><svg class="icon-sm icon-white" style="stroke:currentColor;" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Now</span>`;
+            }
+        }
+
+        function updateTaskProgress() {
+            const done = taskDone.filter(v => v).length;
+            document.getElementById('tDone').innerText = done;
+            document.getElementById('tPercent').innerText = Math.round((done / 6) * 100) + '%';
+        }
+
+        function finalDownload() {
+            if (!taskDone.every(v => v)) return;
+            if (pendingApp.link) {
+                window.open(pendingApp.link, '_blank');
+            } else {
+                alert('Download link not available.');
+            }
+        }
+
+        // ─── GLOBALS ────────────────────────────────────────
+        window.playClick = playClick;
+        window.openDetail = openDetail;
+        window.closeDetail = closeDetail;
+        window.openTaskFromDetail = openTaskFromDetail;
+        window.closeTask = closeTask;
+        window.toggleTask = toggleTask;
+        window.startTask = startTask;
+        window.finalDownload = finalDownload;
+        window.navigateTo = navigateTo;
+        window.navigateToCategory = navigateToCategory;
+        window.toggleSidebar = toggleSidebar;
+        window.toggleTheme = toggleTheme;
+        window.renderTaskList = renderTaskList; // for live update
+
+        console.log('✅ MODWALA আপডেট — টাস্ক লিংক ঠিক করা হয়েছে।');
+        console.log('📌 এখন লিংক যোগ করলে Start বাটনে ক্লিক করলে লিংক ওপেন হবে এবং ফিরে এলে অটো-কমপ্লিট হবে।');
     </script>
 </body>
 </html>
-
-<script src="https://pl29535997.effectivecpmnetwork.com/a0/8b/8c/a08b8c20e357795750d81707b43b91bf.js"></script>
