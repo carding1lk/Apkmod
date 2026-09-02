@@ -2,84 +2,464 @@
 <html lang="bn" class="dark">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MODWALA - Premium APK Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
     <script>
         tailwind.config = { darkMode: 'class' }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: 'Poppins', sans-serif; background:#0b0f19; color:#fff; min-height:100vh; padding-bottom:80px; }
-        .glass { backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
-        .gradient-text { background:linear-gradient(135deg,#34d399,#06b6d4,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-        .btn-primary { background:linear-gradient(135deg,#2563eb,#7c3aed); transition:all .3s; }
-        .btn-primary:hover { transform:scale(1.02); box-shadow:0 8px 30px rgba(37,99,235,.4); }
-        .card-hover { transition:all .25s ease; }
-        .card-hover:hover { transform:translateY(-4px); border-color:rgba(6,182,212,.5); box-shadow:0 12px 40px rgba(0,0,0,.5); }
-        .detail-card { background:#121624; border:1px solid rgba(255,255,255,.06); border-radius:28px; padding:24px; }
-        .detail-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.05); }
-        .detail-row:last-child { border-bottom:none; }
-        .detail-card .label { color:#9ca3af; font-size:11px; text-transform:uppercase; letter-spacing:.5px; font-weight:600; }
-        .detail-card .value { color:#f3f4f6; font-weight:500; font-size:14px; }
-        .screenshot-placeholder { width:72px; height:72px; background:#1e2434; border-radius:16px; border:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; color:#4a5568; flex-shrink:0; }
-        .faq-item { padding:12px 0; border-bottom:1px solid rgba(255,255,255,.05); }
-        .faq-item:last-child { border-bottom:none; }
-        .faq-item .q { color:#f3f4f6; font-weight:600; font-size:14px; }
-        .faq-item .a { color:#9ca3af; font-size:13px; margin-top:4px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0b0f19;
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        .glass {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #34d399, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            transition: all .3s;
+        }
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, .4);
+        }
+        .card-hover {
+            transition: all .25s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(6, 182, 212, .5);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+        }
+        .detail-card {
+            background: #121624;
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 28px;
+            padding: 24px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-card .label {
+            color: #9ca3af;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-weight: 600;
+        }
+        .detail-card .value {
+            color: #f3f4f6;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .screenshot-placeholder {
+            width: 72px;
+            height: 72px;
+            background: #1e2434;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a5568;
+            flex-shrink: 0;
+        }
+        .faq-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item .q {
+            color: #f3f4f6;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .faq-item .a {
+            color: #9ca3af;
+            font-size: 13px;
+            margin-top: 4px;
+        }
 
-        /* Task */
-        .task-box { background:#121624; border:1px solid rgba(255,255,255,.06); border-radius:28px; padding:24px; }
-        .task-item { background:#1a1e2b; border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; transition:all .2s; }
-        .task-item:hover { border-color:rgba(255,255,255,.12); }
-        .task-check { width:24px; height:24px; border-radius:8px; border:2px solid #3b4055; display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer; transition:all .2s; background:transparent; }
-        .task-check.done { border-color:#10b981; background:#10b981; }
-        .task-check.done::after { content:"✓"; color:#fff; font-size:14px; font-weight:700; }
-        .task-label { display:flex; align-items:center; gap:12px; flex:1; }
-        .task-label span { color:#e5e7eb; font-size:14px; font-weight:500; }
-        .task-label span.done-text { color:#10b981; }
-        .task-start-btn { background:#2d3348; color:#c8cbd9; border:none; padding:5px 18px; border-radius:20px; font-size:12px; font-weight:600; cursor:pointer; transition:all .2s; min-width:64px; text-align:center; }
-        .task-start-btn:hover { background:#3b4057; }
-        .task-start-btn.done { background:#10b981; color:#fff; cursor:default; }
-        .task-start-btn.done:hover { background:#10b981; }
-        .btn-download-task { width:100%; padding:16px; border-radius:16px; font-size:16px; font-weight:700; border:none; cursor:pointer; transition:all .3s; background:#2d3348; color:#6b7280; }
-        .btn-download-task.active { background:linear-gradient(135deg,#2563eb,#7c3aed); color:#fff; box-shadow:0 8px 30px rgba(37,99,235,.35); }
-        .btn-download-task.active:hover { transform:scale(1.02); box-shadow:0 12px 40px rgba(37,99,235,.5); }
-        .progress-ring-bg { background:#1a1e2b; border-radius:16px; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; border:1px solid rgba(255,255,255,.05); }
-        .app-icon-large { width:72px; height:72px; border-radius:20px; object-fit:cover; border:2px solid rgba(255,255,255,.08); }
-        .app-icon-detail { width:84px; height:84px; border-radius:24px; object-fit:cover; border:2px solid rgba(255,255,255,.08); }
-        .input-dark { background:#1a1e2b; border:1px solid rgba(255,255,255,.08); color:#fff; border-radius:14px; padding:10px 14px; width:100%; font-size:14px; outline:none; transition:.2s; }
-        .input-dark:focus { border-color:#22d3ee; box-shadow:0 0 0 3px rgba(34,211,238,.1); }
-        .input-dark::placeholder { color:#6b7280; }
-        .icon-sm { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; flex-shrink:0; }
-        .icon-md { width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:2; flex-shrink:0; }
-        .icon-lg { width:28px; height:28px; stroke:currentColor; fill:none; stroke-width:2; flex-shrink:0; }
-        .badge { font-size:10px; font-weight:700; padding:2px 10px; border-radius:20px; }
-        .badge-mod { background:#ef4444; color:#fff; }
-        .badge-premium { background:#f59e0b; color:#000; }
-        .badge-pro { background:#8b5cf6; color:#fff; }
-        .badge-vip { background:#ec4899; color:#fff; }
-        .sidebar { background:#0b0f19; backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); }
-        .sidebar a { transition:all .2s; }
-        .sidebar a:hover { color:#fff; }
-        .overlay { background:rgba(0,0,0,.6); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
-        .sidebar-icon { stroke:#9ca3af; fill:none; width:20px; height:20px; flex-shrink:0; }
-        .sidebar-icon.active { stroke:#22d3ee; }
-        .sidebar a:hover .sidebar-icon { stroke:#fff; }
-        .icon-white { stroke:#fff; fill:none; }
-        .icon-gray { stroke:#9ca3af; fill:none; }
-        .icon-cyan { stroke:#22d3ee; fill:none; }
-        .icon-emerald { stroke:#34d399; fill:none; }
-        .icon-amber { stroke:#fbbf24; fill:none; }
-        .icon-red { stroke:#f87171; fill:none; }
-        .no-scrollbar::-webkit-scrollbar { display:none; }
-        .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
-        ::-webkit-scrollbar { width:4px; }
-        ::-webkit-scrollbar-track { background:#0b0f19; }
-        ::-webkit-scrollbar-thumb { background:#2d3348; border-radius:10px; }
-        ::-webkit-scrollbar-thumb:hover { background:#3b4057; }
+        /* ── Comments ── */
+        .comment-item {
+            background: #1a1e2b;
+            border: 1px solid rgba(255, 255, 255, .05);
+            border-radius: 16px;
+            padding: 14px 16px;
+            transition: all .2s;
+        }
+        .comment-item:hover {
+            border-color: rgba(255, 255, 255, .1);
+        }
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: #fff;
+            text-transform: uppercase;
+        }
+        .comment-avatar.admin-avatar {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+        }
+        .comment-text {
+            color: #e5e7eb;
+            font-size: 14px;
+            word-break: break-word;
+        }
+        .comment-text a {
+            color: #22d3ee;
+            text-decoration: underline;
+        }
+        .comment-text a:hover {
+            color: #34d399;
+        }
+        .comment-name {
+            font-weight: 600;
+            color: #f3f4f6;
+            font-size: 14px;
+        }
+        .comment-name.admin-name {
+            color: #fbbf24;
+        }
+        .comment-time {
+            color: #6b7280;
+            font-size: 11px;
+        }
+        .comment-input {
+            background: #1a1e2b;
+            border: 1px solid rgba(255, 255, 255, .08);
+            color: #fff;
+            border-radius: 14px;
+            padding: 10px 14px;
+            width: 100%;
+            font-size: 14px;
+            outline: none;
+            transition: .2s;
+        }
+        .comment-input:focus {
+            border-color: #22d3ee;
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, .1);
+        }
+        .comment-input::placeholder {
+            color: #6b7280;
+        }
+        .comment-submit {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all .3s;
+        }
+        .comment-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, .3);
+        }
+        .comment-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .comment-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 10px;
+            border-radius: 20px;
+            background: #f59e0b;
+            color: #000;
+        }
+        .comment-badge.admin-badge {
+            background: #8b5cf6;
+            color: #fff;
+        }
+
+        /* ── Admin Panel ── */
+        .admin-panel {
+            background: #121624;
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+        .admin-panel h3 {
+            color: #f59e0b;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .admin-toggle {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            background: #2d3348;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: .3s;
+            flex-shrink: 0;
+        }
+        .admin-toggle.active {
+            background: #10b981;
+        }
+        .admin-toggle .knob {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            transition: .3s;
+        }
+        .admin-toggle.active .knob {
+            left: 25px;
+        }
+
+        .btn-admin-fake {
+            background: #2d3348;
+            color: #c8cbd9;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .btn-admin-fake:hover {
+            background: #3b4057;
+        }
+
+        /* ── Misc ── */
+        .badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .badge-mod {
+            background: #ef4444;
+            color: #fff;
+        }
+        .badge-premium {
+            background: #f59e0b;
+            color: #000;
+        }
+        .badge-pro {
+            background: #8b5cf6;
+            color: #fff;
+        }
+        .badge-vip {
+            background: #ec4899;
+            color: #fff;
+        }
+        .sidebar {
+            background: #0b0f19;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .sidebar a {
+            transition: all .2s;
+        }
+        .sidebar a:hover {
+            color: #fff;
+        }
+        .overlay {
+            background: rgba(0, 0, 0, .6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .sidebar-icon {
+            stroke: #9ca3af;
+            fill: none;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .sidebar-icon.active {
+            stroke: #22d3ee;
+        }
+        .sidebar a:hover .sidebar-icon {
+            stroke: #fff;
+        }
+        .icon-white {
+            stroke: #fff;
+            fill: none;
+        }
+        .icon-gray {
+            stroke: #9ca3af;
+            fill: none;
+        }
+        .icon-cyan {
+            stroke: #22d3ee;
+            fill: none;
+        }
+        .icon-emerald {
+            stroke: #34d399;
+            fill: none;
+        }
+        .icon-amber {
+            stroke: #fbbf24;
+            fill: none;
+        }
+        .icon-red {
+            stroke: #f87171;
+            fill: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3348;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4057;
+        }
+        .icon-sm {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .icon-md {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .icon-lg {
+            width: 28px;
+            height: 28px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .app-icon-large {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, .08);
+        }
+        .app-icon-detail {
+            width: 84px;
+            height: 84px;
+            border-radius: 24px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, .08);
+        }
+
+        /* comment modal overlay */
+        .comment-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+        .comment-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .comment-modal {
+            background: #121624;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 32px;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            padding: 24px;
+            overflow-y: auto;
+            transform: scale(0.95);
+            transition: transform .3s;
+        }
+        .comment-overlay.open .comment-modal {
+            transform: scale(1);
+        }
+        .comment-modal::-webkit-scrollbar {
+            width: 3px;
+        }
+        .comment-modal::-webkit-scrollbar-thumb {
+            background: #3b4057;
+            border-radius: 10px;
+        }
+
+        /* scroll to comment highlight */
+        .highlight-comment {
+            animation: highlightPulse 1.2s ease;
+        }
+        @keyframes highlightPulse {
+            0%,
+            100% {
+                border-color: rgba(255, 255, 255, .05);
+            }
+            50% {
+                border-color: #22d3ee;
+                box-shadow: 0 0 30px rgba(34, 211, 238, .15);
+            }
+        }
     </style>
 </head>
 <body>
@@ -244,11 +624,38 @@
             </div>
         </div>
 
-        <button onclick="playClick(); openTaskFromDetail()" class="w-full mt-5 btn-primary text-white font-bold py-4 rounded-2xl text-sm shadow-lg flex items-center justify-center gap-2">
+        <!-- DOWNLOAD BUTTON -->
+        <button onclick="playClick(); openCommentModal()" class="w-full mt-5 btn-primary text-white font-bold py-4 rounded-2xl text-sm shadow-lg flex items-center justify-center gap-2">
             <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
             Download Now
         </button>
 
+        <!-- ═══ COMMENT SECTION (on detail page) ═══ -->
+        <div id="commentSection" class="detail-card mt-5 border border-white/5">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2 text-sm font-semibold text-gray-300">
+                    <svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Comments <span id="commentCountBadge" class="text-gray-500 font-normal text-xs">(0)</span>
+                </div>
+                <span class="text-[10px] text-gray-500">join the discussion</span>
+            </div>
+
+            <!-- Comment list -->
+            <div id="commentList" class="space-y-3 max-h-[320px] overflow-y-auto pr-1 no-scrollbar"></div>
+
+            <!-- Comment form -->
+            <div id="commentFormArea" class="mt-4 pt-4 border-t border-white/5">
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input id="commentNameInput" type="text" placeholder="Your name *" class="comment-input sm:w-1/3" maxlength="30">
+                    <input id="commentTextInput" type="text" placeholder="Write a comment..." class="comment-input sm:flex-1">
+                    <button id="commentSubmitBtn" onclick="playClick(); postComment()" class="comment-submit text-sm whitespace-nowrap px-5">Post</button>
+                </div>
+                <p id="commentStatus" class="text-xs text-gray-500 mt-2"></p>
+            </div>
+            <p id="commentDisabledMsg" class="text-center text-xs text-gray-500 mt-2 hidden">💬 Comments are currently disabled by admin.</p>
+        </div>
+
+        <!-- App Info -->
         <div class="detail-card mt-5">
             <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>App Info</div>
             <div class="detail-row"><span class="label">LAST UPDATED</span><span class="value" id="dUpdated2">03 Jul 2026</span></div>
@@ -258,6 +665,7 @@
             <div class="detail-row"><span class="label">SIZE</span><span class="value" id="dSize">23 MB</span></div>
         </div>
 
+        <!-- Screenshots -->
         <div class="detail-card mt-5">
             <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055 4.655 4.655 0 00-6.634-.828 2.31 2.31 0 01-1.64 1.055zM12 9.75v.008M12 9.75a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5z"/></svg>Screenshots</div>
             <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
@@ -268,6 +676,7 @@
             </div>
         </div>
 
+        <!-- FAQ -->
         <div class="detail-card mt-5">
             <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>FAQ</div>
             <div class="faq-item"><div class="q">Is this MOD APK safe?</div><div class="a">Yes, every APK is scanned and verified before listing.</div></div>
@@ -278,35 +687,32 @@
         <div class="flex justify-center gap-6 text-[11px] text-gray-500 mt-2 pb-4"><span>Privacy</span><span>Contact</span><span>Help</span></div>
     </div>
 
-    <!-- ═══ TASK VIEW ═══ -->
-    <div id="taskView" class="hidden px-4 max-w-xl mx-auto py-4 min-h-[80vh] flex flex-col">
-        <div class="flex items-center justify-between mb-3">
-            <button onclick="playClick(); closeTask()" class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button>
-            <span class="text-xs text-gray-500">modwala</span>
-        </div>
-
-        <div class="flex items-center gap-4 bg-[#121624] border border-white/5 rounded-2xl p-4 mb-5">
-            <img id="tIcon" class="app-icon-large" src="" alt="icon">
-            <div><h2 id="tTitle" class="text-white font-bold text-xl">App Name</h2><p id="tSize" class="text-gray-400 text-xs">23 MB • MOD</p></div>
-        </div>
-
-        <div class="task-box flex-1">
-            <div class="text-center"><h1 class="text-2xl font-black text-white tracking-tight">Almost Done!</h1><p class="text-gray-400 text-sm mt-0.5">Complete these quick tasks to unlock your download</p></div>
-
-            <div class="progress-ring-bg mt-5">
-                <div class="flex items-center gap-3">
-                    <svg class="icon-md icon-emerald" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-                    <span class="text-sm text-gray-300"><strong id="tDone">0</strong> of 6 tasks completed</span>
+    <!-- ═══ COMMENT MODAL (opens on download click) ═══ -->
+    <div id="commentModal" class="comment-overlay">
+        <div class="comment-modal">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                    <svg class="icon-md icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span class="font-bold text-white">Community Comments</span>
                 </div>
-                <span id="tPercent" class="text-emerald-400 font-bold text-sm">0%</span>
+                <button onclick="playClick(); closeCommentModal()" class="text-gray-400 hover:text-white transition p-1">
+                    <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
             </div>
+            <div id="modalCommentList" class="space-y-3 max-h-[340px] overflow-y-auto pr-1 no-scrollbar"></div>
+            <div class="mt-4 pt-4 border-t border-white/5 flex flex-col sm:flex-row gap-2">
+                <input id="modalCommentName" type="text" placeholder="Your name *" class="comment-input sm:w-1/3" maxlength="30">
+                <input id="modalCommentText" type="text" placeholder="Write a comment..." class="comment-input sm:flex-1">
+                <button onclick="playClick(); postCommentModal()" class="comment-submit text-sm whitespace-nowrap px-5">Post</button>
+            </div>
+            <p id="modalCommentStatus" class="text-xs text-gray-500 mt-2"></p>
 
-            <div id="taskList" class="space-y-3 mt-5"></div>
-
-            <button id="downloadTaskBtn" class="btn-download-task mt-6" disabled onclick="playClick(); finalDownload()">
-                <span class="flex items-center justify-center gap-2"><svg class="icon-sm icon-white" style="stroke:currentColor;" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Now</span>
+            <!-- Proceed to Download -->
+            <button id="modalDownloadBtn" onclick="playClick(); proceedDownload()" class="w-full mt-4 btn-primary text-white font-bold py-3 rounded-2xl text-sm shadow-lg flex items-center justify-center gap-2">
+                <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                Proceed to Download
             </button>
-            <p class="text-center text-[11px] text-gray-500 mt-2">Complete all tasks to enable download</p>
+            <p class="text-center text-[10px] text-gray-500 mt-2">See what others are saying before you download</p>
         </div>
     </div>
 
@@ -331,8 +737,30 @@
         <div class="text-center text-gray-400 py-10">Trending apps coming soon.</div>
     </div>
 
+    <!-- ═══ ADMIN PANEL (hidden, double-click footer to open) ═══ -->
+    <div id="adminPanel" class="hidden px-4 max-w-xl mx-auto py-4">
+        <div class="admin-panel">
+            <h3>🛠️ Admin Panel</h3>
+            <div class="flex flex-wrap items-center gap-4 mt-3">
+                <div class="flex items-center gap-3">
+                    <span class="text-xs text-gray-400">Comments</span>
+                    <div id="adminToggle" class="admin-toggle active" onclick="playClick(); toggleComments()">
+                        <div class="knob"></div>
+                    </div>
+                    <span id="adminToggleLabel" class="text-xs text-emerald-400 font-semibold">ON</span>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <input id="adminFakeName" type="text" placeholder="Fake name" class="comment-input w-28 text-sm" value="Moderator">
+                    <input id="adminFakeText" type="text" placeholder="Fake comment" class="comment-input w-40 text-sm" value="Great app! 🔥">
+                    <button onclick="playClick(); postFakeComment()" class="btn-admin-fake">Post Fake</button>
+                </div>
+            </div>
+            <p class="text-[10px] text-gray-500 mt-2">🔒 Admin only — double-click footer to toggle this panel</p>
+        </div>
+    </div>
+
     <!-- ═══ FOOTER ═══ -->
-    <footer class="text-center text-xs text-gray-500 border-t border-white/5 pt-5 mt-6 px-4">
+    <footer id="mainFooter" class="text-center text-xs text-gray-500 border-t border-white/5 pt-5 mt-6 px-4">
         <p class="text-gray-400 font-semibold mb-2">Modwala - Fast & Secure APK Downloads</p>
         <div class="flex flex-wrap justify-center gap-4 text-gray-500">
             <a href="#" onclick="playClick(); navigateTo('home')" class="hover:text-white transition">Home</a>
@@ -340,6 +768,7 @@
             <a href="#" onclick="playClick(); navigateTo('contact')" class="hover:text-white transition">Contact</a>
             <a href="#" onclick="playClick(); navigateTo('help')" class="hover:text-white transition">Help</a>
         </div>
+        <p class="text-[10px] text-gray-600 mt-3 cursor-pointer" ondblclick="playClick(); toggleAdminPanel()">⚡ modwala v2.0</p>
     </footer>
 
     <!-- ═══ FLOATING TELEGRAM ═══ -->
@@ -350,7 +779,7 @@
     <!-- ═══ FIREBASE ═══ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+        import { getDatabase, ref, onValue, push, set, update } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAUamZB1wED0AYrBPZ_nr8XYohUINBnpVk",
@@ -365,21 +794,9 @@
         const db = getDatabase(app);
 
         let allApps = [];
-
-        // ─── LOAD TASK LINKS ──────────────────────────────
-        onValue(ref(db, 'taskLinks'), (snap) => {
-            const data = snap.val();
-            if (data) {
-                window.taskLinks = data;  // সেট করা হলো গ্লোবালি
-            } else {
-                window.taskLinks = {};
-            }
-            // Task list আপডেট করতে হবে, যদি ইতিমধ্যে টাস্ক ভিউ খোলা থাকে
-            const taskView = document.getElementById('taskView');
-            if (!taskView.classList.contains('hidden')) {
-                renderTaskList();
-            }
-        });
+        let currentAppId = 'default';
+        let commentsEnabled = true;
+        let commentListeners = {};
 
         // ─── LOAD APPS ──────────────────────────────────────
         onValue(ref(db, 'apps'), (snap) => {
@@ -387,7 +804,12 @@
             const container = document.getElementById('appContainer');
             const total = document.getElementById('totalAppsCount');
             if (data) {
-                allApps = Object.values(data);
+                // Sort apps: newest first (by ID - push IDs are time-based)
+                allApps = Object.entries(data).map(([id, app]) => ({ id, ...app }));
+                allApps.sort((a, b) => {
+                    // Firebase push IDs are lexicographically sortable by time
+                    return b.id.localeCompare(a.id);
+                });
                 if (total) total.innerText = allApps.length + '+';
                 renderApps(allApps, container);
             } else {
@@ -409,7 +831,7 @@
                 const badge = a.badge || 'MOD';
                 const rating = a.rating || '4.9';
                 container.innerHTML += `
-                    <div onclick="playClick(); openDetail('${a.logo}', '${a.title}', '${a.mb}', '${a.link}', '${badge}', '${rating}', '${a.version || '1.34'}', '${a.updated || '03 Jul 2026'}', '${a.publisher || 'Zexapk'}', '${a.category || 'Apk'}')" class="bg-[#121624] border border-white/5 rounded-2xl p-4 cursor-pointer card-hover flex flex-col">
+                    <div onclick="playClick(); openDetail('${a.logo}', '${a.title}', '${a.mb}', '${a.link}', '${badge}', '${rating}', '${a.version || '1.34'}', '${a.updated || '03 Jul 2026'}', '${a.publisher || 'Zexapk'}', '${a.category || 'Apk'}', '${a.id || ''}')" class="bg-[#121624] border border-white/5 rounded-2xl p-4 cursor-pointer card-hover flex flex-col">
                         <div class="flex items-start justify-between">
                             <img src="${a.logo}" class="w-14 h-14 rounded-2xl object-cover border border-white/10 shadow-md" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22 viewBox=%220 0 56 56%22%3E%3Crect width=%2256%22 height=%2256%22 fill=%22%231a1e2b%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22%236b7280%22 font-size=%2224%22 font-family=%22sans-serif%22%3E📱%3C/text%3E%3C/svg%3E'">
                             <span class="badge ${badge === 'MOD' ? 'badge-mod' : badge === 'Premium' ? 'badge-premium' : badge === 'Pro' ? 'badge-pro' : 'badge-vip'}">${badge}</span>
@@ -425,6 +847,247 @@
             });
         };
 
+        // ─── LOAD COMMENTS SETTINGS ──────────────────────
+        onValue(ref(db, 'settings/commentsEnabled'), (snap) => {
+            const val = snap.val();
+            commentsEnabled = val !== undefined ? val : true;
+            updateCommentUI();
+        });
+
+        // ─── LOAD COMMENTS FOR CURRENT APP ────────────────
+        function loadComments(appId) {
+            if (commentListeners[appId]) {
+                commentListeners[appId]();
+                delete commentListeners[appId];
+            }
+            const commentsRef = ref(db, `comments/${appId}`);
+            const off = onValue(commentsRef, (snap) => {
+                const data = snap.val();
+                const list = document.getElementById('commentList');
+                const modalList = document.getElementById('modalCommentList');
+                const badge = document.getElementById('commentCountBadge');
+                if (data) {
+                    const entries = Object.entries(data);
+                    // Sort by timestamp descending (newest first) but keep admin comments visible
+                    const sorted = entries.sort((a, b) => (b[1].ts || 0) - (a[1].ts || 0));
+                    const count = sorted.length;
+                    if (badge) badge.innerText = `(${count})`;
+                    const html = sorted.map(([id, c]) => renderCommentHTML(c, id)).join('');
+                    if (list) list.innerHTML = html;
+                    if (modalList) modalList.innerHTML = html;
+                } else {
+                    if (badge) badge.innerText = '(0)';
+                    const empty = `<div class="text-center text-gray-500 text-sm py-4">No comments yet. Be the first! 💬</div>`;
+                    if (list) list.innerHTML = empty;
+                    if (modalList) modalList.innerHTML = empty;
+                }
+            });
+            commentListeners[appId] = off;
+        }
+
+        function renderCommentHTML(c, id) {
+            const name = c.name || 'Anonymous';
+            const text = c.text || '';
+            const avatar = name.charAt(0).toUpperCase() || '?';
+            const isAdmin = c.isAdmin || false;
+            const ts = c.ts || Date.now();
+            const timeStr = new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const linkedText = autoLink(text);
+            const adminClass = isAdmin ? 'admin-avatar' : '';
+            const nameClass = isAdmin ? 'admin-name' : '';
+            const badgeHtml = isAdmin ? `<span class="comment-badge admin-badge">Admin</span>` : '';
+            return `
+                <div class="comment-item">
+                    <div class="flex gap-3">
+                        <div class="comment-avatar ${adminClass}">${avatar}</div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="comment-name ${nameClass}">${escapeHtml(name)}</span>
+                                ${badgeHtml}
+                                <span class="comment-time">${timeStr}</span>
+                            </div>
+                            <div class="comment-text mt-0.5">${linkedText}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function autoLink(text) {
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            return text.replace(urlRegex, (url) => {
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+            });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function updateCommentUI() {
+            const formArea = document.getElementById('commentFormArea');
+            const disabledMsg = document.getElementById('commentDisabledMsg');
+            const submitBtn = document.getElementById('commentSubmitBtn');
+            const nameInput = document.getElementById('commentNameInput');
+            const textInput = document.getElementById('commentTextInput');
+            const modalName = document.getElementById('modalCommentName');
+            const modalText = document.getElementById('modalCommentText');
+            const modalSubmit = document.querySelector('#modalCommentText')?.parentElement?.querySelector('.comment-submit');
+
+            if (commentsEnabled) {
+                if (formArea) formArea.style.display = 'flex';
+                if (disabledMsg) disabledMsg.classList.add('hidden');
+                if (submitBtn) submitBtn.disabled = false;
+                if (nameInput) nameInput.disabled = false;
+                if (textInput) textInput.disabled = false;
+                if (modalName) modalName.disabled = false;
+                if (modalText) modalText.disabled = false;
+                if (modalSubmit) modalSubmit.disabled = false;
+            } else {
+                if (formArea) formArea.style.display = 'none';
+                if (disabledMsg) disabledMsg.classList.remove('hidden');
+                if (submitBtn) submitBtn.disabled = true;
+                if (nameInput) nameInput.disabled = true;
+                if (textInput) textInput.disabled = true;
+                if (modalName) modalName.disabled = true;
+                if (modalText) modalText.disabled = true;
+                if (modalSubmit) modalSubmit.disabled = true;
+            }
+            // toggle UI
+            const toggle = document.getElementById('adminToggle');
+            const label = document.getElementById('adminToggleLabel');
+            if (toggle) {
+                if (commentsEnabled) {
+                    toggle.classList.add('active');
+                    if (label) label.innerText = 'ON';
+                } else {
+                    toggle.classList.remove('active');
+                    if (label) label.innerText = 'OFF';
+                }
+            }
+        }
+
+        // ─── POST COMMENT ──────────────────────────────────
+        window.postComment = function() {
+            const nameInput = document.getElementById('commentNameInput');
+            const textInput = document.getElementById('commentTextInput');
+            const status = document.getElementById('commentStatus');
+            if (!commentsEnabled) { status.innerText = '❌ Comments are disabled.'; return; }
+            const name = nameInput.value.trim() || '';
+            const text = textInput.value.trim() || '';
+            if (!name) { status.innerText = '⚠️ Please enter your name.'; return; }
+            if (!text) { status.innerText = '⚠️ Please write a comment.'; return; }
+            if (text.length < 2) { status.innerText = '⚠️ Comment too short.'; return; }
+            status.innerText = '⏳ Posting...';
+            const commentsRef = ref(db, `comments/${currentAppId}`);
+            const newRef = push(commentsRef);
+            set(newRef, {
+                name: name,
+                text: text,
+                ts: Date.now(),
+                isAdmin: false
+            }).then(() => {
+                status.innerText = '✅ Comment posted!';
+                textInput.value = '';
+                // Update modal too
+                const modalText = document.getElementById('modalCommentText');
+                if (modalText) modalText.value = '';
+                setTimeout(() => status.innerText = '', 2500);
+            }).catch(() => {
+                status.innerText = '❌ Failed to post. Try again.';
+            });
+        };
+
+        window.postCommentModal = function() {
+            const nameInput = document.getElementById('modalCommentName');
+            const textInput = document.getElementById('modalCommentText');
+            const status = document.getElementById('modalCommentStatus');
+            if (!commentsEnabled) { status.innerText = '❌ Comments are disabled.'; return; }
+            const name = nameInput.value.trim() || '';
+            const text = textInput.value.trim() || '';
+            if (!name) { status.innerText = '⚠️ Please enter your name.'; return; }
+            if (!text) { status.innerText = '⚠️ Please write a comment.'; return; }
+            if (text.length < 2) { status.innerText = '⚠️ Comment too short.'; return; }
+            status.innerText = '⏳ Posting...';
+            const commentsRef = ref(db, `comments/${currentAppId}`);
+            const newRef = push(commentsRef);
+            set(newRef, {
+                name: name,
+                text: text,
+                ts: Date.now(),
+                isAdmin: false
+            }).then(() => {
+                status.innerText = '✅ Comment posted!';
+                textInput.value = '';
+                // Update detail too
+                const detailText = document.getElementById('commentTextInput');
+                if (detailText) detailText.value = '';
+                setTimeout(() => status.innerText = '', 2500);
+            }).catch(() => {
+                status.innerText = '❌ Failed to post. Try again.';
+            });
+        };
+
+        // ─── FAKE COMMENT (Admin) ──────────────────────────
+        window.postFakeComment = function() {
+            const nameInput = document.getElementById('adminFakeName');
+            const textInput = document.getElementById('adminFakeText');
+            const name = nameInput.value.trim() || 'Moderator';
+            const text = textInput.value.trim() || 'Great app! 🔥';
+            if (!text) return;
+            const commentsRef = ref(db, `comments/${currentAppId}`);
+            const newRef = push(commentsRef);
+            set(newRef, {
+                name: name,
+                text: text,
+                ts: Date.now(),
+                isAdmin: true
+            }).then(() => {
+                alert('✅ Fake comment posted as "' + name + '"');
+            }).catch(() => {
+                alert('❌ Failed to post fake comment.');
+            });
+        };
+
+        // ─── TOGGLE COMMENTS (Admin) ──────────────────────
+        window.toggleComments = function() {
+            commentsEnabled = !commentsEnabled;
+            const toggle = document.getElementById('adminToggle');
+            const label = document.getElementById('adminToggleLabel');
+            if (toggle) {
+                if (commentsEnabled) {
+                    toggle.classList.add('active');
+                    if (label) label.innerText = 'ON';
+                } else {
+                    toggle.classList.remove('active');
+                    if (label) label.innerText = 'OFF';
+                }
+            }
+            update(ref(db, 'settings/commentsEnabled'), commentsEnabled);
+            updateCommentUI();
+        };
+
+        // ─── ADMIN PANEL TOGGLE ────────────────────────────
+        window.toggleAdminPanel = function() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('hidden');
+            if (!panel.classList.contains('hidden')) {
+                // Load current settings
+                const toggle = document.getElementById('adminToggle');
+                const label = document.getElementById('adminToggleLabel');
+                if (commentsEnabled) {
+                    toggle.classList.add('active');
+                    if (label) label.innerText = 'ON';
+                } else {
+                    toggle.classList.remove('active');
+                    if (label) label.innerText = 'OFF';
+                }
+            }
+        };
+
+        // ─── SEARCH ─────────────────────────────────────────
         window.handleSearch = function() {
             const q = document.getElementById('searchInput').value.toLowerCase().trim();
             const container = document.getElementById('appContainer');
@@ -437,14 +1100,127 @@
             );
             renderApps(filtered, container);
         };
-    </script>
 
-    <!-- ═══ MAIN SCRIPT ═══ -->
-    <script>
+        // ─── NAVIGATION ─────────────────────────────────────
+        window.navigateTo = function(view) {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
+            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView'];
+            views.forEach(id => document.getElementById(id).classList.add('hidden'));
+            if (view === 'home') document.getElementById('homeView').classList.remove('hidden');
+            else if (view === 'trending') document.getElementById('trendingView').classList.remove('hidden');
+            else if (view === 'about') document.getElementById('aboutView').classList.remove('hidden');
+            else if (view === 'help') document.getElementById('helpView').classList.remove('hidden');
+            else if (view === 'contact') document.getElementById('contactView').classList.remove('hidden');
+            else if (view === 'category') document.getElementById('categoryView').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        };
+
+        window.navigateToCategory = function(cat) {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
+            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView'];
+            views.forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById('categoryView').classList.remove('hidden');
+            document.getElementById('categoryTitleText').innerText = cat + ' Apps';
+            const container = document.getElementById('categoryContainer');
+            container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">Loading...</div>`;
+            if (allApps && allApps.length) {
+                const filtered = allApps.filter(a => a.category && a.category.toLowerCase() === cat.toLowerCase());
+                window.renderApps(filtered, container);
+            } else {
+                container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">No apps found</div>`;
+            }
+            window.scrollTo(0, 0);
+        };
+
+        window.toggleSidebar = function() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('overlay').classList.toggle('hidden');
+        };
+
+        window.toggleTheme = function() {
+            const html = document.documentElement;
+            const btn = document.getElementById('themeToggle');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                btn.innerHTML =
+                    `<svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.773l-1.591 1.591M5.25 12H3m4.773-4.773L6.182 5.636M12 6.75A5.25 5.25 0 016.75 12 5.25 5.25 0 0012 17.25 5.25 5.25 0 0017.25 12 5.25 5.25 0 0012 6.75z"/></svg>`;
+            } else {
+                html.classList.add('dark');
+                btn.innerHTML =
+                    `<svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>`;
+            }
+        };
+
+        // ─── DETAIL VIEW ────────────────────────────────────
+        let pendingApp = { logo: '', title: '', size: '', badge: '', link: '', rating: '', version: '', updated: '',
+            publisher: '', category: '', id: '' };
+
+        window.openDetail = function(logo, title, mb, link, badge, rating, version, updated, publisher, category, id) {
+            pendingApp = { logo, title, size: mb, badge, link, rating, version, updated, publisher, category, id };
+            currentAppId = id || 'default';
+            document.getElementById('dIcon').src = logo;
+            document.getElementById('dTitle').innerText = title;
+            document.getElementById('dVersion').innerText = version;
+            document.getElementById('dUpdated').innerText = updated;
+            document.getElementById('dRating').innerText = rating;
+            document.getElementById('dUpdated2').innerText = updated;
+            document.getElementById('dPublisher').innerText = publisher;
+            document.getElementById('dCategory').innerText = category;
+            document.getElementById('dSize').innerText = mb;
+            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView'];
+            views.forEach(v => document.getElementById(v).classList.add('hidden'));
+            document.getElementById('detailView').classList.remove('hidden');
+            // Load comments for this app
+            loadComments(currentAppId);
+            updateCommentUI();
+            // Reset comment inputs
+            document.getElementById('commentNameInput').value = '';
+            document.getElementById('commentTextInput').value = '';
+            document.getElementById('modalCommentName').value = '';
+            document.getElementById('modalCommentText').value = '';
+            document.getElementById('commentStatus').innerText = '';
+            document.getElementById('modalCommentStatus').innerText = '';
+            window.scrollTo(0, 0);
+        };
+
+        window.closeDetail = function() { navigateTo('home'); };
+
+        // ─── COMMENT MODAL ──────────────────────────────────
+        window.openCommentModal = function() {
+            const overlay = document.getElementById('commentModal');
+            overlay.classList.add('open');
+            // Sync modal comment list
+            const list = document.getElementById('commentList');
+            const modalList = document.getElementById('modalCommentList');
+            if (list && modalList) modalList.innerHTML = list.innerHTML;
+            // Sync form
+            const name = document.getElementById('commentNameInput').value;
+            const text = document.getElementById('commentTextInput').value;
+            document.getElementById('modalCommentName').value = name;
+            document.getElementById('modalCommentText').value = text;
+            document.getElementById('modalCommentStatus').innerText = '';
+            // Update UI state
+            updateCommentUI();
+        };
+
+        window.closeCommentModal = function() {
+            document.getElementById('commentModal').classList.remove('open');
+        };
+
+        window.proceedDownload = function() {
+            closeCommentModal();
+            if (pendingApp.link) {
+                window.open(pendingApp.link, '_blank');
+            } else {
+                alert('Download link not available.');
+            }
+        };
+
         // ─── SOUND ──────────────────────────────────────────
         let audioCtx = null;
-
-        function playClick() {
+        window.playClick = function() {
             try {
                 if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
                 const osc = audioCtx.createOscillator();
@@ -458,226 +1234,29 @@
                 osc.start(audioCtx.currentTime);
                 osc.stop(audioCtx.currentTime + 0.08);
             } catch (e) {}
-        }
-
-        // ─── STATE ──────────────────────────────────────────
-        const TASKS = ['Join Channel 1', 'Join Channel 2', 'Join Channel 3', 'Join Channel 4', 'Join Channel 5',
-            'Follow On Instagram'
-        ];
-        let taskDone = [false, false, false, false, false, false];
-        let pendingApp = { logo: '', title: '', size: '', badge: '', link: '', rating: '', version: '', updated: '',
-            publisher: '', category: '' };
-        let activeTaskIndex = -1;
-
-        // ─── NAVIGATION ─────────────────────────────────────
-        function navigateTo(view) {
-            const sidebar = document.getElementById('sidebar');
-            if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
-            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView',
-                'taskView'
-            ];
-            views.forEach(id => document.getElementById(id).classList.add('hidden'));
-            if (view === 'home') document.getElementById('homeView').classList.remove('hidden');
-            else if (view === 'trending') document.getElementById('trendingView').classList.remove('hidden');
-            else if (view === 'about') document.getElementById('aboutView').classList.remove('hidden');
-            else if (view === 'help') document.getElementById('helpView').classList.remove('hidden');
-            else if (view === 'contact') document.getElementById('contactView').classList.remove('hidden');
-            else if (view === 'category') document.getElementById('categoryView').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        function navigateToCategory(cat) {
-            const sidebar = document.getElementById('sidebar');
-            if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
-            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView',
-                'taskView'
-            ];
-            views.forEach(id => document.getElementById(id).classList.add('hidden'));
-            document.getElementById('categoryView').classList.remove('hidden');
-            document.getElementById('categoryTitleText').innerText = cat + ' Apps';
-            const container = document.getElementById('categoryContainer');
-            container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">Loading...</div>`;
-            if (window.allApps && window.allApps.length) {
-                const filtered = window.allApps.filter(a => a.category && a.category.toLowerCase() === cat.toLowerCase());
-                window.renderApps(filtered, container);
-            } else {
-                container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">No apps found</div>`;
-            }
-            window.scrollTo(0, 0);
-        }
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-            document.getElementById('overlay').classList.toggle('hidden');
-        }
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const btn = document.getElementById('themeToggle');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                btn.innerHTML =
-                    `<svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.773l-1.591 1.591M5.25 12H3m4.773-4.773L6.182 5.636M12 6.75A5.25 5.25 0 016.75 12 5.25 5.25 0 0012 17.25 5.25 5.25 0 0017.25 12 5.25 5.25 0 0012 6.75z"/></svg>`;
-            } else {
-                html.classList.add('dark');
-                btn.innerHTML =
-                    `<svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>`;
-            }
-        }
-
-        // ─── DETAIL VIEW ────────────────────────────────────
-        function openDetail(logo, title, mb, link, badge, rating, version, updated, publisher, category) {
-            pendingApp = { logo, title, size: mb, badge, link, rating, version, updated, publisher, category };
-            document.getElementById('dIcon').src = logo;
-            document.getElementById('dTitle').innerText = title;
-            document.getElementById('dVersion').innerText = version;
-            document.getElementById('dUpdated').innerText = updated;
-            document.getElementById('dRating').innerText = rating;
-            document.getElementById('dUpdated2').innerText = updated;
-            document.getElementById('dPublisher').innerText = publisher;
-            document.getElementById('dCategory').innerText = category;
-            document.getElementById('dSize').innerText = mb;
-            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView',
-                'taskView'
-            ];
-            views.forEach(id => document.getElementById(id).classList.add('hidden'));
-            document.getElementById('detailView').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        function closeDetail() { navigateTo('home'); }
-
-        // ─── TASK VIEW ──────────────────────────────────────
-        function openTaskFromDetail() {
-            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView',
-                'taskView'
-            ];
-            views.forEach(id => document.getElementById(id).classList.add('hidden'));
-            document.getElementById('taskView').classList.remove('hidden');
-            document.getElementById('tIcon').src = pendingApp.logo;
-            document.getElementById('tTitle').innerText = pendingApp.title;
-            document.getElementById('tSize').innerText = pendingApp.size + ' MB • ' + pendingApp.badge;
-            taskDone = [false, false, false, false, false, false];
-            activeTaskIndex = -1;
-            renderTaskList();
-            updateTaskProgress();
-            document.getElementById('downloadTaskBtn').disabled = true;
-            document.getElementById('downloadTaskBtn').classList.remove('active');
-            window.scrollTo(0, 0);
-            document.addEventListener('visibilitychange', onVisibilityChange);
-        }
-
-        function closeTask() {
-            document.removeEventListener('visibilitychange', onVisibilityChange);
-            navigateTo('home');
-        }
-
-        function onVisibilityChange() {
-            if (document.visibilityState === 'visible' && activeTaskIndex >= 0 && !taskDone[activeTaskIndex]) {
-                taskDone[activeTaskIndex] = true;
-                renderTaskList();
-                updateTaskProgress();
-                const allDone = taskDone.every(v => v);
-                const btn = document.getElementById('downloadTaskBtn');
-                if (allDone) {
-                    btn.disabled = false;
-                    btn.classList.add('active');
-                    btn.innerHTML =
-                        `<span class="flex items-center justify-center gap-2"><svg class="icon-sm icon-white" style="stroke:currentColor;" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Now</span>`;
-                }
-                activeTaskIndex = -1;
-                document.removeEventListener('visibilitychange', onVisibilityChange);
-            }
-        }
-
-        function renderTaskList() {
-            const container = document.getElementById('taskList');
-            container.innerHTML = '';
-            const links = window.taskLinks || {};
-            TASKS.forEach((label, i) => {
-                const done = taskDone[i];
-                const link = links[i] || '#';
-                const div = document.createElement('div');
-                div.className = 'task-item';
-                div.innerHTML = `
-                    <div class="task-label">
-                        <div class="task-check ${done ? 'done' : ''}" onclick="playClick(); toggleTask(${i})"></div>
-                        <span class="${done ? 'done-text' : ''}">${label}</span>
-                    </div>
-                    <button class="task-start-btn ${done ? 'done' : ''}" onclick="playClick(); startTask(${i}, '${link}')">${done ? '✓ Done' : 'Start'}</button>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        window.startTask = function(index, link) {
-            if (taskDone[index]) return;
-            if (!link || link === '#') {
-                // লিংক না থাকলে ম্যানুয়ালি কমপ্লিট
-                taskDone[index] = true;
-                renderTaskList();
-                updateTaskProgress();
-                const allDone = taskDone.every(v => v);
-                const btn = document.getElementById('downloadTaskBtn');
-                if (allDone) {
-                    btn.disabled = false;
-                    btn.classList.add('active');
-                    btn.innerHTML =
-                        `<span class="flex items-center justify-center gap-2"><svg class="icon-sm icon-white" style="stroke:currentColor;" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Now</span>`;
-                }
-                return;
-            }
-            activeTaskIndex = index;
-            window.open(link, '_blank');
         };
 
-        function toggleTask(index) {
-            if (taskDone[index]) return;
-            taskDone[index] = true;
-            renderTaskList();
-            updateTaskProgress();
-            const allDone = taskDone.every(v => v);
-            const btn = document.getElementById('downloadTaskBtn');
-            if (allDone) {
-                btn.disabled = false;
-                btn.classList.add('active');
-                btn.innerHTML =
-                    `<span class="flex items-center justify-center gap-2"><svg class="icon-sm icon-white" style="stroke:currentColor;" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Now</span>`;
-            }
-        }
-
-        function updateTaskProgress() {
-            const done = taskDone.filter(v => v).length;
-            document.getElementById('tDone').innerText = done;
-            document.getElementById('tPercent').innerText = Math.round((done / 6) * 100) + '%';
-        }
-
-        function finalDownload() {
-            if (!taskDone.every(v => v)) return;
-            if (pendingApp.link) {
-                window.open(pendingApp.link, '_blank');
-            } else {
-                alert('Download link not available.');
-            }
-        }
-
         // ─── GLOBALS ────────────────────────────────────────
-        window.playClick = playClick;
         window.openDetail = openDetail;
         window.closeDetail = closeDetail;
-        window.openTaskFromDetail = openTaskFromDetail;
-        window.closeTask = closeTask;
-        window.toggleTask = toggleTask;
-        window.startTask = startTask;
-        window.finalDownload = finalDownload;
+        window.openCommentModal = openCommentModal;
+        window.closeCommentModal = closeCommentModal;
+        window.proceedDownload = proceedDownload;
+        window.postComment = postComment;
+        window.postCommentModal = postCommentModal;
+        window.postFakeComment = postFakeComment;
+        window.toggleComments = toggleComments;
+        window.toggleAdminPanel = toggleAdminPanel;
         window.navigateTo = navigateTo;
         window.navigateToCategory = navigateToCategory;
         window.toggleSidebar = toggleSidebar;
         window.toggleTheme = toggleTheme;
-        window.renderTaskList = renderTaskList; // for live update
+        window.handleSearch = handleSearch;
 
-        console.log('✅ MODWALA আপডেট — টাস্ক লিংক ঠিক করা হয়েছে।');
-        console.log('📌 এখন লিংক যোগ করলে Start বাটনে ক্লিক করলে লিংক ওপেন হবে এবং ফিরে এলে অটো-কমপ্লিট হবে।');
+        console.log('✅ MODWALA আপডেট — কমেন্ট সিস্টেম ঠিক করা হয়েছে।');
+        console.log('📌 নতুন অ্যাপ প্রথমে দেখায়।');
+        console.log('📌 অ্যাডমিন কমেন্ট দেখায় এবং ইউজারের নাম ঠিকভাবে কাজ করে।');
+        console.log('🔒 অ্যাডমিন প্যানেল — ফুটার ডাবল-ক্লিক করুন।');
     </script>
 </body>
 </html>
