@@ -1,1262 +1,2903 @@
 <!DOCTYPE html>
-<html lang="bn" class="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MODWALA - Premium APK Store</title>
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <script>
-        tailwind.config = { darkMode: 'class' }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>DEBU STORE · Premium App Marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #0b0f19;
-            color: #fff;
-            min-height: 100vh;
-            padding-bottom: 80px;
-        }
-        .glass {
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #34d399, #06b6d4, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            transition: all .3s;
-        }
-        .btn-primary:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(37, 99, 235, .4);
-        }
-        .card-hover {
-            transition: all .25s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            border-color: rgba(6, 182, 212, .5);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
-        }
-        .detail-card {
-            background: #121624;
-            border: 1px solid rgba(255, 255, 255, .06);
-            border-radius: 28px;
-            padding: 24px;
-        }
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, .05);
-        }
-        .detail-row:last-child {
-            border-bottom: none;
-        }
-        .detail-card .label {
-            color: #9ca3af;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            font-weight: 600;
-        }
-        .detail-card .value {
-            color: #f3f4f6;
-            font-weight: 500;
-            font-size: 14px;
-        }
-        .screenshot-placeholder {
-            width: 72px;
-            height: 72px;
-            background: #1e2434;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, .06);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #4a5568;
-            flex-shrink: 0;
-        }
-        .faq-item {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, .05);
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        .faq-item .q {
-            color: #f3f4f6;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .faq-item .a {
-            color: #9ca3af;
-            font-size: 13px;
-            margin-top: 4px;
-        }
+:root {
+  --bg-deep: #0b0b0f;
+  --bg-surface: #14141c;
+  --bg-glass: rgba(255,255,255,0.06);
+  --bg-glass-hover: rgba(255,255,255,0.1);
+  --border-glass: rgba(255,255,255,0.08);
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #3b82f6;
+  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --shadow-glow: 0 0 20px rgba(139,92,246,0.3);
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+}
 
-        /* ── Comments ── */
-        .comment-item {
-            background: #1a1e2b;
-            border: 1px solid rgba(255, 255, 255, .05);
-            border-radius: 16px;
-            padding: 14px 16px;
-            transition: all .2s;
-        }
-        .comment-item:hover {
-            border-color: rgba(255, 255, 255, .1);
-        }
-        .comment-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-            flex-shrink: 0;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            color: #fff;
-            text-transform: uppercase;
-        }
-        .comment-avatar.admin-avatar {
-            background: linear-gradient(135deg, #f59e0b, #ef4444);
-        }
-        .comment-text {
-            color: #e5e7eb;
-            font-size: 14px;
-            word-break: break-word;
-        }
-        .comment-text a {
-            color: #22d3ee;
-            text-decoration: underline;
-        }
-        .comment-text a:hover {
-            color: #34d399;
-        }
-        .comment-name {
-            font-weight: 600;
-            color: #f3f4f6;
-            font-size: 14px;
-        }
-        .comment-name.admin-name {
-            color: #fbbf24;
-        }
-        .comment-time {
-            color: #6b7280;
-            font-size: 11px;
-        }
-        .comment-input {
-            background: #1a1e2b;
-            border: 1px solid rgba(255, 255, 255, .08);
-            color: #fff;
-            border-radius: 14px;
-            padding: 10px 14px;
-            width: 100%;
-            font-size: 14px;
-            outline: none;
-            transition: .2s;
-        }
-        .comment-input:focus {
-            border-color: #22d3ee;
-            box-shadow: 0 0 0 3px rgba(34, 211, 238, .1);
-        }
-        .comment-input::placeholder {
-            color: #6b7280;
-        }
-        .comment-submit {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            color: #fff;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all .3s;
-        }
-        .comment-submit:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(37, 99, 235, .3);
-        }
-        .comment-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .comment-badge {
-            font-size: 10px;
-            font-weight: 700;
-            padding: 1px 10px;
-            border-radius: 20px;
-            background: #f59e0b;
-            color: #000;
-        }
-        .comment-badge.admin-badge {
-            background: #8b5cf6;
-            color: #fff;
-        }
+[data-theme="light"] {
+  --bg-deep: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-glass: rgba(0,0,0,0.04);
+  --bg-glass-hover: rgba(0,0,0,0.07);
+  --border-glass: rgba(0,0,0,0.08);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+}
 
-        /* ── Admin Panel ── */
-        .admin-panel {
-            background: #121624;
-            border: 1px solid rgba(255, 255, 255, .06);
-            border-radius: 28px;
-            padding: 24px;
-            margin-top: 20px;
-        }
-        .admin-panel h3 {
-            color: #f59e0b;
-            font-weight: 700;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .admin-toggle {
-            position: relative;
-            width: 48px;
-            height: 26px;
-            background: #2d3348;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: .3s;
-            flex-shrink: 0;
-        }
-        .admin-toggle.active {
-            background: #10b981;
-        }
-        .admin-toggle .knob {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 20px;
-            height: 20px;
-            background: #fff;
-            border-radius: 50%;
-            transition: .3s;
-        }
-        .admin-toggle.active .knob {
-            left: 25px;
-        }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-deep); color: var(--text-primary);
+  min-height: 100vh; overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+  padding-bottom: 80px;
+  -webkit-font-smoothing: antialiased;
+}
 
-        .btn-admin-fake {
-            background: #2d3348;
-            color: #c8cbd9;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 14px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all .2s;
-        }
-        .btn-admin-fake:hover {
-            background: #3b4057;
-        }
+/* SPLASH */
+#splash-screen {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg-deep);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px; transition: opacity 0.6s, visibility 0.6s;
+}
+#splash-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.splash-logo {
+  font-size: 2.6rem; font-weight: 900; letter-spacing: -1.5px;
+  background: var(--accent-gradient); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.splash-spinner {
+  width: 40px; height: 40px; border: 3px solid var(--border-glass);
+  border-top-color: var(--accent-primary); border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
 
-        /* ── Misc ── */
-        .badge {
-            font-size: 10px;
-            font-weight: 700;
-            padding: 2px 10px;
-            border-radius: 20px;
-        }
-        .badge-mod {
-            background: #ef4444;
-            color: #fff;
-        }
-        .badge-premium {
-            background: #f59e0b;
-            color: #000;
-        }
-        .badge-pro {
-            background: #8b5cf6;
-            color: #fff;
-        }
-        .badge-vip {
-            background: #ec4899;
-            color: #fff;
-        }
-        .sidebar {
-            background: #0b0f19;
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-        }
-        .sidebar a {
-            transition: all .2s;
-        }
-        .sidebar a:hover {
-            color: #fff;
-        }
-        .overlay {
-            background: rgba(0, 0, 0, .6);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-        .sidebar-icon {
-            stroke: #9ca3af;
-            fill: none;
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
-        .sidebar-icon.active {
-            stroke: #22d3ee;
-        }
-        .sidebar a:hover .sidebar-icon {
-            stroke: #fff;
-        }
-        .icon-white {
-            stroke: #fff;
-            fill: none;
-        }
-        .icon-gray {
-            stroke: #9ca3af;
-            fill: none;
-        }
-        .icon-cyan {
-            stroke: #22d3ee;
-            fill: none;
-        }
-        .icon-emerald {
-            stroke: #34d399;
-            fill: none;
-        }
-        .icon-amber {
-            stroke: #fbbf24;
-            fill: none;
-        }
-        .icon-red {
-            stroke: #f87171;
-            fill: none;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0f19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2d3348;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3b4057;
-        }
-        .icon-sm {
-            width: 18px;
-            height: 18px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            flex-shrink: 0;
-        }
-        .icon-md {
-            width: 22px;
-            height: 22px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            flex-shrink: 0;
-        }
-        .icon-lg {
-            width: 28px;
-            height: 28px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            flex-shrink: 0;
-        }
-        .app-icon-large {
-            width: 72px;
-            height: 72px;
-            border-radius: 20px;
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, .08);
-        }
-        .app-icon-detail {
-            width: 84px;
-            height: 84px;
-            border-radius: 24px;
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, .08);
-        }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 10px; }
 
-        /* comment modal overlay */
-        .comment-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .3s;
-        }
-        .comment-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .comment-modal {
-            background: #121624;
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-radius: 32px;
-            max-width: 480px;
-            width: 100%;
-            max-height: 90vh;
-            padding: 24px;
-            overflow-y: auto;
-            transform: scale(0.95);
-            transition: transform .3s;
-        }
-        .comment-overlay.open .comment-modal {
-            transform: scale(1);
-        }
-        .comment-modal::-webkit-scrollbar {
-            width: 3px;
-        }
-        .comment-modal::-webkit-scrollbar-thumb {
-            background: #3b4057;
-            border-radius: 10px;
-        }
+/* AUTH */
+#auth-screen {
+  position: fixed; inset: 0; z-index: 9998;
+  background: var(--bg-deep);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; transition: opacity 0.4s, visibility 0.4s;
+  overflow-y: auto;
+}
+#auth-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.auth-card {
+  width: 100%; max-width: 420px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg); padding: 32px 24px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), var(--shadow-glow);
+}
+.auth-logo {
+  font-size: 2rem; font-weight: 800; text-align: center;
+  background: var(--accent-gradient); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  letter-spacing: -1px; margin-bottom: 6px;
+}
+.auth-tagline {
+  text-align: center; font-size: 0.75rem; color: var(--text-muted);
+  letter-spacing: 2px; margin-bottom: 28px;
+}
+.auth-tabs {
+  display: flex; gap: 4px; background: var(--bg-glass);
+  padding: 4px; border-radius: 40px; margin-bottom: 24px;
+  border: 1px solid var(--border-glass);
+}
+.auth-tab {
+  flex: 1; padding: 10px; border-radius: 40px; border: none;
+  background: transparent; color: var(--text-secondary);
+  font-family: inherit; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.auth-tab.active {
+  background: var(--accent-gradient); color: white;
+  box-shadow: 0 4px 15px rgba(139,92,246,0.35);
+}
+.auth-field { position: relative; margin-bottom: 14px; }
+.auth-field i {
+  position: absolute; left: 16px; top: 50%;
+  transform: translateY(-50%); color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.auth-field input {
+  width: 100%; padding: 14px 16px 14px 42px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); color: var(--text-primary);
+  font-family: inherit; font-size: 0.85rem; outline: none;
+  transition: var(--transition);
+}
+.auth-field input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+}
+.auth-field input::placeholder { color: var(--text-muted); }
+.auth-btn {
+  width: 100%; padding: 14px; border-radius: 40px; border: none;
+  background: var(--accent-gradient); color: white;
+  font-family: inherit; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; transition: var(--transition);
+  margin-top: 8px; display: flex; align-items: center;
+  justify-content: center; gap: 8px;
+}
+.auth-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,92,246,0.5); }
+.auth-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.auth-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 20px 0; color: var(--text-muted); font-size: 0.7rem;
+}
+.auth-divider::before, .auth-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border-glass);
+}
+.auth-error {
+  background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+  color: #fca5a5; padding: 10px 14px; border-radius: var(--radius-sm);
+  font-size: 0.75rem; margin-bottom: 14px; display: none;
+}
+.auth-error.show { display: block; }
+.auth-hint {
+  text-align: center; font-size: 0.7rem; color: var(--text-muted);
+  margin-top: 16px; line-height: 1.5;
+}
 
-        /* scroll to comment highlight */
-        .highlight-comment {
-            animation: highlightPulse 1.2s ease;
-        }
-        @keyframes highlightPulse {
-            0%,
-            100% {
-                border-color: rgba(255, 255, 255, .05);
-            }
-            50% {
-                border-color: #22d3ee;
-                box-shadow: 0 0 30px rgba(34, 211, 238, .15);
-            }
-        }
-    </style>
+/* HEADER */
+.app-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(11,11,15,0.75);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-glass);
+  padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+}
+[data-theme="light"] .app-header { background: rgba(248,250,252,0.85); }
+.header-logo {
+  font-size: 1.3rem; font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; white-space: nowrap; letter-spacing: -0.5px;
+}
+.header-search {
+  flex: 1; background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: 40px; padding: 10px 16px; display: flex; align-items: center;
+  gap: 10px; transition: var(--transition);
+}
+.header-search:focus-within {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+}
+.header-search i { color: var(--text-muted); font-size: 0.9rem; }
+.header-search input {
+  background: transparent; border: none; outline: none;
+  color: var(--text-primary); font-size: 0.9rem; width: 100%; font-family: inherit;
+}
+.header-search input::placeholder { color: var(--text-muted); }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-primary);
+  transition: var(--transition); font-size: 0.95rem; flex-shrink: 0;
+}
+.icon-btn:hover, .icon-btn:active {
+  background: var(--bg-glass-hover); transform: scale(1.05);
+  border-color: var(--accent-primary);
+}
+.user-avatar-mini {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent-gradient); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem; cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.1);
+  transition: var(--transition);
+}
+.user-avatar-mini:hover { transform: scale(1.05); }
+
+.main-container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+/* BANNER SLIDER */
+.banner-slider {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+  border: 1px solid var(--border-glass);
+  min-height: 140px;
+  box-shadow: var(--shadow-glow);
+}
+.banner-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+}
+.banner-slide {
+  min-width: 100%;
+  position: relative;
+  cursor: pointer;
+  min-height: 170px;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  overflow: hidden;
+}
+.banner-slide-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.4s;
+}
+.banner-slide:hover .banner-slide-img { transform: scale(1.03); }
+.banner-slide-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    rgba(11,11,15,0.85) 0%,
+    rgba(11,11,15,0.55) 50%,
+    rgba(11,11,15,0.15) 100%);
+  z-index: 1;
+}
+.banner-slide-content {
+  position: relative; z-index: 2;
+  max-width: 78%;
+}
+.banner-slide-tag {
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
+  color: white; font-weight: 700; margin-bottom: 8px;
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent-gradient);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(139,92,246,0.4);
+}
+.banner-slide-title {
+  font-size: 1.2rem; font-weight: 800; margin-bottom: 6px; line-height: 1.25;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.banner-slide-desc {
+  font-size: 0.75rem; color: rgba(255,255,255,0.9); line-height: 1.4;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.banner-slide-btn {
+  margin-top: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  color: white; border-radius: 20px;
+  font-size: 0.72rem; font-weight: 700;
+}
+.banner-dots-wrap {
+  position: absolute;
+  bottom: 12px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 6px;
+  z-index: 10;
+  padding: 6px 12px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.banner-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+.banner-dot.active {
+  background: white;
+  width: 22px;
+  border-radius: 10px;
+}
+.banner-nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  font-size: 0.8rem;
+  opacity: 0;
+}
+.banner-slider:hover .banner-nav { opacity: 1; }
+.banner-nav.prev { left: 12px; }
+.banner-nav.next { right: 12px; }
+@media (max-width: 768px) {
+  .banner-nav { opacity: 0.9; width: 32px; height: 32px; }
+  .banner-slide { min-height: 150px; padding: 20px; }
+  .banner-slide-title { font-size: 1rem; }
+  .banner-slide-content { max-width: 85%; }
+}
+.banner-default {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+  border: 1px solid var(--border-glass);
+  min-height: 140px; display: flex; align-items: center; padding: 24px;
+  box-shadow: var(--shadow-glow);
+}
+.banner-default .banner-glow {
+  position: absolute; right: -30px; top: -30px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(139,92,246,0.5) 0%, transparent 70%);
+  border-radius: 50%; filter: blur(30px);
+}
+.banner-default-content { position: relative; z-index: 2; max-width: 75%; }
+.banner-default-tag {
+  font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--accent-primary); font-weight: 700; margin-bottom: 6px;
+}
+.banner-default-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+.banner-default-desc { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+
+/* PAGE HEADER (with count) */
+.page-head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin: 16px 0 18px;
+  gap: 12px;
+}
+.page-title-big {
+  font-size: 1.15rem; font-weight: 800;
+  display: flex; align-items: center; gap: 10px;
+}
+.page-title-big i { color: var(--accent-primary); }
+.page-count {
+  font-size: 0.7rem; color: var(--text-muted);
+  background: var(--bg-glass); padding: 4px 10px;
+  border-radius: 20px; border: 1px solid var(--border-glass);
+  font-weight: 600;
+}
+
+/* SECTIONS */
+.section-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px; margin-top: 28px;
+}
+.section-title {
+  font-size: 1.05rem; font-weight: 700;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-title i { color: var(--accent-primary); font-size: 1rem; }
+.section-link {
+  font-size: 0.75rem; color: var(--accent-primary);
+  font-weight: 600; cursor: pointer; background: none; border: none;
+  font-family: inherit; transition: var(--transition);
+}
+
+/* APP CARDS */
+.app-scroll {
+  display: flex; gap: 14px; overflow-x: auto;
+  padding-bottom: 8px; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.app-scroll::-webkit-scrollbar { display: none; }
+
+.app-card {
+  min-width: 150px; max-width: 150px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md); padding: 14px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 8px; transition: var(--transition);
+  cursor: pointer; scroll-snap-align: start; position: relative;
+  backdrop-filter: blur(10px);
+}
+.app-card:hover, .app-card:active {
+  background: var(--bg-glass-hover); transform: translateY(-3px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 25px rgba(139,92,246,0.15);
+}
+.app-icon {
+  width: 60px; height: 60px; border-radius: var(--radius-sm);
+  object-fit: cover; background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: white; font-weight: 700;
+  flex-shrink: 0; overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.app-icon img { width: 100%; height: 100%; object-fit: cover; }
+.app-name {
+  font-size: 0.8rem; font-weight: 600; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; width: 100%;
+}
+.app-meta {
+  font-size: 0.65rem; color: var(--text-muted);
+  display: flex; align-items: center; gap: 6px;
+}
+.app-price { font-size: 0.78rem; font-weight: 700; color: var(--accent-primary); }
+.app-price.free { color: var(--success); }
+.app-price .old {
+  text-decoration: line-through; color: var(--text-muted);
+  font-weight: 400; font-size: 0.65rem; margin-right: 4px;
+}
+
+.app-card .status-dot-pill {
+  position: absolute; top: 8px; left: 8px;
+  font-size: 0.55rem; font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex; align-items: center; gap: 3px;
+}
+.app-card .status-dot-pill.pending { background: rgba(245,158,11,0.9); color: #000; }
+.app-card .status-dot-pill.paid { background: rgba(16,185,129,0.9); color: #000; }
+.app-card .status-dot-pill.failed { background: rgba(239,68,68,0.9); color: white; }
+.app-card .status-dot-pill.refunded { background: rgba(139,92,246,0.9); color: white; }
+
+/* CATEGORIES */
+.category-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+.category-scroll::-webkit-scrollbar { display: none; }
+.category-chip {
+  padding: 8px 18px; border-radius: 40px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  font-size: 0.8rem; font-weight: 500; white-space: nowrap;
+  cursor: pointer; transition: var(--transition); color: var(--text-secondary);
+}
+.category-chip.active, .category-chip:hover {
+  background: var(--accent-gradient); color: white;
+  border-color: transparent; box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+}
+
+/* GRID */
+.app-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 14px;
+}
+.app-grid .app-card { min-width: unset; max-width: unset; width: 100%; }
+
+/* Category big cards */
+.cat-big-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+.cat-big-card {
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md); padding: 20px 14px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; cursor: pointer; transition: var(--transition);
+  text-align: center;
+}
+.cat-big-card:hover {
+  background: var(--bg-glass-hover); transform: translateY(-3px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 25px rgba(139,92,246,0.15);
+}
+.cat-big-icon {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; color: white;
+  box-shadow: 0 4px 12px rgba(139,92,246,0.35);
+}
+.cat-big-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+.cat-big-name { font-size: 0.85rem; font-weight: 700; }
+.cat-big-count { font-size: 0.68rem; color: var(--text-muted); }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 200; display: none; align-items: flex-end;
+  justify-content: center; opacity: 0; transition: opacity 0.3s;
+}
+.modal-overlay.show { display: flex; opacity: 1; }
+.modal-content {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  width: 100%; max-width: 600px; max-height: 92vh;
+  overflow-y: auto; padding: 24px 20px 32px;
+  transform: translateY(30px);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  border: 1px solid var(--border-glass); border-bottom: none;
+  position: relative;
+}
+.modal-overlay.show .modal-content { transform: translateY(0); }
+.modal-handle {
+  width: 40px; height: 4px; border-radius: 10px;
+  background: var(--border-glass); margin: 0 auto 16px;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-primary);
+  font-size: 0.9rem; transition: var(--transition);
+  z-index: 10;
+}
+.modal-close:hover { background: var(--bg-glass-hover); }
+
+.detail-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+.detail-icon {
+  width: 80px; height: 80px; border-radius: var(--radius-md);
+  object-fit: cover; background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: white; font-weight: 700;
+  flex-shrink: 0; overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+.detail-icon img { width: 100%; height: 100%; object-fit: cover; }
+.detail-info { flex: 1; min-width: 0; }
+.detail-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+.detail-developer {
+  font-size: 0.75rem; color: var(--accent-primary);
+  font-weight: 500; margin-bottom: 6px;
+}
+.detail-stats {
+  display: flex; gap: 12px; font-size: 0.7rem;
+  color: var(--text-muted); flex-wrap: wrap;
+}
+.detail-stats span { display: flex; align-items: center; gap: 4px; }
+.detail-stats i { color: var(--accent-primary); font-size: 0.65rem; }
+
+.detail-price {
+  display: flex; align-items: center; gap: 10px;
+  margin: 16px 0; padding: 14px;
+  background: var(--bg-glass); border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass);
+}
+.detail-price .current {
+  font-size: 1.4rem; font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.detail-price .old {
+  font-size: 0.9rem; text-decoration: line-through;
+  color: var(--text-muted);
+}
+.detail-price .discount-badge {
+  margin-left: auto; background: var(--success); color: white;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 0.65rem; font-weight: 700;
+}
+
+.detail-actions { display: flex; gap: 10px; margin-top: 16px; }
+.btn {
+  flex: 1; padding: 14px 20px; border-radius: 40px;
+  border: none; font-family: inherit; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; transition: var(--transition);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-primary {
+  background: var(--accent-gradient); color: white;
+  box-shadow: 0 6px 20px rgba(139,92,246,0.35);
+}
+.btn-primary:hover, .btn-primary:active {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139,92,246,0.5);
+}
+.btn-secondary {
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+}
+.btn-secondary:hover { background: var(--bg-glass-hover); }
+.btn-icon {
+  flex: 0 0 52px; padding: 0; display: flex;
+  align-items: center; justify-content: center;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  color: var(--text-primary); border-radius: 50%;
+  width: 52px; height: 52px; cursor: pointer;
+  transition: var(--transition); font-size: 1.1rem;
+}
+.btn-icon:hover { background: var(--bg-glass-hover); border-color: var(--accent-primary); }
+
+.detail-section { margin-top: 24px; }
+.detail-section h4 {
+  font-size: 0.9rem; font-weight: 700; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.detail-section h4 i { color: var(--accent-primary); font-size: 0.85rem; }
+.detail-description {
+  font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary);
+}
+.screenshot-scroll {
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px;
+}
+.screenshot-scroll::-webkit-scrollbar { display: none; }
+.screenshot-item {
+  min-width: 140px; height: 240px; border-radius: var(--radius-sm);
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 0.7rem;
+  flex-shrink: 0; overflow: hidden;
+}
+.screenshot-item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* BOTTOM NAV */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
+  background: rgba(11,11,15,0.9);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-glass);
+  display: flex; justify-content: space-around;
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+}
+[data-theme="light"] .bottom-nav { background: rgba(248,250,252,0.95); }
+.nav-item {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 3px; padding: 6px 12px; cursor: pointer;
+  color: var(--text-muted); transition: var(--transition);
+  border: none; background: none; font-family: inherit;
+  font-size: 0.58rem; font-weight: 500; position: relative;
+}
+.nav-item i { font-size: 1.1rem; transition: var(--transition); }
+.nav-item.active { color: var(--accent-primary); }
+.nav-item.active i {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 6px rgba(139,92,246,0.6));
+}
+.nav-item.active::after {
+  content: ''; position: absolute; top: -8px;
+  width: 20px; height: 3px; border-radius: 10px;
+  background: var(--accent-gradient);
+}
+
+/* TOAST */
+.toast-container {
+  position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
+  z-index: 999; display: flex; flex-direction: column;
+  gap: 8px; width: 90%; max-width: 400px; pointer-events: none;
+}
+.toast {
+  background: var(--bg-surface); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  animation: slideDown 0.3s ease-out;
+  pointer-events: auto; font-size: 0.8rem; font-weight: 500;
+  backdrop-filter: blur(20px);
+}
+.toast i { font-size: 1rem; }
+.toast.success i { color: var(--success); }
+.toast.error i { color: var(--danger); }
+.toast.info i { color: var(--accent-primary); }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.empty-state {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 48px 20px;
+  text-align: center; gap: 12px; color: var(--text-muted);
+  grid-column: 1 / -1;
+}
+.empty-state i { font-size: 2.5rem; color: var(--text-muted); opacity: 0.5; }
+.empty-state p { font-size: 0.85rem; }
+
+.page-section { display: none; animation: fadeIn 0.3s ease-out; }
+.page-section.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* PROFILE */
+.profile-header {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; padding: 32px 0 24px;
+}
+.profile-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; font-weight: 700; color: white;
+  box-shadow: 0 0 30px rgba(139,92,246,0.4);
+}
+.profile-name { font-size: 1.1rem; font-weight: 700; }
+.profile-email { font-size: 0.75rem; color: var(--text-muted); }
+.profile-stats { display: flex; gap: 24px; margin-top: 8px; }
+.profile-stat { text-align: center; }
+.profile-stat .value {
+  font-size: 1.1rem; font-weight: 700; color: var(--accent-primary);
+}
+.profile-stat .label {
+  font-size: 0.65rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.menu-list { display: flex; flex-direction: column; gap: 4px; margin-top: 16px; }
+.menu-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px; border-radius: var(--radius-sm);
+  cursor: pointer; transition: var(--transition);
+  border: none; background: none; color: var(--text-primary);
+  font-family: inherit; font-size: 0.85rem; width: 100%; text-align: left;
+}
+.menu-item:hover { background: var(--bg-glass); }
+.menu-item i { width: 20px; color: var(--accent-primary); font-size: 1rem; }
+.menu-item .chevron { margin-left: auto; color: var(--text-muted); font-size: 0.75rem; }
+.menu-item .badge-count {
+  background: var(--accent-gradient);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.announcement-bar {
+  background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(59,130,246,0.15));
+  border: 1px solid rgba(139,92,246,0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 16px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.8rem; cursor: pointer;
+}
+.announcement-bar i.fa-bullhorn { color: var(--accent-primary); font-size: 1.1rem; }
+
+/* UPI PAYMENT */
+.payment-modal-content {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  width: 100%; max-width: 480px;
+  max-height: 92vh; overflow-y: auto;
+  padding: 24px 20px 32px;
+  transform: translateY(30px);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  border: 1px solid var(--border-glass); border-bottom: none;
+  position: relative;
+}
+.payment-modal-overlay.show .payment-modal-content { transform: translateY(0); }
+
+.amount-box {
+  background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(59,130,246,0.15));
+  border: 1px solid rgba(139,92,246,0.3);
+  border-radius: var(--radius-md);
+  padding: 16px; margin-bottom: 16px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.amount-box .amount-label {
+  font-size: 0.75rem; color: var(--text-secondary);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.amount-box .amount-value {
+  font-size: 1.5rem; font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.upi-box {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 14px 16px; margin-bottom: 12px;
+}
+.upi-box .upi-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.1rem; flex-shrink: 0;
+}
+.upi-box .upi-info { flex: 1; min-width: 0; }
+.upi-box .upi-label {
+  font-size: 0.65rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px;
+}
+.upi-box .upi-value {
+  font-size: 0.95rem; font-weight: 700;
+  word-break: break-all; font-family: 'Courier New', monospace;
+}
+.upi-box .upi-copy {
+  flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+  background: var(--bg-glass-hover); border: 1px solid var(--border-glass);
+  color: var(--text-primary); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition); font-size: 0.85rem;
+}
+.upi-box .upi-copy:hover { background: var(--accent-primary); color: white; }
+
+.qr-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px; padding: 20px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md); margin-bottom: 12px;
+}
+.qr-wrap img {
+  width: 200px; height: 200px; object-fit: contain;
+  border-radius: var(--radius-sm); background: white; padding: 8px;
+}
+.qr-wrap .qr-label {
+  font-size: 0.75rem; color: var(--text-muted); text-align: center;
+}
+
+.payment-steps {
+  font-size: 0.75rem; color: var(--text-secondary);
+  line-height: 1.8; margin-bottom: 20px;
+}
+.payment-steps .step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--accent-gradient); color: white;
+  font-size: 0.65rem; font-weight: 700;
+  margin-right: 8px;
+}
+
+.payment-note {
+  font-size: 0.75rem; color: var(--text-secondary);
+  line-height: 1.5; padding: 12px 14px;
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: var(--radius-sm); margin-bottom: 16px;
+}
+.payment-note i { color: var(--warning); margin-right: 6px; }
+
+.payment-actions { display: flex; gap: 10px; }
+
+.txn-input {
+  width: 100%; padding: 12px 14px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); color: var(--text-primary);
+  font-family: inherit; font-size: 0.85rem; outline: none;
+  margin-bottom: 14px; transition: var(--transition);
+}
+.txn-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+}
+
+.success-screen { text-align: center; padding: 32px 20px; }
+.success-screen .success-icon {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(16,185,129,0.15);
+  border: 2px solid var(--success);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2rem; color: var(--success);
+  animation: scaleIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
+.success-screen h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.success-screen p {
+  font-size: 0.85rem; color: var(--text-secondary);
+  line-height: 1.5; margin-bottom: 12px;
+}
+
+/* BANNERS IN APP DETAIL */
+.paid-banner {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.35);
+  border-radius: var(--radius-md);
+  padding: 14px 16px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.8rem;
+}
+.paid-banner i { color: var(--success); font-size: 1.2rem; }
+
+.pending-banner {
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.35);
+  border-radius: var(--radius-md);
+  padding: 14px 16px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.8rem;
+}
+.pending-banner i { color: var(--warning); font-size: 1.2rem; }
+
+.failed-banner {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.35);
+  border-radius: var(--radius-md);
+  padding: 14px 16px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.8rem;
+}
+.failed-banner i { color: var(--danger); font-size: 1.2rem; }
+
+/* MY PAYMENTS (TXN LIST) */
+.txn-list { display: flex; flex-direction: column; gap: 12px; }
+.txn-card {
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md); padding: 16px;
+  position: relative; overflow: hidden;
+}
+.txn-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+}
+.txn-card.pending::before { background: var(--warning); }
+.txn-card.paid::before { background: var(--success); }
+.txn-card.failed::before { background: var(--danger); }
+.txn-card.refunded::before { background: var(--accent-primary); }
+
+.txn-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.txn-thumb {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: white; font-size: 1.1rem;
+  overflow: hidden; flex-shrink: 0;
+}
+.txn-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.txn-info { flex: 1; min-width: 0; }
+.txn-app-name {
+  font-size: 0.9rem; font-weight: 700;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.txn-date { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
+
+.txn-status-badge {
+  padding: 4px 10px; border-radius: 20px;
+  font-size: 0.62rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.txn-status-badge.pending { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.35); }
+.txn-status-badge.paid { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.35); }
+.txn-status-badge.failed { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.35); }
+.txn-status-badge.refunded { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.35); }
+
+.txn-meta {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px 14px; font-size: 0.72rem;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-glass);
+}
+.txn-meta .item { min-width: 0; }
+.txn-meta .item .label {
+  color: var(--text-muted); font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+.txn-meta .item .value {
+  color: var(--text-primary); font-weight: 600;
+  word-break: break-all;
+}
+.txn-meta .item .value.mono {
+  font-family: 'Courier New', monospace; font-size: 0.72rem;
+}
+.txn-help {
+  margin-top: 10px; padding: 10px;
+  background: rgba(245,158,11,0.06);
+  border: 1px dashed rgba(245,158,11,0.3);
+  border-radius: 8px;
+  font-size: 0.7rem; color: var(--text-secondary);
+  line-height: 1.5;
+}
+.txn-help i { color: var(--warning); margin-right: 4px; }
+
+.txn-filters {
+  display: flex; gap: 8px; overflow-x: auto;
+  padding-bottom: 4px; margin-bottom: 16px;
+}
+.txn-filters::-webkit-scrollbar { display: none; }
+.txn-filter-chip {
+  padding: 7px 14px; border-radius: 20px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  font-size: 0.75rem; font-weight: 600;
+  white-space: nowrap; cursor: pointer;
+  transition: var(--transition); color: var(--text-secondary);
+  font-family: inherit;
+}
+.txn-filter-chip.active {
+  background: var(--accent-gradient); color: white;
+  border-color: transparent;
+}
+
+/* PAYMENT STATUS POPUP */
+.status-popup {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.status-popup.show { display: flex; opacity: 1; }
+.status-popup-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  width: 100%; max-width: 400px;
+  padding: 28px 22px 22px;
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+  overflow: hidden;
+}
+.status-popup.show .status-popup-card { transform: scale(1); }
+.status-popup-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+}
+.status-popup-card.pending::before { background: var(--warning); }
+.status-popup-card.paid::before { background: var(--success); }
+.status-popup-card.failed::before { background: var(--danger); }
+.status-popup-card.refunded::before { background: var(--accent-primary); }
+
+.status-popup-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 2rem;
+  animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.status-popup-icon.pending { background: rgba(245,158,11,0.15); border: 2px solid var(--warning); color: var(--warning); }
+.status-popup-icon.paid { background: rgba(16,185,129,0.15); border: 2px solid var(--success); color: var(--success); }
+.status-popup-icon.failed { background: rgba(239,68,68,0.15); border: 2px solid var(--danger); color: var(--danger); }
+.status-popup-icon.refunded { background: rgba(139,92,246,0.15); border: 2px solid var(--accent-primary); color: var(--accent-primary); }
+@keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+
+.status-popup-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
+.status-popup-message {
+  font-size: 0.85rem; color: var(--text-secondary);
+  line-height: 1.6; margin-bottom: 16px;
+}
+.status-popup-app {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.status-popup-app .thumb {
+  width: 44px; height: 44px; border-radius: 11px;
+  background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: white; font-size: 1rem;
+  overflow: hidden; flex-shrink: 0;
+}
+.status-popup-app .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.status-popup-app .info { flex: 1; min-width: 0; }
+.status-popup-app .name {
+  font-size: 0.85rem; font-weight: 700;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+.status-popup-app .amount { font-size: 0.72rem; color: var(--text-muted); }
+.status-popup-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+.status-popup-badge.pending { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.4); }
+.status-popup-badge.paid { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.4); }
+.status-popup-badge.failed { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
+.status-popup-badge.refunded { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.4); }
+
+.status-popup-actions { display: flex; gap: 10px; margin-top: 6px; }
+.status-popup-actions .btn { flex: 1; padding: 12px 16px; font-size: 0.85rem; }
+
+/* ============ DOWNLOAD UNLOCK MODAL ============ */
+.download-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 250;
+  display: none; align-items: flex-end; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.download-modal-overlay.show { display: flex; opacity: 1; }
+.download-modal-content {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  width: 100%; max-width: 480px;
+  max-height: 92vh; overflow-y: auto;
+  padding: 24px 20px 32px;
+  transform: translateY(30px);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  border: 1px solid var(--border-glass); border-bottom: none;
+  position: relative; text-align: center;
+}
+.download-modal-overlay.show .download-modal-content { transform: translateY(0); }
+
+.dl-logo-wrap {
+  width: 96px; height: 96px;
+  margin: 12px auto 18px;
+  border-radius: 24px;
+  background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  overflow: visible;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(139,92,246,0.4);
+}
+.dl-logo-inner {
+  width: 100%; height: 100%;
+  border-radius: 24px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 2rem; font-weight: 800;
+}
+.dl-logo-inner img { width: 100%; height: 100%; object-fit: cover; }
+.dl-logo-wrap::after {
+  content: '';
+  position: absolute; inset: -8px;
+  border-radius: 32px;
+  border: 3px solid transparent;
+  border-top-color: var(--accent-primary);
+  border-right-color: var(--accent-secondary);
+  animation: spin 1s linear infinite;
+}
+.dl-logo-wrap.ready::after { display: none; }
+
+.dl-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+.dl-subtitle { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 18px; }
+
+.dl-progress-wrap {
+  padding: 20px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+.dl-spinner {
+  width: 56px; height: 56px;
+  border: 4px solid var(--border-glass);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  animation: spin 0.9s linear infinite;
+}
+.dl-progress-text { font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; }
+.dl-countdown {
+  font-size: 2rem; font-weight: 900; line-height: 1;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dl-hint { font-size: 0.7rem; color: var(--text-muted); margin-top: 10px; }
+
+.dl-ready-wrap {
+  padding: 20px;
+  background: rgba(16,185,129,0.08);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  animation: fadeIn 0.4s ease-out;
+}
+.dl-ready-icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: rgba(16,185,129,0.15);
+  border: 2px solid var(--success); color: var(--success);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; margin: 0 auto 12px;
+  animation: scaleIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.dl-ready-title { font-size: 1rem; font-weight: 800; color: var(--success); margin-bottom: 4px; }
+.dl-ready-desc { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 14px; }
+.dl-go-btn {
+  width: 100%; padding: 14px;
+  border-radius: 40px; border: none;
+  background: var(--accent-gradient); color: white;
+  font-family: inherit; font-size: 0.95rem; font-weight: 800;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  animation: pulse-btn 1.6s ease-in-out infinite;
+  box-shadow: 0 6px 20px rgba(139,92,246,0.4);
+}
+.dl-go-btn:active { transform: scale(0.98); }
+@keyframes pulse-btn {
+  0%,100% { box-shadow: 0 6px 20px rgba(139,92,246,0.4); }
+  50%     { box-shadow: 0 6px 30px rgba(139,92,246,0.75); }
+}
+
+@media (min-width: 768px) {
+  .main-container { padding: 24px; }
+  .app-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .bottom-nav { display: none; }
+  body { padding-bottom: 0; }
+  .modal-overlay { align-items: center; }
+  .modal-content, .payment-modal-content, .download-modal-content {
+    border-radius: var(--radius-xl);
+    max-height: 85vh; margin: 20px;
+    border-bottom: 1px solid var(--border-glass);
+  }
+  .header-search { max-width: 400px; }
+}
+@media (max-width: 360px) {
+  .app-card { min-width: 130px; max-width: 130px; }
+  .app-icon { width: 50px; height: 50px; }
+  .detail-icon { width: 64px; height: 64px; }
+}
+.hidden { display: none !important; }
+</style>
 </head>
 <body>
 
-    <!-- ═══ HEADER ═══ -->
-    <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#0b0f19]/80 border-b border-white/5 px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <button onclick="playClick(); toggleSidebar();" class="text-gray-300 hover:text-white transition p-1">
-                <svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
-            </button>
-            <div class="flex items-center gap-2">
-                <span class="bg-emerald-500 text-black font-black text-xs px-2.5 py-1 rounded-lg">M</span>
-                <span class="font-black text-lg tracking-wider gradient-text">MODWALA</span>
-            </div>
+<!-- SPLASH -->
+<div id="splash-screen">
+  <div class="splash-logo" id="splash-logo">DEBU STORE</div>
+  <div class="splash-spinner"></div>
+  <p style="color: var(--text-muted); font-size: 0.7rem; letter-spacing: 2px;">PREMIUM APPS</p>
+</div>
+
+<!-- AUTH -->
+<div id="auth-screen" class="hide">
+  <div class="auth-card">
+    <div class="auth-logo" id="auth-store-name">DEBU STORE</div>
+    <div class="auth-tagline">PREMIUM APP MARKETPLACE</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-auth-tab="login">Sign In</button>
+      <button class="auth-tab" data-auth-tab="register">Register</button>
+    </div>
+    <div class="auth-error" id="auth-error"></div>
+    <form id="login-form">
+      <div class="auth-field">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="login-email" placeholder="Email address" required>
+      </div>
+      <div class="auth-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="login-password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="auth-btn" id="login-submit">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+    </form>
+    <form id="register-form" class="hidden">
+      <div class="auth-field">
+        <i class="fas fa-user"></i>
+        <input type="text" id="register-name" placeholder="Full name" required>
+      </div>
+      <div class="auth-field">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="register-email" placeholder="Email address" required>
+      </div>
+      <div class="auth-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="register-password" placeholder="Password (min 6 chars)" required minlength="6">
+      </div>
+      <button type="submit" class="auth-btn" id="register-submit">
+        <i class="fas fa-user-plus"></i> Create Account
+      </button>
+    </form>
+    <div class="auth-divider">OR</div>
+    <button class="auth-btn" id="btn-guest" style="background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-primary);">
+      <i class="fas fa-user-secret"></i> Continue as Guest
+    </button>
+    <div class="auth-hint">By continuing you agree to our Terms & Privacy Policy</div>
+  </div>
+</div>
+
+<header class="app-header" id="main-header" style="display:none;">
+  <div class="header-logo" id="store-logo">DEBU STORE</div>
+  <div class="header-search">
+    <i class="fas fa-search"></i>
+    <input type="text" id="search-input" placeholder="Search apps, games...">
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
+    <div class="user-avatar-mini" id="header-avatar">G</div>
+  </div>
+</header>
+
+<div class="toast-container" id="toast-container"></div>
+
+<main class="main-container" id="main-content" style="display:none;">
+
+  <section class="page-section active" id="page-home">
+    <div id="announcement-container"></div>
+    <div class="banner-slider" id="banner-container"></div>
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-home"></i> All Apps</div>
+      <div class="page-count" id="home-count">0 apps</div>
+    </div>
+    <div class="app-grid" id="home-apps"></div>
+  </section>
+
+  <section class="page-section" id="page-featured">
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-star"></i> Featured Apps</div>
+      <div class="page-count" id="featured-count">0 apps</div>
+    </div>
+    <div class="app-grid" id="featured-list"></div>
+  </section>
+
+  <section class="page-section" id="page-categories">
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-th-large"></i> Categories</div>
+    </div>
+    <div class="cat-big-grid" id="categories-list"></div>
+  </section>
+
+  <section class="page-section" id="page-category-apps">
+    <div class="page-head-row">
+      <button class="icon-btn" id="back-from-category" style="width:36px;height:36px;border-radius:50%;">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="page-title-big" id="category-apps-title"><i class="fas fa-tag"></i> Category</div>
+      <div class="page-count" id="category-apps-count">0 apps</div>
+    </div>
+    <div class="app-grid" id="category-apps-list"></div>
+  </section>
+
+  <section class="page-section" id="page-popular">
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-fire"></i> Popular Apps</div>
+      <div class="page-count" id="popular-count">0 apps</div>
+    </div>
+    <div class="app-grid" id="popular-list"></div>
+  </section>
+
+  <section class="page-section" id="page-paid">
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-crown"></i> Paid Apps</div>
+      <div class="page-count" id="paid-count">0 apps</div>
+    </div>
+    <div class="app-grid" id="paid-list"></div>
+  </section>
+
+  <section class="page-section" id="page-search">
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-search"></i> Search Results</div>
+      <div class="page-count" id="search-count">0 apps</div>
+    </div>
+    <div class="app-grid" id="search-results"></div>
+  </section>
+
+  <section class="page-section" id="page-favorites">
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-heart"></i> Favorites</div>
+      <div class="page-count" id="favorites-count">0 apps</div>
+    </div>
+    <div class="app-grid" id="favorites-list"></div>
+  </section>
+
+  <section class="page-section" id="page-downloads">
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-download"></i> Download History</div>
+      <div class="page-count" id="downloads-count">0 apps</div>
+    </div>
+    <div class="app-grid" id="downloads-list"></div>
+  </section>
+
+  <section class="page-section" id="page-purchases">
+    <div class="page-head-row">
+      <div class="page-title-big"><i class="fas fa-receipt"></i> My Payments</div>
+      <div class="page-count" id="purchases-count">0 items</div>
+    </div>
+    <div class="txn-filters" id="txn-filters">
+      <button class="txn-filter-chip active" data-filter="all">All</button>
+      <button class="txn-filter-chip" data-filter="pending">Pending</button>
+      <button class="txn-filter-chip" data-filter="paid">Paid</button>
+      <button class="txn-filter-chip" data-filter="failed">Failed</button>
+      <button class="txn-filter-chip" data-filter="refunded">Refunded</button>
+    </div>
+    <div class="txn-list" id="txn-list"></div>
+  </section>
+
+  <section class="page-section" id="page-profile">
+    <div class="profile-header">
+      <div class="profile-avatar" id="profile-avatar">G</div>
+      <div class="profile-name" id="profile-name">Guest User</div>
+      <div class="profile-email" id="profile-email">guest@debustore.com</div>
+      <div class="profile-stats">
+        <div class="profile-stat"><div class="value" id="stat-downloads">0</div><div class="label">Downloads</div></div>
+        <div class="profile-stat"><div class="value" id="stat-favorites">0</div><div class="label">Favorites</div></div>
+        <div class="profile-stat"><div class="value" id="stat-purchases">0</div><div class="label">Purchases</div></div>
+      </div>
+    </div>
+    <div class="menu-list">
+      <button class="menu-item" id="menu-my-payments">
+        <i class="fas fa-receipt"></i> My Payments
+        <span class="badge-count" id="badge-txn-count" style="display:none;">0</span>
+        <span class="chevron"><i class="fas fa-chevron-right"></i></span>
+      </button>
+      <button class="menu-item" id="menu-settings">
+        <i class="fas fa-cog"></i> Settings
+        <span class="chevron"><i class="fas fa-chevron-right"></i></span>
+      </button>
+      <button class="menu-item" id="menu-logout">
+        <i class="fas fa-sign-out-alt"></i> Sign Out
+        <span class="chevron"><i class="fas fa-chevron-right"></i></span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottom-nav" id="bottom-nav" style="display:none;">
+  <button class="nav-item active" data-page="home"><i class="fas fa-home"></i><span>Home</span></button>
+  <button class="nav-item" data-page="featured"><i class="fas fa-star"></i><span>Featured</span></button>
+  <button class="nav-item" data-page="categories"><i class="fas fa-th-large"></i><span>Categories</span></button>
+  <button class="nav-item" data-page="popular"><i class="fas fa-fire"></i><span>Popular</span></button>
+  <button class="nav-item" data-page="paid"><i class="fas fa-crown"></i><span>Paid</span></button>
+  <button class="nav-item" data-page="profile"><i class="fas fa-user"></i><span>Profile</span></button>
+</nav>
+
+<!-- APP DETAIL MODAL -->
+<div class="modal-overlay" id="app-detail-modal">
+  <div class="modal-content" id="app-detail-content"></div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay payment-modal-overlay" id="payment-modal">
+  <div class="payment-modal-content" id="payment-modal-content"></div>
+</div>
+
+<!-- PAYMENT STATUS POPUP -->
+<div class="status-popup" id="status-popup">
+  <div class="status-popup-card" id="status-popup-card"></div>
+</div>
+
+<!-- DOWNLOAD UNLOCK MODAL -->
+<div class="modal-overlay download-modal-overlay" id="download-modal">
+  <div class="download-modal-content" id="download-modal-content"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script>
+/* ============================================================
+   DEBU STORE — User App
+   ============================================================ */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDgkj2kSSCxFvE2nuZ6Y0ZpKd4zKLH41m8",
+  authDomain: "tournament-3606e.firebaseapp.com",
+  databaseURL: "https://tournament-3606e-default-rtdb.firebaseio.com",
+  projectId: "tournament-3606e",
+  storageBucket: "tournament-3606e.firebasestorage.app",
+  messagingSenderId: "24305385580",
+  appId: "1:24305385580:web:4e867a91f26d773bc01849"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const auth = firebase.auth();
+
+/* ---------- STATE ---------- */
+let APPS = [];
+let CATEGORIES = [];
+let BANNERS = [];
+let ANNOUNCEMENTS = [];
+let SETTINGS = {};
+let currentUser = null;
+let currentPage = 'home';
+let searchQuery = '';
+let currentCategoryName = '';
+let favorites = [];
+let downloadHistory = [];
+let purchases = [];
+let pendingPurchases = [];
+let allTransactions = [];
+let txnFilter = 'all';
+let currentApp = null;
+let isDarkMode = localStorage.getItem('debu_theme') !== 'light';
+let localGuestActive = false;
+
+let bannerCurrentIndex = 0;
+let bannerAutoSlideTimer = null;
+let downloadTimerInterval = null;
+
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = (n) => Number(n || 0).toLocaleString('en-IN');
+
+function priceINR(value) {
+  const n = Number(value || 0);
+  if (n === 0) return 'Free';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function fmtDate(ts) {
+  if (!ts) return '—';
+  const d = new Date(ts);
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yy = d.getFullYear();
+  const hh = String(d.getHours()).padStart(2, '0');
+  const mn = String(d.getMinutes()).padStart(2, '0');
+  return `${dd}/${mm}/${yy} · ${hh}:${mn}`;
+}
+
+/* ============================================================
+   AD TRIGGER (প্রতিটা বাটন ক্লিকে অ্যাড)
+   ============================================================ */
+const AD_SCRIPTS = [
+  'https://afders.org/1/5cd5e0ff5996e05b38e25e37b67a831c',
+  'https://bicea.org/14/13e7b7059c367453bf87a2eb3e643330'
+];
+
+let adIndex = 0;
+let lastAdTime = 0;
+const AD_COOLDOWN_MS = 800;
+
+function triggerAd() {
+  const now = Date.now();
+  if (now - lastAdTime < AD_COOLDOWN_MS) return;
+  lastAdTime = now;
+
+  const src = AD_SCRIPTS[adIndex % AD_SCRIPTS.length];
+  adIndex++;
+
+  try {
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = src;
+    s.setAttribute('data-cfasync', 'false');
+    (document.body || document.documentElement).appendChild(s);
+    setTimeout(() => { try { s.remove(); } catch (e) {} }, 5000);
+  } catch (e) {
+    console.warn('Ad inject failed:', e);
+  }
+}
+
+/* গ্লোবাল বাটন ক্লিক লিসেনার — সব বাটনে অ্যাড */
+document.addEventListener('click', (e) => {
+  const target = e.target.closest(
+    '.app-card, .cat-big-card, #btn-buy, #btn-download, #dl-go, ' +
+    '.nav-item, .menu-item, .category-chip'
+  );
+  if (!target) return;
+  triggerAd();
+}, true);
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  applyTheme();
+  setupAuthUI();
+  setupStoreUI();
+
+  setTimeout(() => $('#splash-screen').classList.add('hide'), 1200);
+
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      localGuestActive = false;
+      currentUser = user;
+      onUserReady(user);
+    } else if (localGuestActive) {
+      // guest session active
+    } else {
+      currentUser = null;
+      showAuthScreen();
+    }
+  });
+});
+
+/* ============================================================
+   AUTH
+   ============================================================ */
+function setupAuthUI() {
+  $$('.auth-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      $$('.auth-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const mode = tab.dataset.authTab;
+      if (mode === 'login') {
+        $('#login-form').classList.remove('hidden');
+        $('#register-form').classList.add('hidden');
+      } else {
+        $('#login-form').classList.add('hidden');
+        $('#register-form').classList.remove('hidden');
+      }
+      hideAuthError();
+    });
+  });
+
+  $('#login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = $('#login-email').value.trim();
+    const password = $('#login-password').value;
+    if (!email || !password) return;
+    setLoading('#login-submit', true, 'Signing in...');
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      showToast('Welcome back!', 'success');
+    } catch (err) {
+      showAuthError(friendlyAuthError(err));
+    } finally {
+      setLoading('#login-submit', false, '<i class="fas fa-sign-in-alt"></i> Sign In');
+    }
+  });
+
+  $('#register-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = $('#register-name').value.trim();
+    const email = $('#register-email').value.trim();
+    const password = $('#register-password').value;
+    if (!name || !email || !password) return;
+    if (password.length < 6) { showAuthError('Password must be at least 6 characters.'); return; }
+    setLoading('#register-submit', true, 'Creating account...');
+    try {
+      const cred = await auth.createUserWithEmailAndPassword(email, password);
+      await db.ref('users/' + cred.user.uid).set({
+        name, email, createdAt: Date.now(),
+        downloadCount: 0, purchaseCount: 0, status: 'active'
+      });
+      await cred.user.updateProfile({ displayName: name });
+      showToast('Account created!', 'success');
+    } catch (err) {
+      showAuthError(friendlyAuthError(err));
+    } finally {
+      setLoading('#register-submit', false, '<i class="fas fa-user-plus"></i> Create Account');
+    }
+  });
+
+  $('#btn-guest').addEventListener('click', async () => {
+    const btn = $('#btn-guest');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Continuing...';
+    hideAuthError();
+    try {
+      await auth.signInAnonymously();
+    } catch (err) {
+      console.warn('Anonymous auth failed:', err.code, '→ local guest mode');
+      startLocalGuestSession();
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-user-secret"></i> Continue as Guest';
+    }
+  });
+}
+
+function friendlyAuthError(err) {
+  const map = {
+    'auth/invalid-email': 'Invalid email address.',
+    'auth/user-not-found': 'No account found with this email.',
+    'auth/wrong-password': 'Incorrect password.',
+    'auth/invalid-credential': 'Invalid email or password.',
+    'auth/email-already-in-use': 'This email is already registered.',
+    'auth/weak-password': 'Password is too weak (min 6 chars).',
+    'auth/too-many-requests': 'Too many attempts. Please try later.',
+    'auth/network-request-failed': 'Network error. Check your connection.',
+    'auth/operation-not-allowed': 'This sign-in method is not enabled in Firebase Console.',
+    'auth/admin-restricted-operation': 'Anonymous sign-in is disabled in Firebase Console.',
+    'auth/unauthorized-domain': 'This domain is not authorized in Firebase Console.'
+  };
+  return map[err.code] || err.message || 'Something went wrong.';
+}
+
+function showAuthError(msg) { const el = $('#auth-error'); el.textContent = msg; el.classList.add('show'); }
+function hideAuthError() { $('#auth-error').classList.remove('show'); }
+function setLoading(sel, loading, label) {
+  const btn = $(sel); if (!btn) return;
+  btn.disabled = loading; btn.innerHTML = label;
+}
+function showAuthScreen() {
+  $('#auth-screen').classList.remove('hide');
+  $('#main-header').style.display = 'none';
+  $('#main-content').style.display = 'none';
+  $('#bottom-nav').style.display = 'none';
+}
+function showStore() {
+  $('#auth-screen').classList.add('hide');
+  $('#main-header').style.display = 'flex';
+  $('#main-content').style.display = 'block';
+  if (window.innerWidth < 768) $('#bottom-nav').style.display = 'flex';
+  setupRealtimeData();
+}
+
+/* ---------- LOCAL GUEST FALLBACK ---------- */
+function isLocalGuest() { return localGuestActive; }
+
+function startLocalGuestSession() {
+  let uid = localStorage.getItem('debu_guest_uid');
+  if (!uid) {
+    uid = 'guest_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    localStorage.setItem('debu_guest_uid', uid);
+  }
+  localGuestActive = true;
+  currentUser = { uid, isAnonymous: true, displayName: 'Guest', email: '', localGuest: true };
+  onUserReady(currentUser);
+  showToast('Guest mode-এ ঢুকেছেন', 'info');
+}
+
+function saveLocalTxn(txn) {
+  txn.id = 'local_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  let arr = [];
+  try { arr = JSON.parse(localStorage.getItem('debu_local_txns') || '[]'); } catch (e) { arr = []; }
+  arr.push(txn);
+  localStorage.setItem('debu_local_txns', JSON.stringify(arr));
+
+  allTransactions.unshift(txn);
+  allTransactions.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  if (txn.status === 'pending' && !pendingPurchases.includes(txn.appId)) pendingPurchases.push(txn.appId);
+  if (txn.status === 'paid' && !purchases.includes(txn.appId)) purchases.push(txn.appId);
+
+  renderAll(); renderTransactions(); updateProfileStats(); updateTxnBadge();
+}
+
+/* ============================================================
+   USER READY
+   ============================================================ */
+async function onUserReady(user) {
+  try {
+    const settingsSnap = await db.ref('settings').once('value');
+    SETTINGS = settingsSnap.val() || {};
+  } catch (e) {
+    SETTINGS = SETTINGS || {};
+    console.warn('Settings load failed:', e.message);
+  }
+  const storeName = SETTINGS.storeName || 'DEBU STORE';
+  $('#store-logo').textContent = storeName;
+  $('#auth-store-name').textContent = storeName;
+  $('#splash-logo').textContent = storeName;
+  document.title = storeName + ' · Premium App Marketplace';
+
+  if (user.isAnonymous || user.localGuest) {
+    $('#header-avatar').textContent = 'G';
+    $('#profile-avatar').textContent = 'G';
+    $('#profile-name').textContent = 'Guest User';
+    $('#profile-email').textContent = user.localGuest ? 'Local Guest Session' : 'guest@debustore.com';
+  } else {
+    try {
+      const snap = await db.ref('users/' + user.uid).once('value');
+      const profile = snap.val() || {};
+      const name = profile.name || user.displayName || 'User';
+      const email = profile.email || user.email || '';
+      const initial = name.charAt(0).toUpperCase();
+      $('#header-avatar').textContent = initial;
+      $('#profile-avatar').textContent = initial;
+      $('#profile-name').textContent = name;
+      $('#profile-email').textContent = email;
+    } catch (e) {
+      const name = user.displayName || 'User';
+      $('#header-avatar').textContent = name.charAt(0).toUpperCase();
+      $('#profile-avatar').textContent = name.charAt(0).toUpperCase();
+      $('#profile-name').textContent = name;
+      $('#profile-email').textContent = user.email || '';
+    }
+  }
+
+  loadUserData(user.uid);
+  showStore();
+  showToast('Signed in successfully', 'success');
+}
+
+function loadUserData(uid) {
+  if (localGuestActive) {
+    try { favorites = JSON.parse(localStorage.getItem('debu_favorites') || '[]'); } catch (e) { favorites = []; }
+    try { downloadHistory = JSON.parse(localStorage.getItem('debu_downloads') || '[]'); } catch (e) { downloadHistory = []; }
+    try { allTransactions = JSON.parse(localStorage.getItem('debu_local_txns') || '[]'); } catch (e) { allTransactions = []; }
+
+    allTransactions.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    purchases = allTransactions.filter(p => p.status === 'paid').map(p => p.appId).filter(Boolean);
+    pendingPurchases = allTransactions.filter(p => p.status === 'pending').map(p => p.appId).filter(Boolean);
+
+    renderAll(); renderFavorites(); renderDownloads(); renderTransactions();
+    updateProfileStats(); updateTxnBadge();
+    return;
+  }
+
+  db.ref('favorites/' + uid).on('value', (snap) => {
+    const val = snap.val() || {};
+    favorites = Array.isArray(val) ? val : Object.values(val);
+    localStorage.setItem('debu_favorites', JSON.stringify(favorites));
+    renderFavorites(); renderAll(); updateProfileStats();
+  }, () => {});
+
+  db.ref('downloads').orderByChild('userId').equalTo(uid).on('value', (snap) => {
+    const val = snap.val() || {};
+    downloadHistory = [...new Set(Object.values(val).map(d => d.appId).filter(Boolean))];
+    localStorage.setItem('debu_downloads', JSON.stringify(downloadHistory));
+    renderDownloads(); updateProfileStats();
+  }, () => {});
+
+  db.ref('purchases').orderByChild('userId').equalTo(uid).on('value', (snap) => {
+    const val = snap.val() || {};
+    allTransactions = Object.entries(val)
+      .map(([id, p]) => ({ id, ...p }))
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+    purchases = allTransactions.filter(p => p.status === 'paid').map(p => p.appId).filter(Boolean);
+    pendingPurchases = allTransactions.filter(p => p.status === 'pending').map(p => p.appId).filter(Boolean);
+
+    localStorage.setItem('debu_purchases', JSON.stringify(purchases));
+    renderAll(); renderTransactions(); updateProfileStats(); updateTxnBadge();
+  }, () => {});
+}
+
+/* ============================================================
+   REALTIME DATA
+   ============================================================ */
+let realtimeSetup = false;
+function setupRealtimeData() {
+  if (realtimeSetup) return;
+  realtimeSetup = true;
+
+  db.ref('apps').on('value', (snap) => {
+    const val = snap.val() || {};
+    APPS = Object.entries(val)
+      .map(([id, v]) => ({ id, ...v }))
+      .filter(a => a.published !== false);
+    renderAll();
+    renderTransactions();
+  }, () => {});
+
+  db.ref('categories').on('value', (snap) => {
+    const val = snap.val() || {};
+    CATEGORIES = Object.entries(val)
+      .map(([id, v]) => ({ id, ...v }))
+      .filter(c => c.active !== false);
+    renderCategoriesPage();
+  }, () => {});
+
+  db.ref('banners').on('value', (snap) => {
+    const val = snap.val() || {};
+    const nowTs = Date.now();
+    BANNERS = Object.entries(val).map(([id, v]) => ({ id, ...v })).filter(b => {
+      if (b.active === false) return false;
+      if (b.startDate && new Date(b.startDate).getTime() > nowTs) return false;
+      if (b.endDate && new Date(b.endDate).getTime() < nowTs) return false;
+      return true;
+    });
+    renderBanners();
+  }, () => {});
+
+  db.ref('announcements').on('value', (snap) => {
+    const val = snap.val() || {};
+    ANNOUNCEMENTS = Object.entries(val).map(([id, v]) => ({ id, ...v })).filter(a => a.active);
+    renderAnnouncements();
+  }, () => {});
+
+  db.ref('settings').on('value', (snap) => {
+    SETTINGS = snap.val() || {};
+    const storeName = SETTINGS.storeName || 'DEBU STORE';
+    $('#store-logo').textContent = storeName;
+  }, () => {});
+}
+
+/* ============================================================
+   RENDER — ALL PAGES
+   ============================================================ */
+function renderAll() {
+  renderHomePage();
+  renderFeaturedPage();
+  renderCategoriesPage();
+  renderPopularPage();
+  renderPaidPage();
+  renderSearchResults();
+  renderCategoryAppsPage();
+}
+
+function renderHomePage() {
+  const apps = [...APPS].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  const countEl = $('#home-count');
+  if (countEl) countEl.textContent = apps.length + ' app' + (apps.length !== 1 ? 's' : '');
+  renderAppList('home-apps', apps);
+}
+
+function renderFeaturedPage() {
+  const apps = APPS.filter(a => a.featured).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  const countEl = $('#featured-count');
+  if (countEl) countEl.textContent = apps.length + ' app' + (apps.length !== 1 ? 's' : '');
+  renderAppList('featured-list', apps);
+}
+
+function renderCategoriesPage() {
+  const grid = $('#categories-list');
+  if (!grid) return;
+
+  if (!CATEGORIES.length) {
+    grid.innerHTML = `<div class="empty-state"><i class="fas fa-th-large"></i><p>No categories yet</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = CATEGORIES.map(cat => {
+    const count = APPS.filter(a => a.category === cat.name).length;
+    return `
+      <div class="cat-big-card" data-cat="${esc(cat.name)}">
+        <div class="cat-big-icon">
+          ${cat.image
+            ? `<img src="${esc(cat.image)}" onerror="this.parentNode.innerHTML='<i class=\\'fas ${esc(cat.icon || 'fa-tag')}\\'></i>'">`
+            : `<i class="fas ${esc(cat.icon || 'fa-tag')}"></i>`}
         </div>
-        <button onclick="playClick(); toggleTheme();" id="themeToggle" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 transition">
-            <svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
+        <div class="cat-big-name">${esc(cat.name)}</div>
+        <div class="cat-big-count">${count} app${count !== 1 ? 's' : ''}</div>
+      </div>
+    `;
+  }).join('');
+
+  grid.querySelectorAll('.cat-big-card').forEach(card => {
+    card.addEventListener('click', () => openCategoryApps(card.dataset.cat));
+  });
+}
+
+function openCategoryApps(catName) {
+  currentCategoryName = catName;
+  navigateTo('category-apps');
+  renderCategoryAppsPage();
+}
+
+function renderCategoryAppsPage() {
+  if (!currentCategoryName) return;
+  const titleEl = $('#category-apps-title');
+  const countEl = $('#category-apps-count');
+  const apps = APPS.filter(a => a.category === currentCategoryName)
+    .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+  const cat = CATEGORIES.find(c => c.name === currentCategoryName);
+  const icon = cat?.icon || 'fa-tag';
+  titleEl.innerHTML = `<i class="fas ${esc(icon)}"></i> ${esc(currentCategoryName)}`;
+  countEl.textContent = apps.length + ' app' + (apps.length !== 1 ? 's' : '');
+  renderAppList('category-apps-list', apps);
+}
+
+function renderPopularPage() {
+  const apps = APPS.filter(a => a.popular).sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+  const countEl = $('#popular-count');
+  if (countEl) countEl.textContent = apps.length + ' app' + (apps.length !== 1 ? 's' : '');
+  renderAppList('popular-list', apps);
+}
+
+function renderPaidPage() {
+  const apps = APPS.filter(a => a.type === 'paid').sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  const countEl = $('#paid-count');
+  if (countEl) countEl.textContent = apps.length + ' app' + (apps.length !== 1 ? 's' : '');
+  renderAppList('paid-list', apps);
+}
+
+function renderSearchResults() {
+  const results = searchQuery
+    ? APPS.filter(a =>
+        (a.name || '').toLowerCase().includes(searchQuery) ||
+        (a.developer || '').toLowerCase().includes(searchQuery) ||
+        (a.category || '').toLowerCase().includes(searchQuery))
+    : [];
+  const countEl = $('#search-count');
+  if (countEl) countEl.textContent = results.length + ' app' + (results.length !== 1 ? 's' : '');
+  renderAppList('search-results', results);
+}
+
+function renderFavorites() {
+  const apps = APPS.filter(a => favorites.includes(a.id));
+  const countEl = $('#favorites-count');
+  if (countEl) countEl.textContent = apps.length + ' app' + (apps.length !== 1 ? 's' : '');
+  renderAppList('favorites-list', apps);
+}
+
+function renderDownloads() {
+  const apps = APPS.filter(a => downloadHistory.includes(a.id));
+  const countEl = $('#downloads-count');
+  if (countEl) countEl.textContent = apps.length + ' app' + (apps.length !== 1 ? 's' : '');
+  renderAppList('downloads-list', apps);
+}
+
+function createAppCard(app) {
+  const isFav = favorites.includes(app.id);
+  let priceHtml;
+  if (app.type === 'free') {
+    priceHtml = '<span class="app-price free">FREE</span>';
+  } else if (app.discountPrice > 0) {
+    priceHtml = `<span class="app-price"><span class="old">${priceINR(app.price)}</span>${priceINR(app.discountPrice)}</span>`;
+  } else {
+    priceHtml = `<span class="app-price">${priceINR(app.price)}</span>`;
+  }
+
+  const userTxn = allTransactions.find(t => t.appId === app.id);
+  let statusPill = '';
+  if (userTxn) {
+    const s = userTxn.status || 'pending';
+    const label = { pending: 'Pending', paid: 'Paid', failed: 'Failed', refunded: 'Refunded' }[s];
+    const icon = { pending: 'fa-hourglass-half', paid: 'fa-check', failed: 'fa-times', refunded: 'fa-rotate-left' }[s];
+    statusPill = `<span class="status-dot-pill ${s}"><i class="fas ${icon}"></i> ${label}</span>`;
+  }
+
+  return `
+    <div class="app-card" data-app-id="${esc(app.id)}">
+      ${statusPill}
+      <div class="app-icon">
+        ${app.icon ? `<img src="${esc(app.icon)}" alt="${esc(app.name)}" loading="lazy" onerror="this.parentNode.textContent='${esc((app.name||'?')[0])}'">` : (app.name || '?')[0]}
+      </div>
+      <div class="app-name">${esc(app.name || 'Untitled')}</div>
+      <div class="app-meta">
+        <i class="fas fa-star" style="color:#fbbf24;font-size:0.55rem;"></i>
+        ${app.rating || '0.0'}
+        <span>·</span>
+        ${esc(app.size || '—')}
+      </div>
+      ${priceHtml}
+      ${isFav ? '<i class="fas fa-heart" style="position:absolute;top:8px;right:8px;color:#ef4444;font-size:0.7rem;"></i>' : ''}
+    </div>
+  `;
+}
+
+function renderAppList(containerId, apps) {
+  const container = $(`#${containerId}`);
+  if (!container) return;
+  if (!apps || apps.length === 0) {
+    container.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>No apps here yet</p></div>`;
+    return;
+  }
+  container.innerHTML = apps.map(createAppCard).join('');
+  container.querySelectorAll('.app-card').forEach(card => {
+    card.addEventListener('click', () => openAppDetail(card.dataset.appId));
+  });
+}
+
+/* ============================================================
+   BANNER SLIDER
+   ============================================================ */
+function renderBanners() {
+  const container = $('#banner-container');
+  if (!container) return;
+  if (bannerAutoSlideTimer) { clearInterval(bannerAutoSlideTimer); bannerAutoSlideTimer = null; }
+
+  const active = BANNERS
+    .filter(b => b.image)
+    .sort((a, b) => {
+      const oa = Number(a.order || 0);
+      const ob = Number(b.order || 0);
+      if (oa !== ob) return oa - ob;
+      return (a.createdAt || 0) - (b.createdAt || 0);
+    });
+
+  if (!active.length) {
+    container.className = 'banner-default';
+    container.innerHTML = `
+      <div class="banner-glow"></div>
+      <div class="banner-default-content">
+        <div class="banner-default-tag">Featured</div>
+        <div class="banner-default-title">Premium Apps Collection</div>
+        <div class="banner-default-desc">Discover hand-picked premium apps with exclusive discounts.</div>
+      </div>
+    `;
+    return;
+  }
+
+  container.className = 'banner-slider';
+
+  const slidesHtml = active.map((b, i) => {
+    const linkUrl = b.linkUrl || b.targetUrl || '#';
+    const openNewTab = b.openNewTab !== false;
+    return `
+      <div class="banner-slide" data-index="${i}" data-link="${esc(linkUrl)}" data-new-tab="${openNewTab ? '1' : '0'}">
+        <img class="banner-slide-img" src="${esc(b.image)}" alt="${esc(b.title || 'Banner')}" loading="lazy" onerror="this.style.display='none'">
+        <div class="banner-slide-overlay"></div>
+        <div class="banner-slide-content">
+          <div class="banner-slide-tag">${esc(b.buttonText || 'Featured')}</div>
+          ${b.title ? `<div class="banner-slide-title">${esc(b.title)}</div>` : ''}
+          ${b.subtitle ? `<div class="banner-slide-desc">${esc(b.subtitle)}</div>` : ''}
+          <div class="banner-slide-btn"><i class="fas fa-arrow-right"></i> Tap to open</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const dotsHtml = active.map((_, i) => `
+    <button class="banner-dot ${i === 0 ? 'active' : ''}" data-dot="${i}"></button>
+  `).join('');
+
+  const navHtml = active.length > 1 ? `
+    <button class="banner-nav prev" id="banner-prev"><i class="fas fa-chevron-left"></i></button>
+    <button class="banner-nav next" id="banner-next"><i class="fas fa-chevron-right"></i></button>
+  ` : '';
+
+  container.innerHTML = `
+    <div class="banner-track" id="banner-track">${slidesHtml}</div>
+    ${active.length > 1 ? `<div class="banner-dots-wrap">${dotsHtml}</div>` : ''}
+    ${navHtml}
+  `;
+
+  bannerCurrentIndex = 0;
+
+  container.querySelectorAll('.banner-slide').forEach(slide => {
+    slide.addEventListener('click', (e) => {
+      if (e.target.closest('.banner-nav') || e.target.closest('.banner-dot')) return;
+      const link = slide.dataset.link;
+      const newTab = slide.dataset.newTab === '1';
+      if (!link || link === '#') { showToast('No link for this banner', 'info'); return; }
+      if (newTab) window.open(link, '_blank', 'noopener,noreferrer');
+      else window.location.href = link;
+    });
+  });
+
+  container.querySelectorAll('.banner-dot').forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToBanner(Number(dot.dataset.dot));
+    });
+  });
+
+  const prevBtn = container.querySelector('#banner-prev');
+  const nextBtn = container.querySelector('#banner-next');
+  if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevBanner(); });
+  if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextBanner(); });
+
+  startBannerAutoSlide(active.length);
+}
+
+function goToBanner(index) {
+  const container = $('#banner-container');
+  const track = container.querySelector('#banner-track');
+  if (!track) return;
+  const slides = track.querySelectorAll('.banner-slide');
+  const total = slides.length;
+  if (!total) return;
+  if (index < 0) index = total - 1;
+  if (index >= total) index = 0;
+  bannerCurrentIndex = index;
+  track.style.transform = `translateX(-${index * 100}%)`;
+  container.querySelectorAll('.banner-dot').forEach((d, i) => d.classList.toggle('active', i === index));
+  startBannerAutoSlide(total);
+}
+function nextBanner() { goToBanner(bannerCurrentIndex + 1); }
+function prevBanner() { goToBanner(bannerCurrentIndex - 1); }
+function startBannerAutoSlide(total) {
+  if (bannerAutoSlideTimer) clearInterval(bannerAutoSlideTimer);
+  if (total <= 1) return;
+  bannerAutoSlideTimer = setInterval(() => { nextBanner(); }, 4000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('banner-container');
+  if (!container) return;
+  ['touchstart','mouseenter'].forEach(evt => container.addEventListener(evt, () => {
+    if (bannerAutoSlideTimer) clearInterval(bannerAutoSlideTimer);
+  }, { passive:true }));
+  ['touchend','mouseleave'].forEach(evt => container.addEventListener(evt, () => {
+    const total = container.querySelectorAll('.banner-slide').length;
+    startBannerAutoSlide(total);
+  }));
+});
+
+/* ============================================================
+   ANNOUNCEMENTS
+   ============================================================ */
+function renderAnnouncements() {
+  const c = $('#announcement-container');
+  if (!ANNOUNCEMENTS.length) { c.innerHTML = ''; return; }
+  const a = ANNOUNCEMENTS[0];
+  c.innerHTML = `
+    <div class="announcement-bar" onclick="${a.buttonUrl ? `window.open('${esc(a.buttonUrl)}','_blank')` : ''}">
+      <i class="fas fa-bullhorn"></i>
+      <div style="flex:1;">
+        <div style="font-weight:700;margin-bottom:2px;">${esc(a.title || '')}</div>
+        <div style="color:var(--text-secondary);font-size:0.75rem;">${esc(a.message || '')}</div>
+      </div>
+      ${a.buttonUrl ? '<i class="fas fa-chevron-right" style="color:var(--text-muted);font-size:0.8rem;"></i>' : ''}
+    </div>`;
+}
+
+/* ============================================================
+   PROFILE STATS
+   ============================================================ */
+function updateProfileStats() {
+  $('#stat-downloads').textContent = downloadHistory.length;
+  $('#stat-favorites').textContent = favorites.length;
+  $('#stat-purchases').textContent = purchases.length;
+}
+function updateTxnBadge() {
+  const badge = $('#badge-txn-count');
+  if (!badge) return;
+  const count = allTransactions.length;
+  if (count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
+  else badge.style.display = 'none';
+}
+
+/* ============================================================
+   MY PAYMENTS
+   ============================================================ */
+function renderTransactions() {
+  const list = $('#txn-list');
+  if (!list) return;
+  const countEl = $('#purchases-count');
+
+  let txns = [...allTransactions];
+  if (txnFilter !== 'all') txns = txns.filter(t => (t.status || 'pending') === txnFilter);
+
+  if (countEl) countEl.textContent = txns.length + ' item' + (txns.length !== 1 ? 's' : '');
+
+  if (!txns.length) {
+    list.innerHTML = `<div class="empty-state"><i class="fas fa-receipt"></i><p>${txnFilter === 'all' ? 'No payments yet' : 'No ' + txnFilter + ' payments'}</p></div>`;
+    return;
+  }
+
+  list.innerHTML = txns.map(txn => {
+    const app = APPS.find(a => a.id === txn.appId) || {};
+    const status = txn.status || 'pending';
+    const statusIcon = { pending:'fa-hourglass-half', paid:'fa-check-circle', failed:'fa-times-circle', refunded:'fa-rotate-left' }[status];
+    const helpText = {
+      pending: '⏳ Admin will verify your payment shortly.',
+      paid: '✅ Payment verified! You can download the app.',
+      failed: '❌ Payment failed. Contact support if money deducted.',
+      refunded: '↩️ Your payment has been refunded.'
+    }[status];
+
+    const thumb = app.icon
+      ? `<img src="${esc(app.icon)}" onerror="this.parentNode.textContent='${esc((app.name || txn.appName || '?')[0])}'">`
+      : (app.name || txn.appName || '?')[0];
+
+    return `
+      <div class="txn-card ${status}">
+        <div class="txn-head">
+          <div class="txn-thumb">${thumb}</div>
+          <div class="txn-info">
+            <div class="txn-app-name">${esc(txn.appName || app.name || 'App')}</div>
+            <div class="txn-date">${fmtDate(txn.createdAt)}</div>
+          </div>
+          <span class="txn-status-badge ${status}"><i class="fas ${statusIcon}" style="margin-right:4px;"></i>${status}</span>
+        </div>
+        <div class="txn-meta">
+          <div class="item"><div class="label">Amount</div><div class="value">${priceINR(txn.amount)}</div></div>
+          <div class="item"><div class="label">Transaction ID</div><div class="value mono">${esc(txn.transactionId || '—')}</div></div>
+        </div>
+        <div class="txn-help"><i class="fas fa-info-circle"></i>${helpText}</div>
+      </div>`;
+  }).join('');
+}
+
+function setupTxnFilters() {
+  $$('#txn-filters .txn-filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      $$('#txn-filters .txn-filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      txnFilter = chip.dataset.filter;
+      renderTransactions();
+    });
+  });
+}
+
+/* ============================================================
+   PAYMENT STATUS POPUP
+   ============================================================ */
+let dismissedStatusPopup = {};
+
+function showPaymentStatusPopupIfNeeded(app) {
+  const txn = allTransactions.find(t => t.appId === app.id);
+  if (!txn) return false;
+  const status = txn.status || 'pending';
+  if (dismissedStatusPopup[txn.id]) return false;
+  showPaymentStatusPopup(app, txn, status);
+  return true;
+}
+
+function showPaymentStatusPopup(app, txn, status) {
+  const card = $('#status-popup-card');
+  const popup = $('#status-popup');
+
+  const statusIcon = {
+    pending: 'fa-hourglass-half',
+    paid: 'fa-check',
+    failed: 'fa-times',
+    refunded: 'fa-rotate-left'
+  }[status];
+
+  const statusTitle = {
+    pending: 'Payment Pending',
+    paid: 'Payment Successful',
+    failed: 'Payment Failed',
+    refunded: 'Payment Refunded'
+  }[status];
+
+  const statusMessage = {
+    pending: 'Your payment is submitted and waiting for admin verification. This usually takes a few minutes.',
+    paid: 'Your payment has been verified! You can now download this app.',
+    failed: 'Your payment could not be processed. If money was deducted, please contact support.',
+    refunded: 'Your payment has been refunded to your account. It may take 3-5 business days to reflect.'
+  }[status];
+
+  const thumb = app.icon
+    ? `<img src="${esc(app.icon)}">`
+    : (app.name || txn.appName || '?')[0];
+
+  card.className = `status-popup-card ${status}`;
+  card.innerHTML = `
+    <div class="status-popup-icon ${status}"><i class="fas ${statusIcon}"></i></div>
+    <div class="status-popup-title">${statusTitle}</div>
+    <span class="status-popup-badge ${status}">${status.toUpperCase()}</span>
+    <div class="status-popup-message">${statusMessage}</div>
+    <div class="status-popup-app">
+      <div class="thumb">${thumb}</div>
+      <div class="info">
+        <div class="name">${esc(app.name || txn.appName || 'App')}</div>
+        <div class="amount">${priceINR(txn.amount)} · ${esc(txn.transactionId || '—')}</div>
+      </div>
+    </div>
+    <div class="status-popup-actions">
+      ${status === 'pending' ? `
+        <button class="btn btn-secondary" id="popup-view-txns"><i class="fas fa-receipt"></i> My Payments</button>
+      ` : ''}
+      <button class="btn btn-primary" id="popup-close"><i class="fas fa-check"></i> Got it</button>
+    </div>
+  `;
+
+  popup.classList.add('show');
+
+  $('#popup-close').onclick = () => {
+    dismissedStatusPopup[txn.id] = true;
+    popup.classList.remove('show');
+  };
+
+  const viewBtn = $('#popup-view-txns');
+  if (viewBtn) {
+    viewBtn.onclick = () => {
+      dismissedStatusPopup[txn.id] = true;
+      popup.classList.remove('show');
+      closeAppDetail();
+      navigateTo('purchases');
+    };
+  }
+}
+
+/* ============================================================
+   APP DETAIL
+   ============================================================ */
+function openAppDetail(appId) {
+  const app = APPS.find(a => a.id === appId);
+  if (!app) return;
+
+  showPaymentStatusPopupIfNeeded(app);
+  currentApp = app;
+
+  const isFav = favorites.includes(app.id);
+  const isPurchased = purchases.includes(app.id);
+  const isPending = pendingPurchases.includes(app.id);
+  const isDownloaded = downloadHistory.includes(app.id);
+
+  let priceHtml;
+  if (app.type === 'free') {
+    priceHtml = '<span class="current" style="color:var(--success);">FREE</span>';
+  } else if (app.discountPrice > 0) {
+    const pct = Math.round((1 - app.discountPrice / app.price) * 100);
+    priceHtml = `<span class="old">${priceINR(app.price)}</span><span class="current">${priceINR(app.discountPrice)}</span><span class="discount-badge">-${pct}% OFF</span>`;
+  } else {
+    priceHtml = `<span class="current">${priceINR(app.price)}</span>`;
+  }
+
+  let actionHtml = '';
+  if (app.type === 'free') {
+    actionHtml = `<button class="btn btn-primary" id="btn-download">
+      <i class="fas fa-download"></i> ${isDownloaded ? 'Downloaded' : 'Download'}</button>`;
+  } else if (isPurchased) {
+    actionHtml = `<button class="btn btn-primary" id="btn-download">
+      <i class="fas fa-download"></i> ${isDownloaded ? 'Downloaded' : 'Download'}</button>`;
+  } else if (isPending) {
+    actionHtml = `<button class="btn btn-primary" disabled style="opacity:0.7;cursor:not-allowed;">
+      <i class="fas fa-hourglass-half"></i> Awaiting Verification</button>`;
+  } else {
+    actionHtml = `<button class="btn btn-primary" id="btn-buy">
+      <i class="fas fa-shopping-cart"></i> Buy Now</button>`;
+  }
+
+  let statusBannerHtml = '';
+  if (isPurchased) {
+    statusBannerHtml = `<div class="paid-banner"><i class="fas fa-check-circle"></i><div><strong>Payment verified!</strong> You can download this app.</div></div>`;
+  } else if (isPending) {
+    statusBannerHtml = `<div class="pending-banner"><i class="fas fa-clock"></i><div><strong>Payment pending verification.</strong> Admin will verify shortly.</div></div>`;
+  }
+
+  $('#app-detail-content').innerHTML = `
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+    <div class="detail-header">
+      <div class="detail-icon">${app.icon ? `<img src="${esc(app.icon)}">` : (app.name || '?')[0]}</div>
+      <div class="detail-info">
+        <div class="detail-name">${esc(app.name)}</div>
+        <div class="detail-developer">${esc(app.developer || 'Unknown Developer')}</div>
+        <div class="detail-stats">
+          <span><i class="fas fa-star" style="color:#fbbf24;"></i> ${app.rating || 0} (${app.ratingCount || 0})</span>
+          <span><i class="fas fa-download"></i> ${fmt(app.downloads)}</span>
+          <span><i class="fas fa-hdd"></i> ${esc(app.size || '—')}</span>
+        </div>
+      </div>
+    </div>
+    ${statusBannerHtml}
+    <div class="detail-price">${priceHtml}</div>
+    <div class="detail-actions">
+      ${actionHtml}
+      <button class="btn-icon" id="btn-favorite"><i class="fas fa-heart" style="color:${isFav ? '#ef4444' : 'inherit'};"></i></button>
+      <button class="btn-icon" id="btn-share"><i class="fas fa-share-alt"></i></button>
+    </div>
+    <div class="detail-section">
+      <h4><i class="fas fa-info-circle"></i> Description</h4>
+      <div class="detail-description">${esc(app.description || app.shortDescription || 'No description available.')}</div>
+    </div>
+    ${app.screenshots?.length ? `
+    <div class="detail-section">
+      <h4><i class="fas fa-images"></i> Screenshots</h4>
+      <div class="screenshot-scroll">${app.screenshots.map(s => `<div class="screenshot-item"><img src="${esc(s)}" loading="lazy"></div>`).join('')}</div>
+    </div>` : ''}
+    <div class="detail-section">
+      <h4><i class="fas fa-code-branch"></i> App Info</h4>
+      <div style="font-size:0.75rem;color:var(--text-secondary);line-height:2;">
+        <div><strong>Version:</strong> ${esc(app.version || '—')}</div>
+        <div><strong>Category:</strong> ${esc(app.category || '—')}</div>
+        <div><strong>Updated:</strong> ${app.updatedAt ? new Date(app.updatedAt).toLocaleDateString('en-IN') : '—'}</div>
+        ${app.updateNotes ? `<div><strong>Update Notes:</strong> ${esc(app.updateNotes)}</div>` : ''}
+      </div>
+    </div>
+  `;
+
+  $('#app-detail-modal').classList.add('show');
+  $('#modal-close').onclick = closeAppDetail;
+  $('#btn-favorite').onclick = () => toggleFavorite(app.id);
+  $('#btn-share').onclick = () => shareApp(app);
+  const btnBuy = $('#btn-buy'); if (btnBuy) btnBuy.onclick = () => openPaymentScreen(app);
+  const btnDownload = $('#btn-download'); if (btnDownload) btnDownload.onclick = () => handleDownload(app);
+}
+
+function closeAppDetail() {
+  $('#app-detail-modal').classList.remove('show');
+  currentApp = null;
+}
+
+/* ============================================================
+   DOWNLOAD UNLOCK FLOW
+   ============================================================ */
+function handleDownload(app) {
+  if (!currentUser) return;
+  if (app.type === 'paid' && !purchases.includes(app.id)) {
+    showToast('Please purchase this app first', 'error');
+    return;
+  }
+  triggerAd();
+  closeAppDetail();
+  openDownloadModal(app);
+}
+
+function openDownloadModal(app) {
+  if (downloadTimerInterval) {
+    clearInterval(downloadTimerInterval);
+    downloadTimerInterval = null;
+  }
+
+  const initial = esc((app.name || '?')[0].toUpperCase());
+  const iconHTML = app.icon
+    ? `<img src="${esc(app.icon)}" alt="${esc(app.name)}" onerror="this.parentNode.innerHTML='<span>${initial}</span>'">`
+    : `<span>${initial}</span>`;
+
+  $('#download-modal-content').innerHTML = `
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="dl-close"><i class="fas fa-times"></i></button>
+
+    <div class="dl-logo-wrap" id="dl-logo-wrap">
+      <div class="dl-logo-inner">${iconHTML}</div>
+    </div>
+
+    <div class="dl-title">${esc(app.name || 'App')}</div>
+    <div class="dl-subtitle">Get your download link ready</div>
+
+    <div id="dl-loading-stage">
+      <div class="dl-progress-wrap">
+        <div class="dl-spinner"></div>
+        <div class="dl-progress-text">Unlocking download link...</div>
+        <div class="dl-countdown" id="dl-countdown">10</div>
+        <div class="dl-hint">Please wait while we prepare your file</div>
+      </div>
+    </div>
+
+    <div id="dl-ready-stage" class="hidden">
+      <div class="dl-ready-wrap">
+        <div class="dl-ready-icon"><i class="fas fa-check"></i></div>
+        <div class="dl-ready-title">Download Ready!</div>
+        <div class="dl-ready-desc">Tap below to start downloading ${esc(app.name || 'this app')}</div>
+        <button class="dl-go-btn" id="dl-go">
+          <i class="fas fa-download"></i> Download Now
         </button>
-    </header>
-
-    <!-- ═══ SIDEBAR ═══ -->
-    <div id="sidebar" class="fixed inset-y-0 left-0 w-72 sidebar z-50 transform -translate-x-full transition-transform duration-300 border-r border-white/10 flex flex-col justify-between p-6 shadow-2xl">
-        <div>
-            <div class="flex items-center justify-between mb-10">
-                <span class="font-black text-xl gradient-text">modwala</span>
-                <button onclick="playClick(); toggleSidebar();" class="text-gray-400 hover:text-white transition p-1">
-                    <svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-            </div>
-            <nav class="space-y-1.5 text-sm font-medium text-gray-400">
-                <a href="#" onclick="playClick(); navigateTo('home')" class="flex items-center gap-3 text-cyan-400 font-bold p-2.5 rounded-xl bg-cyan-500/10 transition">
-                    <svg class="sidebar-icon active" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-                    Home
-                </a>
-                <a href="#" onclick="playClick(); navigateTo('trending')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
-                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-                    Trending
-                </a>
-                <a href="#" onclick="playClick(); navigateToCategory('Games')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
-                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35M8.25 4.5c0 1.5-.75 2.25-2.25 2.25M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0116.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228M18.75 4.236V2.721A48.339 48.339 0 0012 2.25c-2.291 0-4.545.16-6.75.47v1.516M16.27 9.728a6.726 6.726 0 01-2.748 1.35M15.75 4.5c0 1.5.75 2.25 2.25 2.25"/></svg>
-                    Games
-                </a>
-                <a href="#" onclick="playClick(); navigateToCategory('18+ Content')" class="flex items-center gap-3 hover:text-red-400 p-2.5 rounded-xl transition font-bold text-red-400">
-                    <svg class="sidebar-icon" style="stroke:#f87171;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5a6 6 0 11-12 0 6 6 0 0112 0zm-6 0v6m3-3H9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    18+ Content
-                </a>
-                <a href="#" onclick="playClick(); navigateTo('about')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
-                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
-                    About
-                </a>
-                <a href="#" onclick="playClick(); navigateTo('help')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
-                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>
-                    Help
-                </a>
-                <a href="#" onclick="playClick(); navigateTo('contact')" class="flex items-center gap-3 hover:text-white p-2.5 rounded-xl transition">
-                    <svg class="sidebar-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-                    Contact
-                </a>
-            </nav>
-        </div>
-        <div class="text-[11px] text-gray-500 text-center border-t border-white/5 pt-4">Modwala — Fast & Secure APK Downloads</div>
+      </div>
     </div>
+  `;
 
-    <!-- ═══ OVERLAY ═══ -->
-    <div id="overlay" onclick="playClick(); toggleSidebar();" class="fixed inset-0 overlay z-40 hidden"></div>
+  $('#download-modal').classList.add('show');
+  $('#dl-close').onclick = closeDownloadModal;
 
-    <!-- ═══ HOME VIEW ═══ -->
-    <div id="homeView" class="px-4 max-w-xl mx-auto pt-6">
-        <div class="text-center">
-            <h1 class="text-3xl font-black tracking-tight">Find Your Next <span class="gradient-text">MOD APK</span></h1>
-            <p class="text-gray-400 text-sm max-w-xs mx-auto mt-1">Search thousands of premium apps & games — unlocked, ad-free, forever.</p>
-            <div class="relative max-w-md mx-auto mt-5">
-                <input type="text" id="searchInput" oninput="playClick(); handleSearch();" placeholder="Search apps, games, MODs..." class="w-full bg-[#121624] border border-white/10 rounded-2xl py-3.5 pl-4 pr-24 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition">
-                <button onclick="playClick(); handleSearch();" class="absolute right-1.5 top-1.5 btn-primary text-white px-5 py-2 rounded-xl text-xs font-bold shadow-lg flex items-center gap-1">
-                    <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-                    Search
-                </button>
-            </div>
-            <div class="flex flex-wrap justify-center gap-2 mt-4 text-xs">
-                <span onclick="playClick(); navigateToCategory('Games')" class="bg-[#121624] border border-white/10 px-4 py-1.5 rounded-xl cursor-pointer hover:border-cyan-500/50 transition flex items-center gap-1.5">
-                    <svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35M8.25 4.5c0 1.5-.75 2.25-2.25 2.25M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0116.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228M18.75 4.236V2.721A48.339 48.339 0 0012 2.25c-2.291 0-4.545.16-6.75.47v1.516M16.27 9.728a6.726 6.726 0 01-2.748 1.35M15.75 4.5c0 1.5.75 2.25 2.25 2.25"/></svg>
-                    Games
-                </span>
-                <span onclick="playClick(); navigateToCategory('Music')" class="bg-[#121624] border border-white/10 px-4 py-1.5 rounded-xl cursor-pointer hover:border-cyan-500/50 transition flex items-center gap-1.5">
-                    <svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3v12.75M9 9v10.5M9 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm0 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm10.5-3a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
-                    Music
-                </span>
-                <span onclick="playClick(); navigateToCategory('Editing')" class="bg-[#121624] border border-white/10 px-4 py-1.5 rounded-xl cursor-pointer hover:border-cyan-500/50 transition flex items-center gap-1.5">
-                    <svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M15 3.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 0V6m0 0V9m0 0a3 3 0 11-6 0m6 0V6m0 0h-6m0 0V3.75m0 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 0V6m0 0v3m0 0a3 3 0 11-6 0m6 0V6m0 0h-6"/></svg>
-                    Editing
-                </span>
-                <span onclick="playClick(); navigateToCategory('18+ Content')" class="bg-[#121624] border border-red-500/30 px-4 py-1.5 rounded-xl cursor-pointer text-red-400 font-bold hover:border-red-500/60 transition flex items-center gap-1.5">
-                    <svg class="icon-sm icon-red" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5a6 6 0 11-12 0 6 6 0 0112 0zm-6 0v6m3-3H9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    18+
-                </span>
-            </div>
-        </div>
+  let count = 10;
+  const countEl = $('#dl-countdown');
 
-        <div class="mt-8">
-            <h2 class="text-lg font-bold mb-4 tracking-wide flex items-center gap-2">
-                <svg class="icon-md icon-amber" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
-                Latest MOD APKs
-            </h2>
-            <div id="appContainer" class="grid grid-cols-2 gap-4"></div>
-        </div>
+  downloadTimerInterval = setInterval(() => {
+    count--;
+    if (countEl) countEl.textContent = count;
 
-        <div class="mt-8">
-            <h2 class="text-lg font-bold mb-4 tracking-wide flex items-center gap-2">
-                <svg class="icon-md icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/></svg>
-                Popular Categories
-            </h2>
-            <div class="grid grid-cols-2 gap-3">
-                <div onclick="playClick(); navigateToCategory('Games')" class="bg-[#121624] border border-white/5 p-4 rounded-2xl text-center cursor-pointer card-hover">
-                    <h4 class="font-bold text-sm flex items-center justify-center gap-1.5"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35M8.25 4.5c0 1.5-.75 2.25-2.25 2.25M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0116.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228M18.75 4.236V2.721A48.339 48.339 0 0012 2.25c-2.291 0-4.545.16-6.75.47v1.516M16.27 9.728a6.726 6.726 0 01-2.748 1.35M15.75 4.5c0 1.5.75 2.25 2.25 2.25"/></svg> Games</h4>
-                    <p class="text-[11px] text-gray-400 mt-0.5">MOD APKs</p>
-                </div>
-                <div onclick="playClick(); navigateToCategory('Productivity')" class="bg-[#121624] border border-white/5 p-4 rounded-2xl text-center cursor-pointer card-hover">
-                    <h4 class="font-bold text-sm flex items-center justify-center gap-1.5"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zM6.75 15h.008v.008H6.75V15zm0 2.25h.008v.008H6.75v-.008z"/></svg> Productivity</h4>
-                    <p class="text-[11px] text-gray-400 mt-0.5">MOD APKs</p>
-                </div>
-                <div onclick="playClick(); navigateToCategory('Music')" class="bg-[#121624] border border-white/5 p-4 rounded-2xl text-center cursor-pointer card-hover">
-                    <h4 class="font-bold text-sm flex items-center justify-center gap-1.5"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3v12.75M9 9v10.5M9 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm0 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm10.5-3a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg> Music</h4>
-                    <p class="text-[11px] text-gray-400 mt-0.5">MOD APKs</p>
-                </div>
-                <div onclick="playClick(); navigateToCategory('18+ Content')" class="bg-[#121624] border border-red-500/20 p-4 rounded-2xl text-center cursor-pointer card-hover">
-                    <h4 class="font-bold text-sm text-red-400 flex items-center justify-center gap-1.5"><svg class="icon-sm icon-red" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5a6 6 0 11-12 0 6 6 0 0112 0zm-6 0v6m3-3H9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 18+ Content</h4>
-                    <p class="text-[11px] text-gray-400 mt-0.5">Adult Apps</p>
-                </div>
-            </div>
-        </div>
+    if (count <= 0) {
+      clearInterval(downloadTimerInterval);
+      downloadTimerInterval = null;
+
+      const loadingStage = $('#dl-loading-stage');
+      const readyStage   = $('#dl-ready-stage');
+      const logoWrap     = $('#dl-logo-wrap');
+      if (loadingStage) loadingStage.classList.add('hidden');
+      if (readyStage)   readyStage.classList.remove('hidden');
+      if (logoWrap)     logoWrap.classList.add('ready');
+
+      const dlGo = $('#dl-go');
+      if (dlGo) dlGo.onclick = () => {
+        triggerAd();
+        finishDownload(app);
+      };
+    }
+  }, 1000);
+}
+
+function finishDownload(app) {
+  if (!currentUser) return;
+
+  if (localGuestActive) {
+    if (!downloadHistory.includes(app.id)) {
+      downloadHistory.push(app.id);
+      localStorage.setItem('debu_downloads', JSON.stringify(downloadHistory));
+    }
+    renderDownloads(); updateProfileStats();
+  } else {
+    db.ref('downloads').push({
+      appId: app.id, appName: app.name,
+      version: app.version || '1.0',
+      userId: currentUser.uid,
+      userName: currentUser.displayName || 'User',
+      timestamp: Date.now()
+    }).catch(() => {});
+    db.ref('apps/' + app.id + '/downloads')
+      .transaction((c) => (c || 0) + 1).catch(() => {});
+  }
+
+  if (app.downloadUrl) {
+    window.open(app.downloadUrl, '_blank', 'noopener,noreferrer');
+    showToast(`Opening ${app.name}...`, 'success');
+  } else {
+    showToast('Download URL not set by admin', 'error');
+  }
+
+  closeDownloadModal();
+}
+
+function closeDownloadModal() {
+  if (downloadTimerInterval) {
+    clearInterval(downloadTimerInterval);
+    downloadTimerInterval = null;
+  }
+  const m = $('#download-modal');
+  if (m) m.classList.remove('show');
+  const c = $('#download-modal-content');
+  if (c) c.innerHTML = '';
+}
+
+/* ============================================================
+   UPI PAYMENT
+   ============================================================ */
+function openPaymentScreen(app) {
+  if (!currentUser) return;
+  if (!SETTINGS.paymentEnabled || !SETTINGS.upiId) {
+    showToast('Payment is not available right now. Contact support.', 'error');
+    return;
+  }
+  const amount = app.discountPrice || app.price;
+  const amountDisplay = priceINR(amount);
+
+  const qrHtml = SETTINGS.upiQr ? `
+    <div class="qr-wrap">
+      <img src="${esc(SETTINGS.upiQr)}" alt="UPI QR" onerror="this.parentNode.innerHTML='<p style=&quot;color:#fca5a5;font-size:0.75rem;&quot;>QR not available</p>'">
+      <div class="qr-label">Scan with any UPI app</div>
+    </div>` : '';
+
+  const upiString = `upi://pay?pa=${encodeURIComponent(SETTINGS.upiId)}&pn=${encodeURIComponent(SETTINGS.upiName || 'Store')}&am=${amount}&cu=INR&tn=${encodeURIComponent(app.name)}`;
+
+  $('#payment-modal-content').innerHTML = `
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="payment-close"><i class="fas fa-times"></i></button>
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">Complete Payment</div>
+      <div style="font-size:0.75rem;color:var(--text-muted);">${esc(app.name)}</div>
     </div>
-
-    <!-- ═══ CATEGORY VIEW ═══ -->
-    <div id="categoryView" class="hidden px-4 max-w-xl mx-auto py-6">
-        <div class="flex items-center justify-between mb-6">
-            <h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg><span id="categoryTitleText">Category</span></h1>
-            <button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button>
-        </div>
-        <div id="categoryContainer" class="grid grid-cols-2 gap-4"></div>
+    <div class="amount-box">
+      <div class="amount-label">Amount to Pay</div>
+      <div class="amount-value">${amountDisplay}</div>
     </div>
-
-    <!-- ═══ DETAIL VIEW ═══ -->
-    <div id="detailView" class="hidden px-4 max-w-xl mx-auto py-4">
-        <div class="flex items-center justify-between mb-4">
-            <button onclick="playClick(); closeDetail()" class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition"><svg class="icon-sm icon-gray" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button>
-            <span class="text-xs text-gray-500">modwala</span>
-        </div>
-        <div class="detail-card flex items-start gap-4">
-            <img id="dIcon" class="app-icon-detail" src="" alt="icon">
-            <div>
-                <h1 id="dTitle" class="text-2xl font-black text-white">App Name</h1>
-                <p class="text-gray-400 text-xs mt-0.5">Fast download, clean details, direct access.</p>
-                <div class="flex items-center gap-3 mt-1 text-xs">
-                    <span class="bg-white/10 px-2.5 py-0.5 rounded-full text-gray-300 flex items-center gap-1"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z"/></svg>V <span id="dVersion">1.34</span></span>
-                    <span class="text-gray-400 flex items-center gap-1"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg><span id="dUpdated">03 Jul 2026</span></span>
-                </div>
-                <div class="flex items-center gap-1 mt-1.5">
-                    <svg class="icon-sm icon-amber" style="width:16px;height:16px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
-                    <span id="dRating" class="text-white font-bold text-sm">4.9</span>
-                    <span class="text-gray-400 text-xs">(8656 votes)</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- DOWNLOAD BUTTON -->
-        <button onclick="playClick(); openCommentModal()" class="w-full mt-5 btn-primary text-white font-bold py-4 rounded-2xl text-sm shadow-lg flex items-center justify-center gap-2">
-            <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-            Download Now
-        </button>
-
-        <!-- ═══ COMMENT SECTION (on detail page) ═══ -->
-        <div id="commentSection" class="detail-card mt-5 border border-white/5">
-            <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-2 text-sm font-semibold text-gray-300">
-                    <svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    Comments <span id="commentCountBadge" class="text-gray-500 font-normal text-xs">(0)</span>
-                </div>
-                <span class="text-[10px] text-gray-500">join the discussion</span>
-            </div>
-
-            <!-- Comment list -->
-            <div id="commentList" class="space-y-3 max-h-[320px] overflow-y-auto pr-1 no-scrollbar"></div>
-
-            <!-- Comment form -->
-            <div id="commentFormArea" class="mt-4 pt-4 border-t border-white/5">
-                <div class="flex flex-col sm:flex-row gap-2">
-                    <input id="commentNameInput" type="text" placeholder="Your name *" class="comment-input sm:w-1/3" maxlength="30">
-                    <input id="commentTextInput" type="text" placeholder="Write a comment..." class="comment-input sm:flex-1">
-                    <button id="commentSubmitBtn" onclick="playClick(); postComment()" class="comment-submit text-sm whitespace-nowrap px-5">Post</button>
-                </div>
-                <p id="commentStatus" class="text-xs text-gray-500 mt-2"></p>
-            </div>
-            <p id="commentDisabledMsg" class="text-center text-xs text-gray-500 mt-2 hidden">💬 Comments are currently disabled by admin.</p>
-        </div>
-
-        <!-- App Info -->
-        <div class="detail-card mt-5">
-            <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>App Info</div>
-            <div class="detail-row"><span class="label">LAST UPDATED</span><span class="value" id="dUpdated2">03 Jul 2026</span></div>
-            <div class="detail-row"><span class="label">PUBLISHER</span><span class="value" id="dPublisher">Zexapk</span></div>
-            <div class="detail-row"><span class="label">REQUIREMENTS</span><span class="value">Android 5.0+</span></div>
-            <div class="detail-row"><span class="label">CATEGORY</span><span class="value" id="dCategory">Apk</span></div>
-            <div class="detail-row"><span class="label">SIZE</span><span class="value" id="dSize">23 MB</span></div>
-        </div>
-
-        <!-- Screenshots -->
-        <div class="detail-card mt-5">
-            <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055 4.655 4.655 0 00-6.634-.828 2.31 2.31 0 01-1.64 1.055zM12 9.75v.008M12 9.75a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5z"/></svg>Screenshots</div>
-            <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
-                <div class="screenshot-placeholder"><svg class="icon-md icon-gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
-                <div class="screenshot-placeholder"><svg class="icon-md icon-gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
-                <div class="screenshot-placeholder"><svg class="icon-md icon-gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
-                <div class="screenshot-placeholder"><svg class="icon-md icon-gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
-            </div>
-        </div>
-
-        <!-- FAQ -->
-        <div class="detail-card mt-5">
-            <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><svg class="icon-sm icon-gray" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>FAQ</div>
-            <div class="faq-item"><div class="q">Is this MOD APK safe?</div><div class="a">Yes, every APK is scanned and verified before listing.</div></div>
-            <div class="faq-item"><div class="q">How to install?</div><div class="a">Download APK, enable "Unknown Sources" in settings, and install.</div></div>
-            <div class="faq-item"><div class="q">Does it require root?</div><div class="a">No, most MODs work without root access.</div></div>
-        </div>
-        <div class="text-center text-[11px] text-gray-500 mt-6 border-t border-white/5 pt-4">Modwala - Fast & Secure APK Downloads</div>
-        <div class="flex justify-center gap-6 text-[11px] text-gray-500 mt-2 pb-4"><span>Privacy</span><span>Contact</span><span>Help</span></div>
+    <div class="upi-box">
+      <div class="upi-icon"><i class="fas fa-indian-rupee-sign"></i></div>
+      <div class="upi-info">
+        <div class="upi-label">UPI ID</div>
+        <div class="upi-value" id="upi-id-value">${esc(SETTINGS.upiId)}</div>
+      </div>
+      <button class="upi-copy" id="copy-upi-btn"><i class="fas fa-copy"></i></button>
     </div>
-
-    <!-- ═══ COMMENT MODAL (opens on download click) ═══ -->
-    <div id="commentModal" class="comment-overlay">
-        <div class="comment-modal">
-            <div class="flex items-center justify-between mb-4">
-                <div class="flex items-center gap-2">
-                    <svg class="icon-md icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <span class="font-bold text-white">Community Comments</span>
-                </div>
-                <button onclick="playClick(); closeCommentModal()" class="text-gray-400 hover:text-white transition p-1">
-                    <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-            </div>
-            <div id="modalCommentList" class="space-y-3 max-h-[340px] overflow-y-auto pr-1 no-scrollbar"></div>
-            <div class="mt-4 pt-4 border-t border-white/5 flex flex-col sm:flex-row gap-2">
-                <input id="modalCommentName" type="text" placeholder="Your name *" class="comment-input sm:w-1/3" maxlength="30">
-                <input id="modalCommentText" type="text" placeholder="Write a comment..." class="comment-input sm:flex-1">
-                <button onclick="playClick(); postCommentModal()" class="comment-submit text-sm whitespace-nowrap px-5">Post</button>
-            </div>
-            <p id="modalCommentStatus" class="text-xs text-gray-500 mt-2"></p>
-
-            <!-- Proceed to Download -->
-            <button id="modalDownloadBtn" onclick="playClick(); proceedDownload()" class="w-full mt-4 btn-primary text-white font-bold py-3 rounded-2xl text-sm shadow-lg flex items-center justify-center gap-2">
-                <svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-                Proceed to Download
-            </button>
-            <p class="text-center text-[10px] text-gray-500 mt-2">See what others are saying before you download</p>
-        </div>
-    </div>
-
-    <!-- ═══ OTHER PAGES ═══ -->
-    <div id="aboutView" class="hidden px-4 max-w-xl mx-auto py-6">
-        <div class="flex items-center justify-between mb-6"><h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>About</h1><button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button></div>
-        <div class="detail-card space-y-4"><p class="text-gray-400 text-sm">Your trusted platform for fast, safe, and free MOD APK downloads.</p><div class="grid grid-cols-3 gap-2 text-center bg-white/5 p-3 rounded-2xl"><div><div id="totalAppsCount" class="font-black text-cyan-400 text-sm">0+</div><div class="text-[10px] text-gray-400">Apps</div></div><div><div class="font-black text-emerald-400 text-sm">137K+</div><div class="text-[10px] text-gray-400">Downloads</div></div><div><div class="font-black text-purple-400 text-sm">4+</div><div class="text-[10px] text-gray-400">Categories</div></div></div><div><h3 class="font-bold text-white text-base">Our Mission</h3><p class="text-gray-400 text-sm">Modwala was built to give everyone access to premium Android apps without the price tag.</p></div></div>
-    </div>
-
-    <div id="helpView" class="hidden px-4 max-w-xl mx-auto py-6">
-        <div class="flex items-center justify-between mb-6"><h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>Help</h1><button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button></div>
-        <div class="detail-card space-y-5 text-sm"><p class="text-gray-400">Find answers to common questions.</p><div><h3 class="font-bold text-cyan-400 flex items-center gap-1.5"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>Download Help</h3><p class="text-gray-400">Troubleshoot download issues.</p></div><div><h3 class="font-bold text-emerald-400 flex items-center gap-1.5"><svg class="icon-sm icon-emerald" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.048.58.024 1.193-.14 1.743"/></svg>Installation Guide</h3><p class="text-gray-400">Step-by-step instructions.</p></div><div class="text-center"><a href="https://t.me" target="_blank" class="inline-block bg-blue-600 text-white px-5 py-2.5 rounded-2xl font-bold shadow">Get help on Telegram</a></div></div>
-    </div>
-
-    <div id="contactView" class="hidden px-4 max-w-xl mx-auto py-6">
-        <div class="flex items-center justify-between mb-6"><h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-cyan" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>Contact</h1><button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button></div>
-        <div class="detail-card space-y-5 text-sm"><p class="text-gray-400">Get in touch with our team.</p><div class="bg-white/5 p-4 rounded-2xl"><h3 class="font-bold text-white flex items-center gap-1.5"><svg class="icon-sm icon-white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Telegram</h3><a href="https://t.me" target="_blank" class="text-cyan-400 font-bold">@Modwalabot</a></div><form onsubmit="event.preventDefault(); alert('Message sent!');" class="space-y-3"><div><label class="block text-gray-400 text-xs mb-1">Name *</label><input type="text" required class="input-dark"/></div><div><label class="block text-gray-400 text-xs mb-1">Email *</label><input type="email" required class="input-dark"/></div><div><label class="block text-gray-400 text-xs mb-1">Message *</label><textarea rows="3" required class="input-dark"></textarea></div><button type="submit" class="w-full btn-primary text-white font-bold py-3 rounded-2xl shadow">Send</button></form></div>
-    </div>
-
-    <div id="trendingView" class="hidden px-4 max-w-xl mx-auto py-6">
-        <div class="flex items-center justify-between mb-6"><h1 class="text-2xl font-black flex items-center gap-2"><svg class="icon-lg icon-amber" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>Trending</h1><button onclick="playClick(); navigateTo('home')" class="text-sm text-cyan-400 font-medium hover:underline flex items-center gap-1"><svg class="icon-sm icon-cyan" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Back</button></div>
-        <div class="text-center text-gray-400 py-10">Trending apps coming soon.</div>
-    </div>
-
-    <!-- ═══ ADMIN PANEL (hidden, double-click footer to open) ═══ -->
-    <div id="adminPanel" class="hidden px-4 max-w-xl mx-auto py-4">
-        <div class="admin-panel">
-            <h3>🛠️ Admin Panel</h3>
-            <div class="flex flex-wrap items-center gap-4 mt-3">
-                <div class="flex items-center gap-3">
-                    <span class="text-xs text-gray-400">Comments</span>
-                    <div id="adminToggle" class="admin-toggle active" onclick="playClick(); toggleComments()">
-                        <div class="knob"></div>
-                    </div>
-                    <span id="adminToggleLabel" class="text-xs text-emerald-400 font-semibold">ON</span>
-                </div>
-                <div class="flex items-center gap-2 flex-wrap">
-                    <input id="adminFakeName" type="text" placeholder="Fake name" class="comment-input w-28 text-sm" value="Moderator">
-                    <input id="adminFakeText" type="text" placeholder="Fake comment" class="comment-input w-40 text-sm" value="Great app! 🔥">
-                    <button onclick="playClick(); postFakeComment()" class="btn-admin-fake">Post Fake</button>
-                </div>
-            </div>
-            <p class="text-[10px] text-gray-500 mt-2">🔒 Admin only — double-click footer to toggle this panel</p>
-        </div>
-    </div>
-
-    <!-- ═══ FOOTER ═══ -->
-    <footer id="mainFooter" class="text-center text-xs text-gray-500 border-t border-white/5 pt-5 mt-6 px-4">
-        <p class="text-gray-400 font-semibold mb-2">Modwala - Fast & Secure APK Downloads</p>
-        <div class="flex flex-wrap justify-center gap-4 text-gray-500">
-            <a href="#" onclick="playClick(); navigateTo('home')" class="hover:text-white transition">Home</a>
-            <a href="#" onclick="playClick(); navigateTo('about')" class="hover:text-white transition">About</a>
-            <a href="#" onclick="playClick(); navigateTo('contact')" class="hover:text-white transition">Contact</a>
-            <a href="#" onclick="playClick(); navigateTo('help')" class="hover:text-white transition">Help</a>
-        </div>
-        <p class="text-[10px] text-gray-600 mt-3 cursor-pointer" ondblclick="playClick(); toggleAdminPanel()">⚡ modwala v2.0</p>
-    </footer>
-
-    <!-- ═══ FLOATING TELEGRAM ═══ -->
-    <a href="https://t.me" target="_blank" onclick="playClick()" class="fixed bottom-5 right-5 bg-blue-600 p-3.5 rounded-full shadow-2xl hover:scale-110 transition-transform z-30 flex items-center justify-center">
-        <svg class="icon-md icon-white" style="fill:white;stroke:none;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.26-2.06-.48-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.98-1.73 6.64-2.87 7.98-3.43 3.8-1.58 4.59-1.85 5.1-1.86.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.22z"/></svg>
+    ${SETTINGS.upiName ? `
+    <div class="upi-box">
+      <div class="upi-icon"><i class="fas fa-user"></i></div>
+      <div class="upi-info">
+        <div class="upi-label">Account Holder</div>
+        <div class="upi-value" style="font-size:0.85rem;font-family:inherit;">${esc(SETTINGS.upiName)}</div>
+      </div>
+    </div>` : ''}
+    ${qrHtml}
+    <a href="${upiString}" class="btn btn-primary" style="width:100%;margin-bottom:12px;text-decoration:none;">
+      <i class="fas fa-mobile-screen-button"></i> Open UPI App to Pay
     </a>
+    <div class="payment-steps">
+      <div><span class="step-num">1</span> Pay <strong>${amountDisplay}</strong> to the UPI ID above</div>
+      <div><span class="step-num">2</span> Note the <strong>Transaction ID / UTR</strong></div>
+      <div><span class="step-num">3</span> Enter it below</div>
+      <div><span class="step-num">4</span> Tap Submit &amp; wait for admin</div>
+    </div>
+    ${SETTINGS.paymentNote ? `<div class="payment-note"><i class="fas fa-info-circle"></i> ${esc(SETTINGS.paymentNote)}</div>` : ''}
+    <label style="font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px;">Transaction ID / UTR</label>
+    <input type="text" class="txn-input" id="txn-id-input" placeholder="e.g. 425812345678" maxlength="30">
+    <div class="payment-actions">
+      <button class="btn btn-secondary" id="payment-cancel">Cancel</button>
+      <button class="btn btn-primary" id="payment-confirm">
+        <i class="fas fa-paper-plane"></i> Submit Payment
+      </button>
+    </div>
+    <p style="font-size:0.68rem;color:var(--text-muted);text-align:center;margin-top:14px;line-height:1.5;">
+      Track status anytime from <strong>Profile → My Payments</strong>.
+    </p>
+  `;
 
-    <!-- ═══ FIREBASE ═══ -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getDatabase, ref, onValue, push, set, update } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+  $('#payment-modal').classList.add('show');
+  $('#payment-close').onclick = closePaymentModal;
+  $('#payment-cancel').onclick = closePaymentModal;
+  $('#copy-upi-btn').onclick = () => {
+    navigator.clipboard?.writeText(SETTINGS.upiId);
+    showToast('UPI ID copied!', 'success');
+  };
+  $('#payment-confirm').onclick = () => submitPayment(app, amount);
+}
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAUamZB1wED0AYrBPZ_nr8XYohUINBnpVk",
-            databaseURL: "https://ff-tournament-app-177b8-default-rtdb.firebaseio.com",
-            projectId: "ff-tournament-app-177b8",
-            storageBucket: "ff-tournament-app-177b8.firebasestorage.app",
-            messagingSenderId: "485025928795",
-            appId: "1:485025928795:web:febf75afa73b37e7b9d17e"
-        };
+function closePaymentModal() {
+  $('#payment-modal').classList.remove('show');
+  $('#payment-modal-content').innerHTML = '';
+}
 
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
+async function submitPayment(app, amount) {
+  const txnId = $('#txn-id-input').value.trim();
+  if (!txnId || txnId.length < 4) {
+    showToast('Please enter a valid Transaction ID', 'error');
+    return;
+  }
+  const btn = $('#payment-confirm');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
-        let allApps = [];
-        let currentAppId = 'default';
-        let commentsEnabled = true;
-        let commentListeners = {};
+  const txn = {
+    userId: currentUser.uid,
+    userName: currentUser.displayName || (currentUser.isAnonymous ? 'Guest' : (currentUser.email || 'User')),
+    userEmail: currentUser.email || '',
+    appId: app.id,
+    appName: app.name,
+    amount: amount,
+    currency: 'INR',
+    upiId: SETTINGS.upiId || '',
+    transactionId: txnId,
+    status: 'pending',
+    createdAt: Date.now()
+  };
 
-        // ─── LOAD APPS ──────────────────────────────────────
-        onValue(ref(db, 'apps'), (snap) => {
-            const data = snap.val();
-            const container = document.getElementById('appContainer');
-            const total = document.getElementById('totalAppsCount');
-            if (data) {
-                // Sort apps: newest first (by ID - push IDs are time-based)
-                allApps = Object.entries(data).map(([id, app]) => ({ id, ...app }));
-                allApps.sort((a, b) => {
-                    // Firebase push IDs are lexicographically sortable by time
-                    return b.id.localeCompare(a.id);
-                });
-                if (total) total.innerText = allApps.length + '+';
-                renderApps(allApps, container);
-            } else {
-                allApps = [];
-                if (total) total.innerText = '0+';
-                if (container) container.innerHTML =
-                    `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">No apps found</div>`;
-            }
-        });
+  try {
+    if (localGuestActive) {
+      saveLocalTxn(txn);
+    } else {
+      await db.ref('purchases').push(txn);
+    }
+    showPaymentSuccess(app, txnId);
+  } catch (e) {
+    if (/permission|denied/i.test(e.message || '')) {
+      saveLocalTxn(txn);
+      showPaymentSuccess(app, txnId);
+    } else {
+      showToast('Failed to submit: ' + e.message, 'error');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Payment';
+    }
+  }
+}
 
-        window.renderApps = function(apps, container) {
-            if (!container) return;
-            container.innerHTML = '';
-            if (!apps || apps.length === 0) {
-                container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">No apps found</div>`;
-                return;
-            }
-            apps.forEach(a => {
-                const badge = a.badge || 'MOD';
-                const rating = a.rating || '4.9';
-                container.innerHTML += `
-                    <div onclick="playClick(); openDetail('${a.logo}', '${a.title}', '${a.mb}', '${a.link}', '${badge}', '${rating}', '${a.version || '1.34'}', '${a.updated || '03 Jul 2026'}', '${a.publisher || 'Zexapk'}', '${a.category || 'Apk'}', '${a.id || ''}')" class="bg-[#121624] border border-white/5 rounded-2xl p-4 cursor-pointer card-hover flex flex-col">
-                        <div class="flex items-start justify-between">
-                            <img src="${a.logo}" class="w-14 h-14 rounded-2xl object-cover border border-white/10 shadow-md" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22 viewBox=%220 0 56 56%22%3E%3Crect width=%2256%22 height=%2256%22 fill=%22%231a1e2b%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22%236b7280%22 font-size=%2224%22 font-family=%22sans-serif%22%3E📱%3C/text%3E%3C/svg%3E'">
-                            <span class="badge ${badge === 'MOD' ? 'badge-mod' : badge === 'Premium' ? 'badge-premium' : badge === 'Pro' ? 'badge-pro' : 'badge-vip'}">${badge}</span>
-                        </div>
-                        <h3 class="text-white font-bold text-sm mt-3 line-clamp-1">${a.title}</h3>
-                        <p class="text-emerald-400 text-xs font-medium">${a.category || 'MOD'}</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/5 text-xs text-gray-400">
-                            <span class="text-amber-400 font-bold flex items-center gap-0.5"><svg class="icon-sm icon-amber" style="width:14px;height:14px;" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>${rating}</span>
-                            <span class="font-semibold">${a.mb}</span>
-                        </div>
-                    </div>
-                `;
-            });
-        };
+function showPaymentSuccess(app, txnId) {
+  const amount = app.discountPrice || app.price;
+  $('#payment-modal-content').innerHTML = `
+    <div class="modal-handle"></div>
+    <div class="success-screen">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <h3>Payment Submitted!</h3>
+      <p>Your payment of <strong>${priceINR(amount)}</strong> for <strong>${esc(app.name)}</strong> has been recorded.</p>
+      <p style="font-size:0.75rem;">Transaction ID:<br><strong style="font-family:monospace;">${esc(txnId)}</strong></p>
+      <p style="font-size:0.72rem;color:var(--text-muted);margin-top:12px;">
+        Status: <strong style="color:var(--warning);">Pending</strong><br>
+        Admin will verify shortly.
+      </p>
+      <div style="display:flex;gap:10px;margin-top:20px;">
+        <button class="btn btn-secondary" id="success-view-payments">
+          <i class="fas fa-receipt"></i> View Payments
+        </button>
+        <button class="btn btn-primary" id="success-close">
+          <i class="fas fa-check"></i> Done
+        </button>
+      </div>
+    </div>
+  `;
+  $('#success-close').onclick = () => {
+    closePaymentModal();
+    closeAppDetail();
+  };
+  $('#success-view-payments').onclick = () => {
+    closePaymentModal();
+    closeAppDetail();
+    navigateTo('purchases');
+  };
+}
 
-        // ─── LOAD COMMENTS SETTINGS ──────────────────────
-        onValue(ref(db, 'settings/commentsEnabled'), (snap) => {
-            const val = snap.val();
-            commentsEnabled = val !== undefined ? val : true;
-            updateCommentUI();
-        });
+/* ============================================================
+   USER ACTIONS
+   ============================================================ */
+async function toggleFavorite(appId) {
+  if (!currentUser) return;
+  const idx = favorites.indexOf(appId);
+  if (idx > -1) { favorites.splice(idx, 1); showToast('Removed from favorites', 'info'); }
+  else { favorites.push(appId); showToast('Added to favorites', 'success'); }
+  localStorage.setItem('debu_favorites', JSON.stringify(favorites));
+  if (!localGuestActive) {
+    await db.ref('favorites/' + currentUser.uid).set(favorites).catch(() => {});
+  }
+  renderAll();
+  renderFavorites();
+  updateProfileStats();
+  const heart = $('#btn-favorite i');
+  if (heart) heart.style.color = favorites.includes(appId) ? '#ef4444' : 'inherit';
+}
 
-        // ─── LOAD COMMENTS FOR CURRENT APP ────────────────
-        function loadComments(appId) {
-            if (commentListeners[appId]) {
-                commentListeners[appId]();
-                delete commentListeners[appId];
-            }
-            const commentsRef = ref(db, `comments/${appId}`);
-            const off = onValue(commentsRef, (snap) => {
-                const data = snap.val();
-                const list = document.getElementById('commentList');
-                const modalList = document.getElementById('modalCommentList');
-                const badge = document.getElementById('commentCountBadge');
-                if (data) {
-                    const entries = Object.entries(data);
-                    // Sort by timestamp descending (newest first) but keep admin comments visible
-                    const sorted = entries.sort((a, b) => (b[1].ts || 0) - (a[1].ts || 0));
-                    const count = sorted.length;
-                    if (badge) badge.innerText = `(${count})`;
-                    const html = sorted.map(([id, c]) => renderCommentHTML(c, id)).join('');
-                    if (list) list.innerHTML = html;
-                    if (modalList) modalList.innerHTML = html;
-                } else {
-                    if (badge) badge.innerText = '(0)';
-                    const empty = `<div class="text-center text-gray-500 text-sm py-4">No comments yet. Be the first! 💬</div>`;
-                    if (list) list.innerHTML = empty;
-                    if (modalList) modalList.innerHTML = empty;
-                }
-            });
-            commentListeners[appId] = off;
-        }
+function shareApp(app) {
+  const url = location.origin + location.pathname + '?app=' + app.id;
+  if (navigator.share) {
+    navigator.share({ title: app.name, text: `Check out ${app.name}!`, url }).catch(() => {});
+  } else {
+    navigator.clipboard?.writeText(url);
+    showToast('Link copied!', 'success');
+  }
+}
 
-        function renderCommentHTML(c, id) {
-            const name = c.name || 'Anonymous';
-            const text = c.text || '';
-            const avatar = name.charAt(0).toUpperCase() || '?';
-            const isAdmin = c.isAdmin || false;
-            const ts = c.ts || Date.now();
-            const timeStr = new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            const linkedText = autoLink(text);
-            const adminClass = isAdmin ? 'admin-avatar' : '';
-            const nameClass = isAdmin ? 'admin-name' : '';
-            const badgeHtml = isAdmin ? `<span class="comment-badge admin-badge">Admin</span>` : '';
-            return `
-                <div class="comment-item">
-                    <div class="flex gap-3">
-                        <div class="comment-avatar ${adminClass}">${avatar}</div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <span class="comment-name ${nameClass}">${escapeHtml(name)}</span>
-                                ${badgeHtml}
-                                <span class="comment-time">${timeStr}</span>
-                            </div>
-                            <div class="comment-text mt-0.5">${linkedText}</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function navigateTo(page) {
+  currentPage = page;
+  $$('.page-section').forEach(s => s.classList.remove('active'));
+  const target = $(`#page-${page}`);
+  if (target) target.classList.add('active');
+  $$('.nav-item').forEach(n => n.classList.remove('active'));
+  const navBtn = $(`.nav-item[data-page="${page}"]`);
+  if (navBtn) navBtn.classList.add('active');
 
-        function autoLink(text) {
-            const urlRegex = /(https?:\/\/[^\s]+)/g;
-            return text.replace(urlRegex, (url) => {
-                return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-            });
-        }
+  if (page === 'home') renderHomePage();
+  if (page === 'featured') renderFeaturedPage();
+  if (page === 'categories') renderCategoriesPage();
+  if (page === 'popular') renderPopularPage();
+  if (page === 'paid') renderPaidPage();
+  if (page === 'favorites') renderFavorites();
+  if (page === 'downloads') renderDownloads();
+  if (page === 'purchases') renderTransactions();
+  if (page === 'profile') updateProfileStats();
+  if (page === 'category-apps') renderCategoryAppsPage();
 
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-        function updateCommentUI() {
-            const formArea = document.getElementById('commentFormArea');
-            const disabledMsg = document.getElementById('commentDisabledMsg');
-            const submitBtn = document.getElementById('commentSubmitBtn');
-            const nameInput = document.getElementById('commentNameInput');
-            const textInput = document.getElementById('commentTextInput');
-            const modalName = document.getElementById('modalCommentName');
-            const modalText = document.getElementById('modalCommentText');
-            const modalSubmit = document.querySelector('#modalCommentText')?.parentElement?.querySelector('.comment-submit');
+/* ============================================================
+   UI EVENTS
+   ============================================================ */
+function setupStoreUI() {
+  $('#theme-toggle').onclick = () => {
+    isDarkMode = !isDarkMode;
+    localStorage.setItem('debu_theme', isDarkMode ? 'dark' : 'light');
+    applyTheme();
+  };
 
-            if (commentsEnabled) {
-                if (formArea) formArea.style.display = 'flex';
-                if (disabledMsg) disabledMsg.classList.add('hidden');
-                if (submitBtn) submitBtn.disabled = false;
-                if (nameInput) nameInput.disabled = false;
-                if (textInput) textInput.disabled = false;
-                if (modalName) modalName.disabled = false;
-                if (modalText) modalText.disabled = false;
-                if (modalSubmit) modalSubmit.disabled = false;
-            } else {
-                if (formArea) formArea.style.display = 'none';
-                if (disabledMsg) disabledMsg.classList.remove('hidden');
-                if (submitBtn) submitBtn.disabled = true;
-                if (nameInput) nameInput.disabled = true;
-                if (textInput) textInput.disabled = true;
-                if (modalName) modalName.disabled = true;
-                if (modalText) modalText.disabled = true;
-                if (modalSubmit) modalSubmit.disabled = true;
-            }
-            // toggle UI
-            const toggle = document.getElementById('adminToggle');
-            const label = document.getElementById('adminToggleLabel');
-            if (toggle) {
-                if (commentsEnabled) {
-                    toggle.classList.add('active');
-                    if (label) label.innerText = 'ON';
-                } else {
-                    toggle.classList.remove('active');
-                    if (label) label.innerText = 'OFF';
-                }
-            }
-        }
+  $('#header-avatar').onclick = () => navigateTo('profile');
 
-        // ─── POST COMMENT ──────────────────────────────────
-        window.postComment = function() {
-            const nameInput = document.getElementById('commentNameInput');
-            const textInput = document.getElementById('commentTextInput');
-            const status = document.getElementById('commentStatus');
-            if (!commentsEnabled) { status.innerText = '❌ Comments are disabled.'; return; }
-            const name = nameInput.value.trim() || '';
-            const text = textInput.value.trim() || '';
-            if (!name) { status.innerText = '⚠️ Please enter your name.'; return; }
-            if (!text) { status.innerText = '⚠️ Please write a comment.'; return; }
-            if (text.length < 2) { status.innerText = '⚠️ Comment too short.'; return; }
-            status.innerText = '⏳ Posting...';
-            const commentsRef = ref(db, `comments/${currentAppId}`);
-            const newRef = push(commentsRef);
-            set(newRef, {
-                name: name,
-                text: text,
-                ts: Date.now(),
-                isAdmin: false
-            }).then(() => {
-                status.innerText = '✅ Comment posted!';
-                textInput.value = '';
-                // Update modal too
-                const modalText = document.getElementById('modalCommentText');
-                if (modalText) modalText.value = '';
-                setTimeout(() => status.innerText = '', 2500);
-            }).catch(() => {
-                status.innerText = '❌ Failed to post. Try again.';
-            });
-        };
+  $('#search-input').addEventListener('input', (e) => {
+    searchQuery = e.target.value.toLowerCase().trim();
+    if (currentPage !== 'search' && searchQuery.length > 0) navigateTo('search');
+    renderSearchResults();
+  });
 
-        window.postCommentModal = function() {
-            const nameInput = document.getElementById('modalCommentName');
-            const textInput = document.getElementById('modalCommentText');
-            const status = document.getElementById('modalCommentStatus');
-            if (!commentsEnabled) { status.innerText = '❌ Comments are disabled.'; return; }
-            const name = nameInput.value.trim() || '';
-            const text = textInput.value.trim() || '';
-            if (!name) { status.innerText = '⚠️ Please enter your name.'; return; }
-            if (!text) { status.innerText = '⚠️ Please write a comment.'; return; }
-            if (text.length < 2) { status.innerText = '⚠️ Comment too short.'; return; }
-            status.innerText = '⏳ Posting...';
-            const commentsRef = ref(db, `comments/${currentAppId}`);
-            const newRef = push(commentsRef);
-            set(newRef, {
-                name: name,
-                text: text,
-                ts: Date.now(),
-                isAdmin: false
-            }).then(() => {
-                status.innerText = '✅ Comment posted!';
-                textInput.value = '';
-                // Update detail too
-                const detailText = document.getElementById('commentTextInput');
-                if (detailText) detailText.value = '';
-                setTimeout(() => status.innerText = '', 2500);
-            }).catch(() => {
-                status.innerText = '❌ Failed to post. Try again.';
-            });
-        };
+  $('#bottom-nav').addEventListener('click', (e) => {
+    const btn = e.target.closest('.nav-item');
+    if (btn) navigateTo(btn.dataset.page);
+  });
 
-        // ─── FAKE COMMENT (Admin) ──────────────────────────
-        window.postFakeComment = function() {
-            const nameInput = document.getElementById('adminFakeName');
-            const textInput = document.getElementById('adminFakeText');
-            const name = nameInput.value.trim() || 'Moderator';
-            const text = textInput.value.trim() || 'Great app! 🔥';
-            if (!text) return;
-            const commentsRef = ref(db, `comments/${currentAppId}`);
-            const newRef = push(commentsRef);
-            set(newRef, {
-                name: name,
-                text: text,
-                ts: Date.now(),
-                isAdmin: true
-            }).then(() => {
-                alert('✅ Fake comment posted as "' + name + '"');
-            }).catch(() => {
-                alert('❌ Failed to post fake comment.');
-            });
-        };
+  $$('[data-nav]').forEach(btn => { btn.onclick = () => navigateTo(btn.dataset.nav); });
 
-        // ─── TOGGLE COMMENTS (Admin) ──────────────────────
-        window.toggleComments = function() {
-            commentsEnabled = !commentsEnabled;
-            const toggle = document.getElementById('adminToggle');
-            const label = document.getElementById('adminToggleLabel');
-            if (toggle) {
-                if (commentsEnabled) {
-                    toggle.classList.add('active');
-                    if (label) label.innerText = 'ON';
-                } else {
-                    toggle.classList.remove('active');
-                    if (label) label.innerText = 'OFF';
-                }
-            }
-            update(ref(db, 'settings/commentsEnabled'), commentsEnabled);
-            updateCommentUI();
-        };
+  $('#back-from-category').onclick = () => navigateTo('categories');
 
-        // ─── ADMIN PANEL TOGGLE ────────────────────────────
-        window.toggleAdminPanel = function() {
-            const panel = document.getElementById('adminPanel');
-            panel.classList.toggle('hidden');
-            if (!panel.classList.contains('hidden')) {
-                // Load current settings
-                const toggle = document.getElementById('adminToggle');
-                const label = document.getElementById('adminToggleLabel');
-                if (commentsEnabled) {
-                    toggle.classList.add('active');
-                    if (label) label.innerText = 'ON';
-                } else {
-                    toggle.classList.remove('active');
-                    if (label) label.innerText = 'OFF';
-                }
-            }
-        };
+  $('#menu-my-payments').onclick = () => navigateTo('purchases');
+  $('#menu-settings').onclick = () => showToast('Settings coming soon', 'info');
+  $('#menu-logout').onclick = () => {
+    localGuestActive = false;
+    currentUser = null;
+    auth.signOut().catch(() => {}).finally(() => {
+      localStorage.removeItem('debu_favorites');
+      localStorage.removeItem('debu_downloads');
+      localStorage.removeItem('debu_purchases');
+      localStorage.removeItem('debu_local_txns');
+      localStorage.removeItem('debu_guest_uid');
+      favorites = []; downloadHistory = []; purchases = []; pendingPurchases = []; allTransactions = [];
+      dismissedStatusPopup = {};
+      renderAll(); renderFavorites(); renderDownloads(); renderTransactions();
+      updateProfileStats(); updateTxnBadge();
+      showAuthScreen();
+      showToast('Signed out', 'info');
+    });
+  };
 
-        // ─── SEARCH ─────────────────────────────────────────
-        window.handleSearch = function() {
-            const q = document.getElementById('searchInput').value.toLowerCase().trim();
-            const container = document.getElementById('appContainer');
-            navigateTo('home');
-            if (!q) { renderApps(allApps, container); return; }
-            const filtered = allApps.filter(a =>
-                (a.title && a.title.toLowerCase().includes(q)) ||
-                (a.category && a.category.toLowerCase().includes(q)) ||
-                (a.tag && a.tag.toLowerCase().includes(q))
-            );
-            renderApps(filtered, container);
-        };
+  setupTxnFilters();
 
-        // ─── NAVIGATION ─────────────────────────────────────
-        window.navigateTo = function(view) {
-            const sidebar = document.getElementById('sidebar');
-            if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
-            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView'];
-            views.forEach(id => document.getElementById(id).classList.add('hidden'));
-            if (view === 'home') document.getElementById('homeView').classList.remove('hidden');
-            else if (view === 'trending') document.getElementById('trendingView').classList.remove('hidden');
-            else if (view === 'about') document.getElementById('aboutView').classList.remove('hidden');
-            else if (view === 'help') document.getElementById('helpView').classList.remove('hidden');
-            else if (view === 'contact') document.getElementById('contactView').classList.remove('hidden');
-            else if (view === 'category') document.getElementById('categoryView').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        };
+  $('#app-detail-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'app-detail-modal') closeAppDetail();
+  });
 
-        window.navigateToCategory = function(cat) {
-            const sidebar = document.getElementById('sidebar');
-            if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
-            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView'];
-            views.forEach(id => document.getElementById(id).classList.add('hidden'));
-            document.getElementById('categoryView').classList.remove('hidden');
-            document.getElementById('categoryTitleText').innerText = cat + ' Apps';
-            const container = document.getElementById('categoryContainer');
-            container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">Loading...</div>`;
-            if (allApps && allApps.length) {
-                const filtered = allApps.filter(a => a.category && a.category.toLowerCase() === cat.toLowerCase());
-                window.renderApps(filtered, container);
-            } else {
-                container.innerHTML = `<div class="col-span-2 text-center py-8 text-gray-400 text-sm">No apps found</div>`;
-            }
-            window.scrollTo(0, 0);
-        };
+  const pm = document.getElementById('payment-modal');
+  if (pm) pm.addEventListener('click', (e) => { if (e.target.id === 'payment-modal') closePaymentModal(); });
 
-        window.toggleSidebar = function() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-            document.getElementById('overlay').classList.toggle('hidden');
-        };
+  const sp = document.getElementById('status-popup');
+  if (sp) sp.addEventListener('click', (e) => { if (e.target.id === 'status-popup') sp.classList.remove('show'); });
 
-        window.toggleTheme = function() {
-            const html = document.documentElement;
-            const btn = document.getElementById('themeToggle');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                btn.innerHTML =
-                    `<svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.773l-1.591 1.591M5.25 12H3m4.773-4.773L6.182 5.636M12 6.75A5.25 5.25 0 016.75 12 5.25 5.25 0 0012 17.25 5.25 5.25 0 0017.25 12 5.25 5.25 0 0012 6.75z"/></svg>`;
-            } else {
-                html.classList.add('dark');
-                btn.innerHTML =
-                    `<svg class="icon-md icon-white" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>`;
-            }
-        };
+  const dm = document.getElementById('download-modal');
+  if (dm) dm.addEventListener('click', (e) => { if (e.target.id === 'download-modal') closeDownloadModal(); });
 
-        // ─── DETAIL VIEW ────────────────────────────────────
-        let pendingApp = { logo: '', title: '', size: '', badge: '', link: '', rating: '', version: '', updated: '',
-            publisher: '', category: '', id: '' };
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeAppDetail(); closePaymentModal(); closeDownloadModal(); }
+  });
 
-        window.openDetail = function(logo, title, mb, link, badge, rating, version, updated, publisher, category, id) {
-            pendingApp = { logo, title, size: mb, badge, link, rating, version, updated, publisher, category, id };
-            currentAppId = id || 'default';
-            document.getElementById('dIcon').src = logo;
-            document.getElementById('dTitle').innerText = title;
-            document.getElementById('dVersion').innerText = version;
-            document.getElementById('dUpdated').innerText = updated;
-            document.getElementById('dRating').innerText = rating;
-            document.getElementById('dUpdated2').innerText = updated;
-            document.getElementById('dPublisher').innerText = publisher;
-            document.getElementById('dCategory').innerText = category;
-            document.getElementById('dSize').innerText = mb;
-            const views = ['homeView', 'trendingView', 'categoryView', 'aboutView', 'helpView', 'contactView', 'detailView'];
-            views.forEach(v => document.getElementById(v).classList.add('hidden'));
-            document.getElementById('detailView').classList.remove('hidden');
-            // Load comments for this app
-            loadComments(currentAppId);
-            updateCommentUI();
-            // Reset comment inputs
-            document.getElementById('commentNameInput').value = '';
-            document.getElementById('commentTextInput').value = '';
-            document.getElementById('modalCommentName').value = '';
-            document.getElementById('modalCommentText').value = '';
-            document.getElementById('commentStatus').innerText = '';
-            document.getElementById('modalCommentStatus').innerText = '';
-            window.scrollTo(0, 0);
-        };
+  const params = new URLSearchParams(location.search);
+  if (params.get('app')) setTimeout(() => openAppDetail(params.get('app')), 2500);
+}
 
-        window.closeDetail = function() { navigateTo('home'); };
+/* ============================================================
+   THEME + TOAST
+   ============================================================ */
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+  const btn = $('#theme-toggle');
+  if (btn) btn.innerHTML = isDarkMode ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+}
 
-        // ─── COMMENT MODAL ──────────────────────────────────
-        window.openCommentModal = function() {
-            const overlay = document.getElementById('commentModal');
-            overlay.classList.add('open');
-            // Sync modal comment list
-            const list = document.getElementById('commentList');
-            const modalList = document.getElementById('modalCommentList');
-            if (list && modalList) modalList.innerHTML = list.innerHTML;
-            // Sync form
-            const name = document.getElementById('commentNameInput').value;
-            const text = document.getElementById('commentTextInput').value;
-            document.getElementById('modalCommentName').value = name;
-            document.getElementById('modalCommentText').value = text;
-            document.getElementById('modalCommentStatus').innerText = '';
-            // Update UI state
-            updateCommentUI();
-        };
-
-        window.closeCommentModal = function() {
-            document.getElementById('commentModal').classList.remove('open');
-        };
-
-        window.proceedDownload = function() {
-            closeCommentModal();
-            if (pendingApp.link) {
-                window.open(pendingApp.link, '_blank');
-            } else {
-                alert('Download link not available.');
-            }
-        };
-
-        // ─── SOUND ──────────────────────────────────────────
-        let audioCtx = null;
-        window.playClick = function() {
-            try {
-                if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.frequency.value = 880;
-                osc.type = 'sine';
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-                osc.start(audioCtx.currentTime);
-                osc.stop(audioCtx.currentTime + 0.08);
-            } catch (e) {}
-        };
-
-        // ─── GLOBALS ────────────────────────────────────────
-        window.openDetail = openDetail;
-        window.closeDetail = closeDetail;
-        window.openCommentModal = openCommentModal;
-        window.closeCommentModal = closeCommentModal;
-        window.proceedDownload = proceedDownload;
-        window.postComment = postComment;
-        window.postCommentModal = postCommentModal;
-        window.postFakeComment = postFakeComment;
-        window.toggleComments = toggleComments;
-        window.toggleAdminPanel = toggleAdminPanel;
-        window.navigateTo = navigateTo;
-        window.navigateToCategory = navigateToCategory;
-        window.toggleSidebar = toggleSidebar;
-        window.toggleTheme = toggleTheme;
-        window.handleSearch = handleSearch;
-
-        console.log('✅ MODWALA আপডেট — কমেন্ট সিস্টেম ঠিক করা হয়েছে।');
-        console.log('📌 নতুন অ্যাপ প্রথমে দেখায়।');
-        console.log('📌 অ্যাডমিন কমেন্ট দেখায় এবং ইউজারের নাম ঠিকভাবে কাজ করে।');
-        console.log('🔒 অ্যাডমিন প্যানেল — ফুটার ডাবল-ক্লিক করুন।');
-    </script>
+function showToast(msg, type = 'info') {
+  const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<i class="fas ${icons[type]}"></i><span>${esc(msg)}</span>`;
+  $('#toast-container').appendChild(t);
+  setTimeout(() => {
+    t.style.opacity = '0';
+    t.style.transition = 'all 0.3s';
+    setTimeout(() => t.remove(), 300);
+  }, 3500);
+}
+</script>
 </body>
 </html>
